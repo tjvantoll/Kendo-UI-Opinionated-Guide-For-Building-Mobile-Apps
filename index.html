@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hybrid Mobile/Tablet App Guidelines</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.uniform.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bower_components/SyntaxHighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="bower_components/SyntaxHighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+    <script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+            text-rendering: optimizeLegibility;
+            overflow: hidden;
+        }
+
+        a:link, a:visited, a:active{
+            text-decoration: none;
+            color:#4183c4;
+        }
+
+        a:hover{
+            text-decoration: underline;
+        }
+
+        #container {
+            display: table; 
+            width: 100%;
+            height: 100%;
+            color: #000;
+            border: none;
+        }
+
+        #container > div {   
+            display: table-row;   
+            width: 100%;
+        }
+
+        #container > div > div {   
+            display: table-cell;   
+            width: 100%;
+        }
+
+        #header > div {
+            height:50px;
+            border-bottom: 1px solid #EDEDED;
+            background-color: #fafafa;
+            z-index: 1000000000000000000000;
+            width: 100%;
+            display: table-row;   
+            width: 100%;
+        }
+
+        #content > div {
+            height: 100%;    
+        }
+
+        h1{
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #7e888b;
+            font-weight: normal;
+        }
+
+        h2{
+            margin:50px 0 40px 0;
+            padding:0 0 0 0;
+            font-weight: bold;
+            color: #000;
+            letter-spacing: .01rem;
+            font-size: 40px;
+            line-height: 1.2em;
+        }
+
+        h3{
+            margin:0 0 0 0;
+            padding:0 0 10px 0;
+            line-height: 1.2em;
+            font-weight: normal;
+            color: #000;
+            letter-spacing: .01rem;
+            font-size: 26px;
+            margin-bottom: 10px;
+            margin-top: 60px;
+            border-bottom:1px solid #eee;
+        }
+
+        h3 a:link, h3 a:active, h3 a:visited, h3 a:hover, h2 a:link, h2 a:active, h2 a:visited, h2 a:hover{
+            color:#000;
+            text-decoration: none;
+        }
+
+        p,ol,ul{
+            color:#000;
+            line-height: 25px;
+            margin: 20px 0;
+        }
+
+        ol li, ul li{
+            line-height: 2em;
+        }
+
+        .k-widget.k-splitter{
+            border: none;
+        }
+
+        .k-splitbar{
+            border-color: #EDEDED;
+        }
+
+        #splitter{
+            height: 100%;
+        }
+
+        h5,h6{
+            letter-spacing: .01rem;
+            line-height: 1.5em;
+            color: #364149;
+            font-size: 14px;
+            padding:0;
+            margin: 0 0 20px 0;
+            font-weight: normal;
+        }
+
+        h6{
+            margin-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        h5{
+            margin-top: 30px;
+        }
+
+        h5 a:link, h5 a:active, h5 a:visited, h6 a:link, h6 a:active, h6 a:visited{
+            color:#364149;
+            text-decoration: none;
+        }
+
+        h5 a:hover, h6 a:hover{
+            color:#4183c4;
+        }
+
+        #toc-padding{
+            padding: 0px 20px 20px 20px;
+        }
+
+        #toc{
+            background-color: #fafafa;
+        }
+
+        #book{
+            letter-spacing: .01rem;
+            line-height: 1.5em;
+        }
+
+        #center-book{
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0px 20px 50px 20px;
+        }
+
+        .header-btn{
+            width:50px;
+            height: 50px;
+            color:#7E888B;
+            line-height: 50px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #header a:link, #header a:visited, #header a:active{
+            color: #7E888B;
+        }
+
+        .header-btn:hover{
+            background-color: #f0f2f4;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .float-left{
+            float: left;
+        }
+
+        .float-right{
+            float: right;
+        }
+
+        .note{
+            padding: 0px 0 0 0;
+            margin: 20px 0;
+            border: 1px solid #EFEFEF;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .notes{
+            padding: 10px;
+        }
+
+        .notes ul{
+            margin: 0px;
+            color: inherit;
+            padding-left: 20px;
+        }
+
+        .notes-title{
+            padding-left:10px;
+            background-color: #EFEFEF;
+        }
+
+        code{
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        #author{
+            font-size: 11px;
+            text-align: center;
+            padding:11px 0;
+            border-bottom: 1px solid #EDEDED;
+        }
+
+        #draft{
+            background-color: #d9534f;
+            color: #fff;
+            font-weight: normal;
+            text-transform: uppercase;
+            font-size: 10px;
+            padding: 0px 6px;
+            margin: 0 10px 0 0;
+        }
+
+        #book img, #book video{
+            padding: 4px;
+            border: 1px solid #EFEFEF;
+            border-radius: 4px;
+            display: inline-block;
+            width: 100% \9;
+            max-width: 100%;
+            height: auto;
+            box-sizing: border-box;
+        }
+
+        #book .syntaxhighlighter{
+            padding: 12px 0;
+            display: inline-block;
+            width: 100% \9;
+            max-width: 100%;
+            height: auto;
+            box-sizing: border-box;
+            font-size: 13px !important;
+            background-color: #FAFAFA !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .syntaxhighlighter .line.alt2, .syntaxhighlighter .line.alt1 {
+            background-color: #FAFAFA !important;
+        }
+
+        #book img.noBorder{
+            padding: 0px;
+            border: none;
+            border-radius: 0px;
+            display: inline-block;
+            width: 100% \9;
+            max-width: 100%;
+            height: auto;
+            box-sizing: border-box;
+        }
+
+        body .syntaxhighlighter .line {
+            white-space: pre-wrap !important; /* make code wrap */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="header"><div>
+        <i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
+        <a href="https://github.com/codylindley/the-kendo-ui-book" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
+        <h1>Hybrid Mobile/Tablet App Guidelines</h1>
+
+        </div></div>
+        <div id="content"><div>
+                <div id="splitter">
+                    <div id="toc">
+                         <div id="author"><span id="draft">DRAFT</span> by <a href="http://www.codylindley.com" target="_blank">cody lindley</a> </div>
+                        <div id="toc-padding">
+                            
+                        </div>
+                    </div>
+                    <div id="book">
+                        <div id="center-book">
+                            <img src="images/phones.png" style="margin-top:50px;" class="noBorder" id="Kendoka" />
+
+                            <div id="toc1" class="toc">
+                                <h2><strong>Introduction</strong></h2>
+                                <p>This is an opinionated guide for building hybrid mobile applications. It provides developer insights and solutions targeted at developers trying to constructing mobile/tablet hybrid applications.</p>
+                            </div>
+
+                            <div id="toc2" class="toc">
+                                <h2><strong>What is a hybrid mobile/tablet application</strong></h2>
+                                <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipeida</a> offers a pretty good definition of a hybrid mobile application (altered slightly for clarity): </p>
+
+                                <blockquote>"Hybrid apps, like native apps, run on the device, and are written with web technologies (HTML5, CSS and JavaScript). Hybrid apps run inside a native container (aka webview), and leverage the device’s browser engine (but not the browser) to render the HTML and process the JavaScript locally. A web-to-native abstraction layer (e.g. cordova) enables access to device capabilities that are not accessible in Mobile/Tablet Web applications, such as the accelerometer, camera and local storage."</blockquote>
+                            </div>
+
+                            <div id="toc3" class="toc">
+                                <h2><strong>Who should read this</strong></h2>
+                                <p>You are front-end engineer who has experience developing applications in html, css, and JavaScript (e.g. SPA applications) that wants to use these skills to build a hybrid native mobile/tablet application and are in need of some direction/options.</p>
+                            </div>
+
+                            <div id="toc4" class="toc">
+                                <h2><strong>Preface</strong></h2>
+                                <p>Knowledge is imparted and some knowledge is assumed about the following solutions:</p>
+
+                                <ul>
+                                    <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - download/clone from <a href="https://github.com/telerik/kendo-ui-core">Github</a> or install from <a href="https://github.com/kendo-labs/bower-kendo-ui">bower</a></li>
+                                    <li><strong>AppBuilder</strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
+                                    <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong></li>
+                                    <li><strong>Cordova</strong> - <a href="http://cordova.apache.org/">http://cordova.apache.org/</a></li>
+                                </ul>
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 1  -->
+                            <!--_____________-->
+                            <div id="chapter1" class="chapter">
+
+                            <h2><strong>1. The Basics</strong></h2>
+
+
+                            <h3><strong>1.2</strong> Remember why you are doing hybrid development</h3>
+
+                            <p>Built and packaged correctly, the goal of a hybrid app is to be virtually indistinguishable to end-users from a native SDK app. The advantage of building apps with HTML, CSS, and JavaScript is that developers can maintain a single code base to target all major app platforms. Your team can focus on HTML, JavaScript, and CSS, development rather than being average practitioners of Objective-C, Java, .NET and the myriad of other developer skills need for cross-platform mobile app development.</p>
+
+                            <h3><strong>1.3</strong> Define targeted mobile/tablet platforms/versions</h3>
+
+                            <p>Hybrid apps run in a webview, which is like a tab in a web browser. Make sure to define upfront the mobile/tablet platform/versions in order to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the mobile platform.</p>
+
+                            <p>Unlike browser development for the desktop it's more than likely that your application will be run by a newer, modern, browser engine that supports things like ES5, CORS, and Web Sockets.</p>
+
+                            <h3><strong>1.4</strong> Use a mobile widget toolkit with application logic</h3>
+
+                            <h3><strong>1.5</strong> Always use Cordova (i.e. a web-to-native abstraction)</h3>
+
+                            <p>Explain why Cordova, even if you don't use common api's is needed. Events?</p>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 2  -->
+                            <!--_____________-->
+                            <div id="chapter2" class="chapter">
+                            
+                            <h2><strong>2. Use A Package Manager</strong></h2>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 3  -->
+                            <!--_____________-->
+                            <div id="chapter3" class="chapter">
+                            
+                            <h2><strong>3. App Folder Structure</strong></h2>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 4  -->
+                            <!--_____________-->
+                            <div id="chapter4" class="chapter">
+                            
+                            <h2><strong>4. Coding Style</strong></h2>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 5  -->
+                            <!--_____________-->
+                            <div id="chapter5" class="chapter">
+                            
+                            <h2><strong>5. Modules</strong></h2>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 6  -->
+                            <!--_____________-->
+                            <div id="chapter6" class="chapter">
+                            
+                            <h2><strong>6. Module Loader/Dependency Manager</strong></h2>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 7  -->
+                            <!--_____________-->
+                            <div id="chapter7" class="chapter">
+                            
+                            <h2><strong>7. Application Structure</strong></h2>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 8  -->
+                            <!--_____________-->
+                            <div id="chapter8" class="chapter">
+                            
+                            <h2><strong>8. Running Hybrid Applications</strong></h2>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 9  -->
+                            <!--_____________-->
+                            <div id="chapter9" class="chapter">
+                            
+                            <h2><strong>9. Deploying</strong></h2>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+        </div></div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="http://static.jsbin.com/js/embed.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>
+    <script src="bower_components/jquery.breakpoints/breakpoints.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/XRegExp.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+    <script src="bower_components/jquery.transit/jquery.transit.js"></script>
+    <script>
+
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.all();
+
+        function lineWrap(){
+            var wrap = function () {
+                var elems = document.getElementsByClassName('syntaxhighlighter');
+                for (var j = 0; j < elems.length; ++j) {
+                    var sh = elems[j];
+                    var gLines = sh.getElementsByClassName('gutter')[0].getElementsByClassName('line');
+                    var cLines = sh.getElementsByClassName('code')[0].getElementsByClassName('line');
+                    var stand = 15;
+                    for (var i = 0; i < gLines.length; ++i) {
+                        var h = $(cLines[i]).height();
+                        if (h != stand) {
+                            gLines[i].setAttribute('style', 'height: ' + h + 'px !important;');
+                        }
+                    }
+                }
+             };
+            var whenReady = function () {
+                if ($('.syntaxhighlighter').length === 0) {
+                    setTimeout(whenReady, 800);
+                } else {
+                    wrap();
+                }
+            };
+            whenReady();
+        };
+        lineWrap();
+        $(window).resize(function(){lineWrap()});
+
+        $('#book a').attr('target', '_blank');
+
+        //setup splitter
+        var splitter = $('#splitter').kendoSplitter({
+            panes: [
+                { collapsible: true, collapsed: true },
+                { collapsible: false},
+            ]
+        }).data('kendoSplitter');
+
+        //create TOC
+        jQuery('.toc').each(function(index){
+    
+            jQuery('h2','#toc'+(index+1)).each(function(i){
+                $(this).attr('id',$(this).text().replace(/ /g,''));
+                $('#toc-padding')
+                    .append('<h5><a href="#'+($(this).text().replace(/[ .]/g,''))+'">'+$(this).html()+'</a></h5>');
+            });
+
+            jQuery('h3','#toc'+(index+1)).each(function(i){
+                $(this).attr('id',$(this).text().replace(/ /g,''));
+                $('#toc-padding')
+                    .append('<h6><a href="#'+($(this).text().replace(/[ .]/g,''))+'">'+$(this).html()+'</a></h6>');
+            });
+            
+        });
+
+        jQuery('.chapter').each(function(index){
+    
+            jQuery('h2','#chapter'+(index+1)).each(function(i){
+                $(this).attr('id',(index+1));
+                $(this).wrapInner('<a href="#'+(index+1)+'"></a>');
+                $('#toc-padding').append('<h5><a href="#'+(index+1)+'">'+$(this).html()+'</a></h5>');
+            });
+
+            jQuery('h3','#chapter'+(index+1)).each(function(i){
+                $(this).attr('id',(index+1)+'.'+(i+1));
+                $(this).wrapInner('<a href="#'+(index+1)+'.'+(i+1)+'"></a>');
+                $('#toc-padding').append('<h6><a href="#'+(index+1)+'.'+(i+1)+'">'+$(this).html()+'</a></h6>');
+            });
+            
+        });
+
+        //detect and reset panels for phones, tablets, and desktop
+        $(window).setBreakpoints({distinct: true, breakpoints: [320,480,768,1024] });
+
+        $(window).on('enterBreakpoint320',function() {
+            splitter.size('.k-pane:first', '70%');
+            splitter.size('.k-pane:last', '30%');
+            splitter.toggle('.k-pane:first',false);
+        });
+        $(window).on('enterBreakpoint480',function() {
+            splitter.size('.k-pane:first', '40%');
+            splitter.size('.k-pane:last', '60%');
+            splitter.toggle('.k-pane:first',false);
+        });
+        $(window).on('enterBreakpoint768',function() {
+            splitter.size('.k-pane:first', '20%');
+            splitter.size('.k-pane:last', '80%');
+            splitter.toggle('.k-pane:first',false);
+        });
+        $(window).on('enterBreakpoint1024',function() {
+            splitter.size('.k-pane:first', '25%');
+            splitter.size('.k-pane:last', '75%');
+            splitter.toggle('.k-pane:first',true);
+        });
+
+        //toggle
+        $( '#toggle-toc' ).on('click',function() {
+            splitter.toggle('.k-pane:first');
+        });
+
+    </script>
+</body>
+</html>
