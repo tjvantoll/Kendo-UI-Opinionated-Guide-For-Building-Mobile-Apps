@@ -320,37 +320,44 @@
 
                             <div id="toc1" class="toc">
                                 <h2><strong>Introduction</strong></h2>
-                                <p>This is an opinionated guide for building hybrid mobile/tablet applications using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a></p> 
+
+                                <h3>What is this?</h3>
+                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>.</p>
 
                                 <h3>Why do I need Kendo UI Mobile?</h3>
 
-                                <p>Kendo UI Mobile provides touch specific widgets to construct user interfaces for mobile and tablet devices and more importantly a set of tools to build a Single Page Application in a browser or webview. Kendo UI is not widgets alone it's also the glue (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>) that structures the application.</p>
+                                <p>Kendo UI Mobile provides touch specific widgets to construct user interfaces for mobile and tablet devices and more importantly a set of tools to build a Single Page Application in a browser or webview. Kendo UI Mobile is not widgets alone it's also the glue (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>) that structures the website/application.</p>
 
-                                <h3>What is a hybrid mobile/tablet app?</h3>
+                                <!--<h3>What is a hybrid mobile/tablet app?</h3>
                                 <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
 
-                                <blockquote>"Hybrid apps, like native apps, run on the device, and are written with web technologies (HTML, CSS and JavaScript). Hybrid apps run inside a native container (aka webview), and leverage the device’s browser engine (but not the browser) to render the HTML and process the JavaScript locally. A web-to-native abstraction layer (e.g. cordova) enables access to device capabilities that are not accessible in Mobile/Tablet Web applications, such as the accelerometer, camera and local storage."</blockquote>
+                                <blockquote>"Hybrid apps, like native apps, run on the device, and are written with web technologies (HTML, CSS and JavaScript). Hybrid apps run inside a native container (aka webview), and leverage the device’s browser engine (but not the browser itself i.e. Safari) to render the HTML and process the JavaScript locally in the native container. A web-to-native abstraction layer (e.g. cordova) enables access to device capabilities that are not accessible in Mobile/Tablet Web applications, such as the accelerometer, camera and local storage."</blockquote>
 
                                 <h3>Why build hybrid mobile/tablet apps?</h3>
 
-                                <p>Built and packaged correctly, the goal of a hybrid app is to be <a href="https://www.youtube.com/watch?v=hHk1ENkwWq8">virtually indistinguishable to end-users from a native app</a>. The advantage of building apps with HTML, CSS, and JavaScript is that developers can maintain a single code base to target all major app platforms (ios, android, windows phone). Your team can focus on HTML, CSS, and JavaScript development rather than being average practitioners of Objective-C, Java, .NET and the myriad of other developer skills need for cross-platform mobile app development.</p>
+                                <p>Built and packaged correctly, the goal of a hybrid app is to be <a href="https://www.youtube.com/watch?v=hHk1ENkwWq8">virtually indistinguishable to end-users from a native app</a>. The advantage of building apps with HTML, CSS, and JavaScript is that developers can maintain a single code base to target all major platforms (ios, android, windows phone). Your team can focus on HTML, CSS, and JavaScript development rather than being average practitioners of Objective-C, Java, .NET and the myriad of other developer skills need for cross-platform mobile app development.</p>-->
 
                             </div>
 
                             <div id="toc2" class="toc">
                                 <h2><strong>Who should read this</strong></h2>
-                                <p>You are front-end engineer who has experience developing applications in HTML, CSS, and JavaScript (e.g. SPA applications) that wants to use these skills to build a hybrid native mobile/tablet application and are in need of some direction/opinions to get you started.</p>
+                                <p>You are front-end engineer who has experience developing applications in HTML, CSS, and JavaScript (e.g. SPA applications) that wants to use these skills to build a mobile/tablet web site/application or a hybrid native application and are in need of some direction/opinions to get you started.</p>
                             </div>
 
                             <div id="toc3" class="toc">
-                                <h2><strong>Preface</strong></h2>
-                                <p>Some knowledge is imparted and some knowledge is assumed about the following solutions:</p>
+                                <h2><strong>Prerequisites</strong></h2>
+                                <p>Some knowledge is imparted and some knowledge is assumed about the following:</p>
 
                                 <ul>
                                     <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - download or clone from <a href="https://github.com/telerik/kendo-ui-core">Github</a>, or install using <a href="https://github.com/kendo-labs/bower-kendo-ui">bower</a></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong></li>
                                     <li><strong><a href="http://www.telerik.com/platform#overview">AppBuilder</a></strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
                                     <li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>
+                                    <li><strong><a href="http://nodejs.org/">NodeJS</a></strong></li>
+                                    <li><strong><a href="https://www.npmjs.org/">NPM</a></strong></li>
+                                    <li><strong><a href="http://gulpjs.com/">gulp.js</a></strong></li>
+                                    <li><strong><a href="http://bower.io/">Bower</a></strong></li>
+                                    <li><strong><a href="http://en.wikipedia.org/wiki/Command-line_interface">Using the Command-line</a></strong></li>
                                 </ul>
                             </div>
 
@@ -359,17 +366,57 @@
                             <!--_____________-->
                             <div id="chapter1" class="chapter">
 
-                            <h2><strong>1. General Guidelines</strong></h2>
+                                <h2><strong>1. General Guidelines</strong></h2>
 
-                            <h3><strong>1.1</strong> Take stock of everything available to you as a developer</h3>
+                                <h3><strong>1.1</strong> Take stock of technologies available on the web platform</h3>
 
-                            <p>Hybrid apps run in a webview, which is like a tab in a web browser. Make sure to define upfront the mobile/tablet platform/versions in order to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the platform (i.e. the version of the browser engine, used by the device, to render a webview).</p>
+                                <p>Kendo UI mobile, even if it's running in a webview, is render by a browser engine (i.e. a webview is like a browser window tab). Make sure to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the platform (i.e. the version of the browser engine, used by the device, to render) you are targeting.</p>
 
-                            <p>Unlike browser development for the desktop it's more than likely that your application will be running in a newer, modern browser engine, that supports things like ES5, CORS, and Web Sockets. Make sure you are aware of everything you have at your disposal for development and use it.</p>
+                                <p>It's more than likely given the Kendo UI mobile support matrix (noted below) that your application will be running in a newer, modern browser engine, that supports things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>. Make sure you are aware of everything you have at your disposal for development and use it.</p>
 
-                            <h3><strong>1.2</strong> Use Cordova (i.e. a web-to-native abstraction)</h3>
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>Kendo UI mobile is supported on Android 2.3+, iOS 6+, Windows Phone 8+, Chrome for Android, OS X 10.5+ (IE10+, Chrome Recent, Opera 15+, Safari 5+), and Windows XP + / Server 2003 + (IE10+, Chrome Recent, Opera 15+)</li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                            <p>Explain why Cordova, even if you don't use common api's is needed in kendo ui mobile app. Events?</p>
+                                <h3><strong>1.2</strong> Use jQuery 2.x</h3>
+
+                                <p>Kendo UI mobile widgets are supported on IE 10+ and windows phone 8+. Both use the ie10 rendering engine so you  might as well use the newest version of jQuery (which drops support for IE 8 and below).</p>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>When <a href="https://github.com/jquery/globalize">globalize.js</a> is registered before Kendo scripts, then Kendo will use globalize.js features instead of Kendo Globalization.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3><strong>1.3</strong> Don't use Internet Explorer compatibility modes</h3>
+
+                                <p>Internet Explorer compatibility modes can exhibit different behavior and rendering bugs, compared to the browser versions they emulate. It is highly recommended to use IE's Edge mode via META tag or HTTP header.</p>
+
+                                <pre class="brush: html">
+                                    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+                                </pre>
+
+                                <h3><strong>1.4</strong> Favor the platform neutral flat theme for all platforms</h3>
+
+                                <p>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a>. For this reason force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms and use either the <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile themebuilder</a> to alter the theme or create your own overwrites in a separate style sheet.</p>
+
+                                <p>To override Kendo UI's default nature of detecting the platform and forcing a CSS theme that mimics the platform simply set the <code>skin</code> <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application#configuration-skin">option</a> to <code>flat</code> in the <code>Application()</code> method used to initialize the mobile application. </p>
+
+                                <pre class="brush: js">
+                                    var app = new kendo.mobile.Application($(document.body), { skin: 'flat' });
+                                </pre>
+
+                                <h3><strong>1.5</strong> Don't add mobile rendering meta elements</h3>
+
+                                <p>Kendo UI Mobile will add the appropriate rendering meta elements to the html page. Rely on this fact and don't add your own.</p>
 
                             </div>
 
@@ -378,7 +425,17 @@
                             <!--_____________-->
                             <div id="chapter2" class="chapter">
                             
-                            <h2><strong>2. Use A Package Manager</strong></h2>
+                            <h2><strong>2. Structuring The Application</strong></h2>
+
+                            <h3><strong>2.1</strong> Folder Structure</h3>
+
+                            <h3><strong>2.2</strong> One index.html</h3>
+
+                            <h3><strong>2.3</strong> Local Server</h3>
+
+                            <h3><strong>2.3</strong> Automated Development Tasks</h3>
+
+                            <h3><strong>2.3</strong> Build</h3>
 
                             </div>
 
@@ -387,16 +444,16 @@
                             <!--_____________-->
                             <div id="chapter3" class="chapter">
                             
-                            <h2><strong>3. App Project/Folder Structure</strong></h2>
+                            <h2><strong>3. Coding Style</strong></h2>
 
                             </div>
 
                             <!--_____________-->
                             <!--  chapter 4  -->
                             <!--_____________-->
-                            <div id="chapter4" class="chapter">
+                            <div id="chapter2" class="chapter">
                             
-                            <h2><strong>4. Coding Style</strong></h2>
+                            <h2><strong>4. Application Logic</strong></h2>
 
                             </div>
 
@@ -405,45 +462,10 @@
                             <!--_____________-->
                             <div id="chapter5" class="chapter">
                             
-                            <h2><strong>5. Modules</strong></h2>
+                            <h2><strong>8. Going Hybrid</strong></h2>
 
                             </div>
 
-                            <!--_____________-->
-                            <!--  chapter 6  -->
-                            <!--_____________-->
-                            <div id="chapter6" class="chapter">
-                            
-                            <h2><strong>6. Module Loader/Dependency Manager</strong></h2>
-
-                            </div>
-
-                            <!--_____________-->
-                            <!--  chapter 7  -->
-                            <!--_____________-->
-                            <div id="chapter7" class="chapter">
-                            
-                            <h2><strong>7. Application Structure</strong></h2>
-
-                            </div>
-
-                            <!--_____________-->
-                            <!--  chapter 8  -->
-                            <!--_____________-->
-                            <div id="chapter8" class="chapter">
-                            
-                            <h2><strong>8. Running Hybrid Applications</strong></h2>
-
-                            </div>
-
-                            <!--_____________-->
-                            <!--  chapter 9  -->
-                            <!--_____________-->
-                            <div id="chapter9" class="chapter">
-                            
-                            <h2><strong>9. Deploying</strong></h2>
-
-                            </div>
 
 
                         </div>
