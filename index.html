@@ -310,9 +310,7 @@
                 <div id="splitter">
                     <div id="toc">
                          <div id="author"><span id="draft">DRAFT</span>by <a href="http://www.codylindley.com" target="_blank">cody lindley</a></div>
-                        <div id="toc-padding">
-                            
-                        </div>
+                        <div id="toc-padding"></div>
                     </div>
                     <div id="book">
                         <div id="center-book">
@@ -322,7 +320,7 @@
                                 <h2><strong>Introduction</strong></h2>
 
                                 <h3>What is this?</h3>
-                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>.</p>
+                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is the prescription(s) found within will become a consistent style used by developers for building Kendo UI mobile applications</p>
 
                                 <h3>Why do I need Kendo UI Mobile?</h3>
 
@@ -378,7 +376,7 @@
                                     <div class="notes-title">Notes</div>
                                     <div class="notes">
                                         <ul>
-                                            <li>Kendo UI mobile is supported on Android 2.3+, iOS 6+, Windows Phone 8+, Chrome for Android, OS X 10.5+ (IE10+, Chrome Recent, Opera 15+, Safari 5+), and Windows XP + / Server 2003 + (IE10+, Chrome Recent, Opera 15+)</li>
+                                            <li>Kendo UI mobile is supported on the following operating systems and browser combinations Android 2.3+, iOS 6+, Windows Phone 8+, Chrome for Android, OS X 10.5+ (IE10+, Chrome Recent, Opera 15+, Safari 5+), and Windows XP + / Server 2003 + (IE10+, Chrome Recent, Opera 15+)</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -408,7 +406,7 @@
 
                                 <p>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a>. For this reason force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms and use either the <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile themebuilder</a> to alter the theme or create your own overwrites in a separate style sheet.</p>
 
-                                <p>To override Kendo UI's default nature of detecting the platform and forcing a CSS theme that mimics the platform simply set the <code>skin</code> <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application#configuration-skin">option</a> to <code>flat</code> in the <code>Application()</code> method used to initialize the mobile application. </p>
+                                <p>To override Kendo UI's default nature of detecting the platform and forcing a platform specific CSS theme simply set the <code>skin</code> <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application#configuration-skin">option</a> to <code>flat</code> in the <code>Application()</code> method used to initialize the mobile application. </p>
 
                                 <pre class="brush: js">
                                     var app = new kendo.mobile.Application($(document.body), { skin: 'flat' });
@@ -417,6 +415,24 @@
                                 <h3><strong>1.5</strong> Don't add mobile rendering meta elements</h3>
 
                                 <p>Kendo UI Mobile will add the appropriate rendering meta elements to the html page. Rely on this fact and don't add your own.</p>
+
+                                <h3><strong>1.6</strong> Commonsensical Code Bases</h3>
+
+                                <p>The following are common rules, laws, and practices among seasoned application developers:</p>
+
+                                <ol>
+                                    <li>Entire code based should follow the same <a href="https://github.com/rwaldron/idiomatic.js/">style</a> of coding as if a single developer (i.e. mind) crafted the code. This should be verified automatically at code time (i.e. in IDE on key stroke), build time, and commit time (e.g. GIT Hooks).</li>
+                                    <li>When writing code be verbose, priorities readability (i.e. code is read much more often than it is written), comment everything, and dispense with DRY principles if it obscures developer clarity.</li>
+                                    <li>The DNA of an application is small miniature applications/components, properly decoupled into single responsibility modules.</li>
+                                    <li>Modules are separated by nature (i.e. behavior/controller, model/data, style, template/html, test etc..) but organized together (i.e. application structure) by feature.</li>
+                                    <li>Avoid complexity that does not pay for itself.</li>
+                                    <li>Don't optimize for humans during development, optimize for delivery to production (i.e. don't pre-optimize)</li>
+                                    <li>Document everything!</li>
+                                    <li>Automate what you can through build processes and task runners.</li>
+                                    <li>Establish at least one layer (unit, integration, functional) of automated testing.</li>
+                                    <li>Automate the logging and notification of runtime errors minimally for production code.</li>
+                                    <li>Fear monolithic abstractions in the form of closed frameworks which promote one stop developer minded solutions.</li>
+                                </ol>
 
                             </div>
 
