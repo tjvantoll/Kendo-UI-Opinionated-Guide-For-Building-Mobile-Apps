@@ -320,7 +320,7 @@
                                 <h2><strong>Introduction</strong></h2>
 
                                 <h3>What is this?</h3>
-                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is the prescription(s) found within will become a consistent style used by developers for building Kendo UI mobile applications</p>
+                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is for the prescription(s) found within this document to become a style used by developers for building Kendo UI mobile sites/applications</p>
 
                                 <h3>Why do I need Kendo UI Mobile?</h3>
 
@@ -349,14 +349,57 @@
                                 <ul>
                                     <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - download or clone from <a href="https://github.com/telerik/kendo-ui-core">Github</a>, or install using <a href="https://github.com/kendo-labs/bower-kendo-ui">bower</a></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong></li>
-                                    <li><strong><a href="http://www.telerik.com/platform#overview">AppBuilder</a></strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
-                                    <li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>
                                     <li><strong><a href="http://nodejs.org/">NodeJS</a></strong></li>
                                     <li><strong><a href="https://www.npmjs.org/">NPM</a></strong></li>
                                     <li><strong><a href="http://gulpjs.com/">gulp.js</a></strong></li>
                                     <li><strong><a href="http://bower.io/">Bower</a></strong></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Command-line_interface">Using the Command-line</a></strong></li>
+                                    <li><strong><a href="http://www.telerik.com/platform#overview">AppBuilder</a></strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
+                                    <li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>
                                 </ul>
+                            </div>
+
+                            <div id="toc4" class="toc">
+                                <h2><strong>Get Kendo UI Mobile</strong></h2>
+
+                                <p>Kendo UI Mobile is part of the <a href="http://www.telerik.com/kendo-ui/open-source-core">open source Kendo UI Core</a>. Its free to use by anyone for anything. You can get it from the CDN, <a href="http://bower.io/search/?q=kendo-ui">Bower</a>, <a href="https://github.com/telerik/kendo-ui-core">Github</a>, or <a href="http://www.telerik.com/download/kendo-ui-core">sign up for a Telerik account and download it</a>.</p>
+
+                                <h3>CDN</h3>
+                                <p>
+                                <pre class="brush: html">
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html&gt;
+                                    &lt;head&gt;
+                                        &lt;link href=&quot;http://cdn.kendostatic.com/2014.2.1008/styles/kendo.mobile.all.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+
+                                        &lt;script src=&quot;https://code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;
+                                        &lt;script src=&quot;http://cdn.kendostatic.com/2014.2.1008/js/kendo.ui.core.min.js&quot;&gt;&lt;/script&gt;
+                                    &lt;/body&gt;
+                                    &lt;/html&gt;
+                                </pre>
+                                </p>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>Minified files are not always ideal for development. And, only the <code>kendo.ui.code.min.js</code> file is available on the CDN. To get the non-minified file <code>bower install</code> or pull the source from Github.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3>Bower</h3>
+                                <pre class="brush: bash">&gt; bower install kendo-ui</pre>
+
+                                <h3>GitHub</h3>
+
+                                <pre class="brush: shell">&gt; git clone https://github.com/telerik/kendo-ui-core.git</pre>
+
+                                <p>or <a href="https://github.com/telerik/kendo-ui-core/archive/master.zip">download zip from Github.</a></p>
+                                
+
                             </div>
 
                             <!--_____________-->
@@ -499,6 +542,7 @@
     <script src="bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/shBrushBash.js"></script>
     <script src="bower_components/jquery.transit/jquery.transit.js"></script>
     <script>
 
