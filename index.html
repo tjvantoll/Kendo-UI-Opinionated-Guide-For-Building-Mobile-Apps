@@ -303,7 +303,7 @@
         <div id="header"><div>
         <i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
         <a href="https://github.com/codylindley/Hybrid-Mobile-Tablet-App-Guidelines" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
-        <h1>Opinionated Kendo UI Mobile Guide</h1>
+        <h1>Kendo UI Guide For Mobile Apps</h1>
 
         </div></div>
         <div id="content"><div>
@@ -315,7 +315,7 @@
                     <div id="book">
                         <div id="center-book">
                             <img src="images/kendoka.png" style="margin:50px auto 0 auto; max-height: 170px;display:block" class="noBorder" />
-                            <img src="images/phones.png" style="margin:10px auto 0 auto;max-height: 100px;display:block" class="noBorder" id="Kendoka" />
+                            <!--<img src="images/phones.png" style="margin:10px auto 0 auto;max-height: 100px;display:block" class="noBorder" id="Kendoka" />-->
 
                             <div id="toc1" class="toc">
                                 <h2><strong>Introduction</strong></h2>
@@ -323,9 +323,9 @@
                                 <h3>What is this?</h3>
                                 <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is for the prescription(s) found within this document to become a style used by developers for building Kendo UI mobile sites/applications</p>
 
-                                <h3>Why do I need Kendo UI Mobile?</h3>
+                                <h3>Why use Kendo UI to build mobile apps?</h3>
 
-                                <p>Kendo UI Mobile provides JavaScript widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI Mobile also provides mobile centric application logic for building a Single Page Application in a browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). While Kendo UI Mobile widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets.</p>
+                                <p>Kendo UI provides JavaScript specific widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides mobile centric application logic for building a Single Page Application in a browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets.</p>
 
                                 <!--<h3>What is a hybrid mobile/tablet app?</h3>
                                 <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
@@ -349,7 +349,7 @@
 
                                 <ul>
                                     <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a></li>
-                                    <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong> - <a href="http://www.pluralsight.com/courses/single-page-apps-jumpstart">Learn it</a></li>
+                                    <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">Learn it</a></li>
                                     <li><strong><a href="http://nodejs.org/">NodeJS</a></strong> - <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a></li>
                                     <li><strong><a href="https://www.npmjs.org/">NPM</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
                                     <li><strong><a href="http://gulpjs.com/">gulp.js</a></strong> - <a href="https://www.youtube.com/watch?v=dwSLFai8ovQ">Learn it</a> | <a href="https://github.com/gulpjs/gulp/blob/master/docs/README.md">Docs</a></li>
@@ -363,7 +363,7 @@
                             <div id="toc4" class="toc">
                                 <h2><strong>Get Kendo UI Mobile</strong></h2>
 
-                                <p>Kendo UI Mobile is part of <a href="http://www.telerik.com/kendo-ui/open-source-core"> Kendo UI Core</a>. Kendo UI Core is the open source (i.e. free for use by anyone, for anything) offering from <a href="http://www.telerik.com/">Telerik</a> and the foundation to <a href="http://www.telerik.com/kendo-ui/comparison">Kendo UI Professional</a>.</p>
+                                <p>Kendo UI mobile widgets and application tools are part of <a href="http://www.telerik.com/kendo-ui/open-source-core"> Kendo UI Core</a>. Kendo UI Core is the open source (i.e. free for use by anyone, for anything) offering from <a href="http://www.telerik.com/">Telerik</a> and the foundation to <a href="http://www.telerik.com/kendo-ui/comparison">Kendo UI Professional</a>.</p>
 
                                  <p>You can get it from the CDN, <a href="http://bower.io/search/?q=kendo-ui">Bower</a>, <a href="https://github.com/telerik/kendo-ui-core">Github</a>, or <a href="http://www.telerik.com/download/kendo-ui-core">sign up for a Telerik account and download it</a>.</p>
 
@@ -410,26 +410,28 @@
                             <!--_____________-->
                             <div id="chapter1" class="chapter">
 
-                                <h2><strong>1. General Kendo UI Mobile Guidelines</strong></h2>
+                                <h2><strong>1. General Kendo UI Mobile App Guidelines</strong></h2>
 
                                 <h3><strong>1.1</strong> Take stock of technologies available on the web platform</h3>
 
-                                <p>Kendo UI mobile, even if it's running in a webview, is render by a browser engine (i.e. a webview is like a browser window tab). Make sure to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the platform you are targeting.</p>
+                                <p>A Kendo UI mobile app, even if it's running in a webview, is render by a browser engine (i.e. a webview is like a browser window tab). Make sure to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the browser engine(s) that will be running you applications.</p>
 
-                                <p>It's more than likely given the Kendo UI mobile support matrix (noted below) that your application will be running in a newer, modern browser engine, that supports things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>. Make sure you are aware of everything you have at your disposal for development and use it.</p>
+                                <p>It's more than likely the browser engine running a Kendo UI mobile application will be a newer, modern browser engine, that supports things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>.</p>
+
+                                <p>Make sure you are aware of everything you have at your disposal for development and use it.</p>
 
                                 <div class="note">
                                     <div class="notes-title">Notes</div>
                                     <div class="notes">
                                         <ul>
-                                            <li>Kendo UI mobile is supported on the following operating systems and browser combinations Android 2.3+, iOS 6+, Windows Phone 8+, Chrome for Android, OS X 10.5+ (IE10+, Chrome Recent, Opera 15+, Safari 5+), and Windows XP + / Server 2003 + (IE10+, Chrome Recent, Opera 15+)</li>
+                                            <li>Kendo UI mobile is supported on the following operating systems and browser combinations Android 2.3+, iOS 6+, Windows Phone 8+, Chrome for Android. Kendo UI mobile widgets used without the mobile application logic will run on OS X 10.5+ (IE10+, Chrome Recent, Opera 15+, Safari 5+) and Windows XP+ / Server 2003+ (IE10+, Chrome Recent, Opera 15+)</li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <h3><strong>1.2</strong> Use jQuery 2.x</h3>
 
-                                <p>Kendo UI mobile widgets are support windows phone 8+ and on IE 10+.  Both use the <a href="http://en.wikipedia.org/wiki/Internet_Explorer_10">ie10 rendering engine</a> so you  might as well use the newest version of jQuery, which drops support for IE 8 and below.</p>
+                                <p>Kendo UI mobile widgets are support on windows phone 8+ and on IE 10+.  Both use the <a href="http://en.wikipedia.org/wiki/Internet_Explorer_10">ie10 browser rendering engine</a> so you might as well use the newest version of jQuery, which drops support for IE 8 and below.</p>
 
                                 <h3><strong>1.3</strong> Don't use Internet Explorer compatibility modes</h3>
 
@@ -441,7 +443,7 @@
 
                                 <h3><strong>1.4</strong> Favor the platform neutral flat theme for all platforms</h3>
 
-                                <p>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a>. For this reason force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms and use either the <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile themebuilder</a> to alter the theme or create your own overwrites in a separate style sheet.</p>
+                                <p>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a>. For this reason force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms and use either the <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile themebuilder</a> to create your own overwrites in a separate style sheet.</p>
 
                                 <p>To override Kendo UI's default nature of detecting the platform and forcing a platform specific CSS theme simply set the <code>skin</code> <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application#configuration-skin">option</a> to <code>flat</code> in the <code>Application()</code> method used to initialize the mobile application. </p>
 
@@ -471,14 +473,15 @@
                                     <li>Fear monolithic abstractions in the form of closed frameworks which promote one stop developer minded solutions.</li>
                                 </ol>
 
-                                <h3><strong>1.7</strong> Run/test on real phones</h3>
+                                <h3><strong>1.7</strong> Develop using real devices</h3>
 
-                                <p>Simulators and browsers running on a desktop or laptop provide a quick and easy way to run Kendo UI Mobile code. However, this should not be how you test your code. The code should be ran and tested on a real phone.</p>
+                                <p>Simulators and browsers running on a desktop or laptop provide a quick and easy way to run Kendo UI Mobile code. However, this should not be how you test your code alone. It's critical that during development, development code is tested on the devices it intended to run on. Short of it is, run development code on a real phone during development.</p>
 
-                                <h3><strong>1.8</strong> Remote debugging your real device</h3>
+                                <h3><strong>1.8</strong> Use remote debugging solutions</h3>
 
-                                https://developer.chrome.com/devtools/docs/remote-debugging
+                                <p><a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">Plug a android (4.2+) or ios (iOS6) device into you computer/laptop and you can easily use the developer tools found in Safari or Chrome</a> on your computer/laptop to debug a site running in the devices browser.</p>
 
+                                <h3><strong>1.9</strong> Use theme builder to add CSS overrides</h3>
 
                             </div>
 
