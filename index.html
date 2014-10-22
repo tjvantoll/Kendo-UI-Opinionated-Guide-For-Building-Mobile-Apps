@@ -303,7 +303,7 @@
         <div id="header"><div>
         <i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
         <a href="https://github.com/codylindley/Hybrid-Mobile-Tablet-App-Guidelines" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
-        <h1>Kendo UI Guide For Mobile Apps</h1>
+        <h1> Kendo UI -  Opinionated Guide For Building Mobile Apps</h1>
 
         </div></div>
         <div id="content"><div>
@@ -325,7 +325,7 @@
 
                                 <h3>Why use Kendo UI to build mobile apps?</h3>
 
-                                <p>Kendo UI provides JavaScript specific widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides mobile centric application logic for building a Single Page Application in a browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets.</p>
+                                <p>Kendo UI provides JavaScript specific widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides mobile centric application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> (aka SPA's) in a browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets.</p>
 
                                 <!--<h3>What is a hybrid mobile/tablet app?</h3>
                                 <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
@@ -367,7 +367,7 @@
 
                                  <p>You can get it from the CDN, <a href="http://bower.io/search/?q=kendo-ui">Bower</a>, <a href="https://github.com/telerik/kendo-ui-core">Github</a>, or <a href="http://www.telerik.com/download/kendo-ui-core">sign up for a Telerik account and download it</a>.</p>
 
-                                <h3>CDN</h3>
+                                <h3>Getting Kendo UI core from the CDN</h3>
                                 <p>
                                 <pre class="brush: html">
                                     &lt;!DOCTYPE html&gt;
@@ -394,13 +394,13 @@
                                     </div>
                                 </div>
 
-                                <h3>Bower</h3>
+                                <h3>Getting Kendo UI core from Bower</h3>
 
-                                <p>Run <code>bower install kendo-ui</code> to get the Kendo UI Core package, which includes Kendo UI Mobile</p>
+                                <p>Open a terminal/command line and run <code>bower install kendo-ui</code> to get the Kendo UI Core package downloaded using <a href="http://bower.io/">Bower</a>.</p>
 
-                                <h3>GitHub</h3>
+                                <h3>Getting Kendo UI core from GitHub</h3>
 
-                                <p>Run <code>git clone https://github.com/telerik/kendo-ui-core.git</code> or <a href="https://github.com/telerik/kendo-ui-core/archive/master.zip">download zip from Github.</a></p>
+                                <p>Open a terminal/command line and run <code>git clone https://github.com/telerik/kendo-ui-core.git</code> to clone the Git repository or <a href="https://github.com/telerik/kendo-ui-core/archive/master.zip">download zip from Github.</a></p>
                                 
 
                             </div>
@@ -465,12 +465,12 @@
                                     <li>The DNA of an application is small miniature applications/components, properly decoupled into single responsibility modules.</li>
                                     <li>Modules are separated by nature (i.e. behavior/controller, model/data, style, template/html, test etc..) but organized together (i.e. application structure) by feature.</li>
                                     <li>Avoid complexity that does not pay for itself.</li>
-                                    <li>Don't optimize for humans during development, optimize staging and production code (i.e. don't pre-optimize)</li>
+                                    <li>Don't optimize for humans during development, optimize production code (i.e. don't pre-optimize)</li>
                                     <li>Document everything!</li>
                                     <li>Automate what you can through build processes and task runners.</li>
                                     <li>Establish at least one layer (unit, integration, functional) of automated testing.</li>
-                                    <li>Automate the logging and notification of runtime errors minimally for production code.</li>
-                                    <li>Fear monolithic abstractions in the form of closed frameworks which promote one stop developer minded solutions.</li>
+                                    <li>Automate the logging and notification of runtime errors for production code.</li>
+                                    <li>Fear monolithic abstractions in the form of closed frameworks which promote one stop developer solutions.</li>
                                 </ol>
 
                                 <h3><strong>1.7</strong> Develop using real devices</h3>
@@ -479,9 +479,16 @@
 
                                 <h3><strong>1.8</strong> Use remote debugging solutions</h3>
 
-                                <p><a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">Plug a android (4.2+) or ios (iOS6) device into you computer/laptop and you can easily use the developer tools found in Safari or Chrome</a> on your computer/laptop to debug a site running in the devices browser.</p>
+                                <p><a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">Plug a android (4.2+) or ios (iOS6) device into you computer/laptop and you can easily use the developer tools found in Safari or Chrome</a> on your computer/laptop to debug a site running in the devices browser. Don't forget that the browser is representative of the engine (same engine) used in a webview and can be used to test hybrid applications.</p>
 
-                                <h3><strong>1.9</strong> Use theme builder to add CSS overrides</h3>
+                                <ul>
+                                    <li>Android: <a href="https://developer.chrome.com/devtools/docs/remote-debugging">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=yjxrr8CrUq0">Watch</a></li>
+                                    <li>iOS: <a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW8">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=E_eMhH1M37I">Watch</a></li>
+                                </ul>
+
+                                <h3><strong>1.9</strong> Use theme builder to produce overrides to flat theme</h3>
+
+                                <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> which can useful for creating and determining the css that should be overwritten. Starting with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a>theme as the base and adding in an overwrite file to customize this theme makes good sense.</p>
 
                             </div>
 
