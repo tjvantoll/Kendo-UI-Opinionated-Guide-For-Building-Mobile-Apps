@@ -348,16 +348,21 @@
                                 <p>Some knowledge is imparted and some knowledge is assumed about the following:</p>
 
                                 <ul>
-                                    <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">Learn it</a></li>
-                                    <li><strong><a href="http://nodejs.org/">NodeJS</a></strong> - <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a></li>
-                                    <li><strong><a href="https://www.npmjs.org/">NPM</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
-                                    <li><strong><a href="http://gulpjs.com/">gulp.js</a></strong> - <a href="https://www.youtube.com/watch?v=dwSLFai8ovQ">Learn it</a> | <a href="https://github.com/gulpjs/gulp/blob/master/docs/README.md">Docs</a></li>
-                                    <li><strong><a href="http://bower.io/">Bower</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="">Docs</a></li>
+                                    <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a></li>
+                                    <li><strong><a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">Declarative JavaScript or aka html data attribute api</a></strong> - <a href="http://docs.telerik.com/kendo-ui/basics/markup">Learn it</a></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Command-line_interface">Command-line/Terminal</a></strong> - <a href="http://www.pluralsight.com/courses/meet-command-line">Learn it</a></li>
+                                    <li><strong><a href="http://nodejs.org/">NodeJS</a></strong> - <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a><ul>
+                                            <li><strong><a href="https://www.npmjs.org/">NPM</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
+                                            <li><strong><a href="http://bower.io/">Bower</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="">Docs</a></li>
+                                            <li><strong><a href="http://gulpjs.com/">gulp.js</a></strong> - <a href="https://www.youtube.com/watch?v=dwSLFai8ovQ">Learn it</a> | <a href="https://github.com/gulpjs/gulp/blob/master/docs/README.md">Docs</a></li>
+                                        </ul>
+                                    </li>
                                     <!--<li><strong><a href="http://www.telerik.com/platform#overview">AppBuilder</a></strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
                                     <li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>-->
                                 </ul>
+
+                                <p>If you are not familiar with the above items I suggest you stop and take the time to become informed on each item mentioned above. The items in the list are ordered in logical learning order.</p>
                             </div>
 
                             <div id="toc4" class="toc">
@@ -443,13 +448,28 @@
 
                                 <h3><strong>1.4</strong> Favor the platform neutral flat theme for all platforms</h3>
 
-                                <p>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a>. For this reason force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms and use either the <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile themebuilder</a> to create your own overwrites in a separate style sheet.</p>
+                                <p>By default Kendo UI will use platform themes (first three devices below). However its better to force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms (far right device below).<p>
+
+                                <img src="images/flatskinTheme.png" />
 
                                 <p>To override Kendo UI's default nature of detecting the platform and forcing a platform specific CSS theme simply set the <code>skin</code> <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application#configuration-skin">option</a> to <code>flat</code> in the <code>Application()</code> method used to initialize the mobile application. </p>
 
                                 <pre class="brush: js">
                                     var app = new kendo.mobile.Application($(document.body), { skin: 'flat' });
                                 </pre>
+
+                                <p>The reasons to do this is:</p>
+
+                                <ol>
+
+                                <li>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a> resulting in a UI that will likely fall short of native in look and feel, function, and performance in most cases. It's better to have a custom UI than to have a UI that is always short second place to the real thing.
+                                </li>
+
+                                <li>Using the platform neutral theme results in a fast user experience because the CSS used to create the neutral theme is void of the complex CSS (i.e. Gradients etc...) required by the platform themes to replicate native UI's.</li>
+
+                                <li>Overwriting and evolving one theme is simpler than overwriting and evolving several platform specific themes.</li>
+
+                                </ol>
 
                                 <h3><strong>1.5</strong> Don't add mobile rendering meta elements</h3>
 
@@ -477,18 +497,59 @@
 
                                 <p>Simulators and browsers running on a desktop or laptop provide a quick and easy way to run Kendo UI Mobile code. However, this should not be how you test your code alone. It's critical that during development, development code is tested on the devices it intended to run on. Short of it is, run development code on a real phone during development.</p>
 
-                                <h3><strong>1.8</strong> Use remote debugging solutions</h3>
+                                <h3><strong>1.8</strong> Make use of remote debugging tools</h3>
 
-                                <p><a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">Plug a android (4.2+) or ios (iOS6) device into you computer/laptop and you can easily use the developer tools found in Safari or Chrome</a> on your computer/laptop to debug a site running in the devices browser. Don't forget that the browser is representative of the engine (same engine) used in a webview and can be used to test hybrid applications.</p>
+                                <p><a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">Plug a android (4.2+) or ios (iOS6) device into you computer/laptop and you can use the developer tools found in Safari or Chrome</a> locally to debug the site running in the devices browser.</p>
 
                                 <ul>
                                     <li>Android: <a href="https://developer.chrome.com/devtools/docs/remote-debugging">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=yjxrr8CrUq0">Watch</a></li>
                                     <li>iOS: <a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW8">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=E_eMhH1M37I">Watch</a></li>
                                 </ul>
 
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>The browser on a phone/tablet is representative of the engine (i.e. same engine) used in a <a href="https://developer.chrome.com/multidevice/webview/gettingstarted">webview</a> and can be preemptively used to test <a href="http://blogs.telerik.com/appbuilder/posts/12-06-14/what-is-a-hybrid-mobile-app-">hybrid applications</a>.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
                                 <h3><strong>1.9</strong> Use theme builder to produce overrides to flat theme</h3>
 
-                                <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> which can useful for creating and determining the css that should be overwritten. Starting with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a>theme as the base and adding in an overwrite file to customize this theme makes good sense.</p>
+                                <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used for determining the CSS that should be overwritten and then generating the CSS.</p> 
+
+                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a>theme as the base and adding in an overwrite file to customize (i.e. the CSS is already setup) .</p>
+
+                                <h3><strong>1.10</strong> Use the additional icons Kendo UI Provides</h3>
+
+                                <p>Kendo UI Mobile includes 38 integrated font icons that can be used by specifying a <code>data-icon</code> attribute with one of the following icon names.<p>
+
+                                <a class="jsbin-embed" href="http://jsbin.com/jakiba/6/embed?output&height=474px">JS Bin</a>
+
+                                <p>But don't limit yourself to this short list of icons. About 10 times more icons are actually shipped for use but are simply not setup in CSS to be used.<p>
+
+                                <p>To set this up simply create the CSS and reference a Unicode/Icon:</p>
+
+                                <pre class="brush: css">
+                                    .km-arrow-e:after,
+                                    .km-arrow-e:before
+                                    {
+                                        content: "\e000";
+                                    }
+                                </pre>
+
+                                <p>Then use this icon in your application like so:</p>
+
+                                <pre class="brush: html">
+                                    &lt;a href=&quot;/&quot; data-icon=&quot;arrow-e&quot;&gt;Home&lt;/a&gt;
+                                </pre>
+
+                                <p>All Unicode's and associating icons are shown below:</p>
+
+                                <a class="jsbin-embed" href="http://jsbin.com/vovuku/2/embed?output&height=2800px">JS Bin</a>
+
+                                <h3><strong>1.11</strong> Use normalize.css</h3>
 
                             </div>
 
@@ -497,7 +558,11 @@
                             <!--_____________-->
                             <div id="chapter2" class="chapter">
                             
-                            <h2><strong>2. Structuring The Application</strong></h2>
+                            <h2><strong>2.1 </strong></h2>
+
+                            <p></p>
+
+                            <h3><strong>2.1</strong> Folder Structure</h3>
 
                             <h3><strong>2.1</strong> Folder Structure</h3>
 
@@ -546,6 +611,7 @@
     <script src="bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/shBrushCss.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shBrushBash.js"></script>
     <script src="bower_components/jquery.transit/jquery.transit.js"></script>
     <script>
