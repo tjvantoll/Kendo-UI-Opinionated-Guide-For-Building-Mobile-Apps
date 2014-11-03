@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kendo UI -  Opinionated Guide For Building Mobile Apps</title>
+    <title>Kendo UI -  Opinionated Guide For Building Mobile Sites/Apps For Free</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -303,7 +303,7 @@
         <div id="header"><div>
         <i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
         <a href="https://github.com/codylindley/Hybrid-Mobile-Tablet-App-Guidelines" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
-        <h1>Kendo UI -  Opinionated Guide For Building Mobile Apps</h1>
+        <h1>Kendo UI -  Opinionated Guide For Building Mobile Sites/Apps For Free</h1>
 
         </div></div>
         <div id="content"><div>
@@ -344,13 +344,22 @@
                             </div>
 
                             <div id="toc3" class="toc">
+                                <h2><strong>Example application</strong></h2>
+                                <p>This guide will express development opinions in the context of a real application called, "whatsername". This is a simplistic application used to create a slide show of named head shot for the purpose of memorizing the names of a group of people. I conjured up this application to help me memorize the names of each child on my son's football team. The applications functionality  provides a UI to create a group, then enter a name and head shot for each person in the group. This information is stored later on to work on flash cards for memorizing faces and names.</p> 
+
+                                <p>The source code can be found on Github. It will server you well as you read this guide to be familiar with the source code and have it close at hand.</p>
+                                
+                            </div>
+
+                            <div id="toc3" class="toc">
                                 <h2><strong>Prerequisites</strong></h2>
                                 <p>Some knowledge is imparted and some knowledge is assumed about the following:</p>
 
                                 <ul>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">Learn it</a></li>
                                     <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a></li>
-                                    <li><strong><a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">Declarative JavaScript or aka html data attribute api</a></strong> - <a href="http://docs.telerik.com/kendo-ui/basics/markup">Learn it</a></li>
+                                    <li><strong><a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">Declarative JavaScript (aka html data attribute api)</a></strong> - <a href="http://docs.telerik.com/kendo-ui/basics/markup">Learn it</a></li>
+                                    <li><strong><a href="http://blogs.telerik.com/kendoui/posts/12-03-09/bind_this_a_look_at_kendo_ui_mvvm">MVVM/Data Binding</a></strong> - <a href="http://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/mvvm/overview">Docs</a></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Command-line_interface">Command-line/Terminal</a></strong> - <a href="http://www.pluralsight.com/courses/meet-command-line">Learn it</a></li>
                                     <li><strong><a href="http://nodejs.org/">NodeJS</a></strong> - <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a><ul>
                                             <li><strong><a href="https://www.npmjs.org/">NPM</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
@@ -394,6 +403,9 @@
                                     <div class="notes-title">Notes</div>
                                     <div class="notes">
                                         <ul>
+                                            <li>The Kendo UI CDN is hosted on Amazon CloudFront.</li>
+                                            <li>In order to use HTTPS, you need to directly access the CloudFront CDN, or use your own domain and SSL certificate.</li>
+                                            <li>In production you should provide a <a href="http://docs.telerik.com/kendo-ui/install/cdn#cdn-fallback-and-troubleshooting">fallback to CDN code.</a></li>
                                             <li>Minified files are not always ideal for development. And, only the <code>kendo.ui.code.min.js</code> file is available on the CDN. To get the non-minified file <code>bower install</code> or pull the source from Github.</li>
                                         </ul>
                                     </div>
@@ -421,7 +433,7 @@
 
                                 <p>A Kendo UI mobile app, even if it's running in a webview, is render by a browser engine (i.e. a webview is like a browser window tab). Make sure to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the browser engine(s) that will be running you applications.</p>
 
-                                <p>It's more than likely the browser engine running a Kendo UI mobile application will be a newer, modern browser engine, that supports things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>.</p>
+                                <p>It's more than likely the browser engine running a Kendo UI mobile application will be a newer, modern browser engine, that supports things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Flexbox</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>.</p>
 
                                 <p>Make sure you are aware of everything you have at your disposal for development and use it.</p>
 
@@ -462,7 +474,7 @@
 
                                 <ol>
 
-                                <li>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a> resulting in a UI that will likely fall short of native in look and feel, function, and performance in most cases. It's better to have a custom UI than to have a UI that is always short second place to the real thing.
+                                <li>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a> resulting in a UI that will likely fall short of native look and feel, function, and performance in most cases. It's better to have a custom UI than to have a UI that is always short second place to the real thing.
                                 </li>
 
                                 <li>Using the platform neutral theme results in a fast user experience because the CSS used to create the neutral theme is void of the complex CSS (i.e. Gradients etc...) required by the platform themes to replicate native UI's.</li>
@@ -551,6 +563,55 @@
 
                                 <h3><strong>1.11</strong> Use normalize.css</h3>
 
+                                <p>When using the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> as a baseline theme with the intentions of customizing the theme further it can be beneficial to also include <a href="http://necolas.github.io/normalize.css/">normalize.css</a>.<p>
+
+                                <p>The benefits of including normalize.css are:</p>
+
+                                <ul>
+                                    <li><strong>Preserve useful browser defaults</strong> rather than erasing them.</li>
+                                    <li><strong>Normalize styles</strong> for a wide range of HTML elements.</li>
+                                    <li><strong>Correct bugs</strong> and common browser inconsistencies.</li>
+                                    <li><strong>Improve usability</strong> with subtle improvements.</li>
+                                </ul>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>If you are using a CSS framework check to make sure that the CSS framework is not already using normalize.css.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3><strong>1.11</strong> You might need a mobile first CSS framework</h3>
+
+                                <p>Kendo UI does not lock you into or prohibit the use of mobile first CSS frameworks to aid UI development. I've found that even the simplest of custom interfaces can benefit from the solutions found in a CSS framework (grids, form styles, form layouts etc...).</p>
+
+                                <p>Some battle test mobile first CSS frameworks are:</p>
+
+                                <ul>
+                                <li><a href="http://getbootstrap.com/">bootstrap</a></li>
+                                <li><a href="http://purecss.io/">purecss.io</a></li>
+                                <li><a href="http://cardinalcss.com/"><a href="http://cardinalcss.com/">cardinal</a></li>
+                                <li><a href="http://cferdinandi.github.io/kraken/index.html">kraken</a></li>
+                                </ul>
+                                
+                                <p>If introducing another third-party dependency into the code is not something you prefer doing then just realize you'll more than likely have to create a miniature custom CSS framework for aiding the development of a platform agnostic mobile UI.</p>
+
+                                <h3><strong>1.12</strong> Stop link highlighting in Windows Phone 8</h3>
+
+                                <p>By default Windows Phone 8 highlights all links when they are active (hold down). Stopping this behavior requires manually adding a meta tag to your application/site.</p>
+
+                                <pre class="brush: html">
+                                    &lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot; /&gt;
+                                </pre>
+
+                                <p>If you attempt to adding the meta element through Javascript it will be ignored.</p>
+
+                                <h3><strong>1.13</strong> Managing the DOM Intelligently</h3>
+
+                                <p>Don't let the DOM get out of control. Manually manage the DOM intelligently.</p>
+
                             </div>
 
                             <!--_____________-->
@@ -558,21 +619,33 @@
                             <!--_____________-->
                             <div id="chapter2" class="chapter">
                             
-                            <h2><strong>2.1 </strong></h2>
+                            <h2><strong>2 Folder Structure</strong></h2>
 
-                            <p></p>
+                            <h3><strong>2.1</strong> Application structure overview</h3>
 
-                            <h3><strong>2.1</strong> Folder Structure</h3>
+                            <p>The image belows details the folder structured used to create the whatsername application</p>
 
-                            <h3><strong>2.1</strong> Folder Structure</h3>
+                            <h3><strong>2.2</strong> Bower &amp; NPM</h3>
 
-                            <h3><strong>2.2</strong> One index.html</h3>
+                            <p>Node packages are stored in a directory called node_modules. This is the default directory name and location, used by NPM, in relation to the package.json file.</p>
 
-                            <h3><strong>2.3</strong> Local Server</h3>
+                            <p>Bower is not being used in the default manner in the app directory. The bower.json file is in the root of the application directory, which is common, but I sm using the .bowerrc file to configure bower to store packages in the wwwDev directory in a folder called bower_components.</p>
 
-                            <h3><strong>2.3</strong> Automated Development Tasks</h3>
+                            <h3><strong>2.3</strong> Src, wwwDev, wwwBuild Directories</h3>
 
-                            <h3><strong>2.3</strong> Build</h3>
+                            <p>The application source can be found in the src directory. This will be where you edit code. The wwwDev directory and the wwwBuild directory will contain development and production versions of the code which get served to a web browser using gulp-webserver (more on that in the build and task section).</p>
+
+                            <h3><strong>2.4</strong> Shared Directory Directory</h3>
+
+                            <p>The src/shared directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, globa layout modules, and utility modules to name a few.</p>
+
+                            <h3><strong>2.5</strong> UI Directory</h3>
+
+                            <p>The ui directory will contain logically group and named UI portions of the application. It's not a hard and fast rule but think of the UI directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map persecutive. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what you are building. For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing a controller JavaScript file, an html file containing the view, an HTML file containing a view specific layout, a CSS file containing view specific styles, and a test. These directories form a tree/hierarchical structure based on the logical break up of the application.</p> 
+
+                            <p>The how this is done is less important then the purpose why it is done like this. You want to create an application made up of small parts, grouped logically together, that have a clear separation of concerns. Every folder in the UI directory should represent a logical part of the application and all it's source code for that part only.</p>
+
+                            <p>If this is difficult to grok, study the whatsername wire frame and the directory structure to get a feel for how this application organization is accomplished.</p>
 
                             </div>
 
@@ -581,7 +654,17 @@
                             <!--_____________-->
                             <div id="chapter3" class="chapter">
                             
-                            <h2><strong>3. Coding Style</strong></h2>
+                            <h2><strong>3. Application Servers, Tasks, and Builds</strong></h2>
+
+                            <h3><strong>3.1</strong> What is gulp doing</h3>
+
+                            <p>The application uses the gulp build system to follow a build first development strategy. Basically, when developing, a build is occurring every time you make a change to the source. The, build on every src change strategy, facilitates an endless possibles of what can programmatically occur, often in an automated fashion, during development. Of course, gulp is doing a lot more than just taking src code and building something.</p>
+
+                            <h3><strong>3.1</strong> The wwwDev Build process &amp; Server</h3>
+
+                            <h3><strong>3.2</strong> The wwwBuild Build process &amp; Server</h3>
+
+                            <h3><strong>3.2</strong> Git ignore/h3>
 
                             </div>
 
@@ -590,7 +673,51 @@
                             <!--_____________-->
                             <div id="chapter4" class="chapter">
                             
-                            <h2><strong>4. Going Hybrid</strong></h2>
+                            <h2><strong>4. Application Architecture</strong></h2>
+
+                            <h3><strong>4.1</strong> index.html</h3>
+
+                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called index.html and it will reside in the src folder. Everything else will be consider a module that is included into index.html via a <code>&lt;script&gt;</code> or <code>&lt;link&gt;</code> element or the build process. Consider index.html the master configuration file for including all the necessary CSS, HTML, and JavaScript to make the application run.</p>
+
+                            <h3><strong>4.2</strong> Application name space in index.html</h3>
+
+                            <h3><strong>4.3</strong> Application instantiation in index.html</h3>
+
+                            <h3><strong>4.4</strong> Module naming</h3>
+
+                            <h3><strong>4.5</strong> View modules</h3>
+
+                            <h3><strong>4.6</strong> Controller modules</h3>
+
+                            <h3><strong>4.7</strong> HTML modules</h3>
+
+                            <h3><strong>4.8</strong> CSS modules</h3>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 5  -->
+                            <!--_____________-->
+                            <div id="chapter5" class="chapter">
+                            
+                            <h2><strong>5. Coding Style</strong></h2>
+
+                            <h3><strong>5.1</strong> Editor Configuration</h3>
+
+                            <h3><strong>5.2</strong> HTML Hinting</h3>
+
+                            <h3><strong>5.3</strong> CSS Linting</h3>
+
+                            <h3><strong>5.4</strong> JS Hinting</h3>
+
+                            </div>
+
+                            <!--_____________-->
+                            <!--  chapter 6  -->
+                            <!--_____________-->
+                            <div id="chapter6" class="chapter">
+                            
+                            <h2><strong>6. Going Hybrid</strong> (Coming Soon!)</h2>
 
                             </div>
 
