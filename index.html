@@ -344,7 +344,7 @@
                             </div>
 
                             <div id="toc3" class="toc">
-                                <h2><strong>Example application</strong></h2>
+                                <h2><strong>whatsername application</strong></h2>
                                 <p>This guide will express development opinions in the context of a real application called, "whatsername". This is a simplistic application used to create a slide show of named head shot for the purpose of memorizing the names of a group of people. I conjured up this application to help me memorize the names of each child on my son's football team. The applications functionality  provides a UI to create a group, then enter a name and head shot for each person in the group. This information is stored later on to work on flash cards for memorizing faces and names.</p> 
 
                                 <p>The source code can be found on Github. It will server you well as you read this guide to be familiar with the source code and have it close at hand.</p>
@@ -514,8 +514,8 @@
                                 <p><a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">Plug a android (4.2+) or ios (iOS6) device into you computer/laptop and you can use the developer tools found in Safari or Chrome</a> locally to debug the site running in the devices browser.</p>
 
                                 <ul>
-                                    <li>Android: <a href="https://developer.chrome.com/devtools/docs/remote-debugging">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=yjxrr8CrUq0">Watch</a></li>
-                                    <li>iOS: <a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW8">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=E_eMhH1M37I">Watch</a></li>
+                                    <li>Android mobile debugging: <a href="https://developer.chrome.com/devtools/docs/remote-debugging">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=yjxrr8CrUq0">Watch</a></li>
+                                    <li>iOS mobile debugging: <a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW8">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=E_eMhH1M37I">Watch</a></li>
                                 </ul>
 
                                 <div class="note">
@@ -527,11 +527,14 @@
                                     </div>
                                 </div>
 
-                                <h3><strong>1.9</strong> Use theme builder to produce overrides to flat theme</h3>
+                                <h3><strong>1.9</strong> Use theme builder to produce quick/initial CSS overrides to flat theme</h3>
 
-                                <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used for determining the CSS that should be overwritten and then generating the CSS.</p> 
+                                <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used to generate CSS code that overrides the CSS found in the default themes.</p> 
 
-                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a>theme as the base and adding in an overwrite file to customize (i.e. the CSS is already setup) .</p>
+                                <p>When using the themebuilder, start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> theme as the base and tweak the styles from here. Below I show a video of this being done for the whatsername app.</p>
+
+                                <iframe width="560" height="315" src="//www.youtube.com/embed/mwQq5C8YTbo" frameborder="0" allowfullscreen></iframe>
+
 
                                 <h3><strong>1.10</strong> Use the additional icons Kendo UI Provides</h3>
 
@@ -597,6 +600,15 @@
                                 </ul>
                                 
                                 <p>If introducing another third-party dependency into the code is not something you prefer doing then just realize you'll more than likely have to create a miniature custom CSS framework for aiding the development of a platform agnostic mobile UI.</p>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>Don't use the optional bootstrap theme. It contains some CSS that might cause performance issues.</li>
+                                        </ul>
+                                    </div>
+                                </div>
 
                                 <h3><strong>1.12</strong> Stop link highlighting in Windows Phone 8</h3>
 
