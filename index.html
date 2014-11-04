@@ -543,22 +543,59 @@
                                     </div>
                                 </div>
 
-                                <h3><strong>1.9</strong> Use theme builder to produce quick/initial CSS overrides to flat theme</h3>
+                                <h3><strong>1.9</strong> Use theme builder to produce initial CSS overrides to flat theme</h3>
 
                                 <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used to generate CSS code that overrides the CSS found in the default themes.</p> 
 
-                                <p>When using the themebuilder, start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> theme as the base and tweak the styles from here. Below I show a video of this being done for the whatsername app.</p>
-
+                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> and tweak the styles from here. Below I show a video of this being done for the whatsername app.</p>
 
                                 <div class="videoContainer">
-                                    <iframe width="560" height="315" src="//www.youtube.com/embed/jGCdXNMu0No?rel=0" frameborder="0" allowfullscreen></iframe>
+                                    <iframe src="//www.youtube.com/embed/jGCdXNMu0No?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                                 </div>
+
+                                <p>The theme builder can do a bit more than change the turquoise color found in the flat theme. However, if you all you want to do is replace the turquoise color with a new color you can use the CSS below. Simply change the color value and make sure the CSS is specified after the flat theme CSS.</p>
+
+                                <pre class="brush: css">
+                                    .km-flat .km-switch-handle,
+                                    .km-flat .k-slider-selection,
+                                    .km-flat .km-switch-background {
+                                      color: #444;
+                                    }
+                                    .km-flat .km-rowinsert,
+                                    .km-flat .km-state-active,
+                                    .km-flat .km-scroller-pull,
+                                    .km-flat .km-loader:before,
+                                    .km-flat .k-slider-selection,
+                                    .km-flat .km-touch-scrollbar,
+                                    .km-flat .km-pages .km-current-page,
+                                    .km-flat .k-slider .k-draghandle,
+                                    .km-flat .k-slider .k-draghandle:hover,
+                                    .km-flat .km-tabstrip .km-state-active,
+                                    .km-flat .km-scroller-refresh.km-load-more,
+                                    .km-flat .km-popup .k-state-hover,
+                                    .km-flat .km-popup .k-state-focused,
+                                    .km-flat .km-popup .k-state-selected,
+                                    .km-flat .km-actionsheet > li > a:active,
+                                    .km-flat .km-actionsheet > li > a:hover,
+                                    .km-flat .km-actionsheet > li > .km-state-active,
+                                    .km-flat li.km-state-active .km-listview-link,
+                                    .km-flat li.km-state-active .km-listview-label,
+                                    .km-flat .km-listview-label input[type=radio]:checked,
+                                    .km-flat .km-listview-label input[type=checkbox]:checked {
+                                      background: #444;
+                                    }
+                                    .km-flat .km-filter-wrap > input:focus {
+                                      border-color: #444;
+                                    }
+                                </pre>
+
+                                <p>I used both the theme roller tool and the above CSS to produce overrides for the whatsername application.</p>
 
                                 <h3><strong>1.10</strong> Use the additional icons Kendo UI Provides</h3>
 
                                 <p>Kendo UI Mobile includes 38 integrated font icons that can be used by specifying a <code>data-icon</code> attribute with one of the following icon names.<p>
 
-                                <a class="jsbin-embed" href="http://jsbin.com/jakiba/6/embed?output&height=474px">JS Bin</a>
+                                <iframe width="100%" height="500" src="http://jsfiddle.net/codylindley/m0nwLezd/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
                                 <p>But don't limit yourself to this short list of icons. About 10 times more icons are actually shipped for use but are simply not setup in CSS to be used.<p>
 
@@ -580,7 +617,7 @@
 
                                 <p>All Unicode's and associating icons are shown below:</p>
 
-                                <a class="jsbin-embed" href="http://jsbin.com/vovuku/2/embed?output&height=2800px">JS Bin</a>
+                                <iframe width="100%" height="1750" src="http://jsfiddle.net/codylindley/u5rg799g/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
                                 <h3><strong>1.11</strong> Use normalize.css</h3>
 
@@ -653,7 +690,7 @@
 
                             <h3><strong>2.1</strong> Application structure overview</h3>
 
-                            <p>The image belows details the folder structured used to create the whatsername application</p>
+                            <p>The image belows details the folder structured used to create the whatsername application.</p>
 
                             <h3><strong>2.2</strong> Bower &amp; NPM</h3>
 
@@ -760,7 +797,6 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script src="http://static.jsbin.com/js/embed.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdn.kendostatic.com/2014.2.1008/js/kendo.all.min.js"></script>
     <script src="bower_components/jquery.breakpoints/breakpoints.js"></script>
@@ -818,31 +854,30 @@
         jQuery('.toc').each(function(index){
     
             jQuery('h2','#toc'+(index+1)).each(function(i){
-                $(this).attr('id',$(this).text().replace(/ /g,''));
+                $(this).attr('id',$(this).text().replace(/ /g,'-'));
                 $('#toc-padding')
-                    .append('<h5><a href="#'+($(this).text().replace(/[ .]/g,''))+'">'+$(this).html()+'</a></h5>');
+                    .append('<h5><a href="#'+($(this).text().replace(/[ .]/g,'-'))+'">'+$(this).html()+'</a></h5>');
             });
 
             jQuery('h3','#toc'+(index+1)).each(function(i){
-                $(this).attr('id',$(this).text().replace(/ /g,''));
+                $(this).attr('id',$(this).text().replace(/ /g,'-'));
                 $('#toc-padding')
-                    .append('<h6><a href="#'+($(this).text().replace(/[ .]/g,''))+'">'+$(this).html()+'</a></h6>');
+                    .append('<h6><a href="#'+($(this).text().replace(/[ .]/g,'-'))+'">'+$(this).html()+'</a></h6>');
             });
             
         });
 
         jQuery('.chapter').each(function(index){
-    
             jQuery('h2','#chapter'+(index+1)).each(function(i){
-                $(this).attr('id',(index+1));
-                $(this).wrapInner('<a href="#'+(index+1)+'"></a>');
-                $('#toc-padding').append('<h5><a href="#'+(index+1)+'">'+$(this).html()+'</a></h5>');
+                var foo = index+1+'';
+                $(this).attr('id',((index+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))));
+                $('#toc-padding').append('<h5><a href="#'+(index+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'">'+$(this).html()+'</a></h5>');
             });
 
             jQuery('h3','#chapter'+(index+1)).each(function(i){
-                $(this).attr('id',(index+1)+'.'+(i+1));
-                $(this).wrapInner('<a href="#'+(index+1)+'.'+(i+1)+'"></a>');
-                $('#toc-padding').append('<h6><a href="#'+(index+1)+'.'+(i+1)+'">'+$(this).html()+'</a></h6>');
+                var foo = (index+1)+'.'+(i+1)+'';
+                $(this).attr('id',(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-')));
+                $('#toc-padding').append('<h6><a href="#'+(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'">'+$(this).html()+'</a></h6>');
             });
             
         });
