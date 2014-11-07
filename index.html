@@ -342,7 +342,7 @@
                                 <h2><strong>Introduction</strong></h2>
 
                                 <h3>What is this?</h3>
-                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is for the prescription(s) found within this document to become a style used by developers for building Kendo UI mobile sites/applications</p>
+                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is for the prescriptions found within this document to become a style used by developers when building Kendo UI mobile solutions.</p>
 
                                 <h3>Why use Kendo UI to build mobile apps?</h3>
 
@@ -380,7 +380,8 @@
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">Learn it</a></li>
                                     <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a></li>
                                     <li><strong><a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">Declarative JavaScript (aka html data attribute api)</a></strong> - <a href="http://docs.telerik.com/kendo-ui/basics/markup">Learn it</a></li>
-                                    <li><strong><a href="http://blogs.telerik.com/kendoui/posts/12-03-09/bind_this_a_look_at_kendo_ui_mvvm">MVVM/Data Binding</a></strong> - <a href="http://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/mvvm/overview">Docs</a></li>
+                                    <li><strong><a href="http://blogs.telerik.com/kendoui/posts/12-03-09/bind_this_a_look_at_kendo_ui_mvvm">MVVM/Data Binding (specifically Kendo UI MVVM)</a></strong> - <a href="http://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/mvvm/overview">Docs</a></li>
+                                    <li><strong><a href="http://demos.telerik.com/kendo-ui/datasource/index">Kendo UI Datasource</a></strong> - <a href="http://blogs.telerik.com/kendoui/posts/13-01-24/learning_kendo_data_datasource">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/datasource/overview">Docs</a></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Command-line_interface">Command-line/Terminal</a></strong> - <a href="http://www.pluralsight.com/courses/meet-command-line">Learn it</a></li>
                                     <li><strong><a href="http://nodejs.org/">NodeJS</a></strong> - <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a><ul>
                                             <li><strong><a href="https://www.npmjs.org/">NPM</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
@@ -703,27 +704,27 @@
 
                             <p>The image belows details the folder structured used to create the whatsername application.</p>
 
-                            <h3><strong>2.2</strong> Bower &amp; NPM</h3>
+                            <h3><strong>2.2</strong> Bower &amp; NPM setup</h3>
 
-                            <p>Node packages are stored in a directory called node_modules. This is the default directory name and location, used by NPM, in relation to the package.json file.</p>
+                            <p>Node packages are stored in a directory called <code>node_modules</code>. This is the default directory name and location, used by NPM, in relation to the <code>package.json</code> file.</p>
 
-                            <p>Bower is not being used in the default manner in the app directory. The bower.json file is in the root of the application directory, which is common, but I sm using the .bowerrc file to configure bower to store packages in the wwwDev directory in a folder called bower_components.</p>
+                            <p>Bower is not being used in the default manner. The <code>bower.json</code> file is in the root of the application directory, which is common, but I am using the <code>.bowerrc</code> file to configure bower to store packages in the <code>wwwDev</code> directory in a folder called <code>bower_components</code>.</p>
 
-                            <h3><strong>2.3</strong> Src, wwwDev, wwwBuild Directories</h3>
+                            <h3><strong>2.3</strong> Src, wwwDev, wwwBuild directories</h3>
 
-                            <p>The application source can be found in the src directory. This will be where you edit code. The wwwDev directory and the wwwBuild directory will contain development and production versions of the code which get served to a web browser using gulp-webserver (more on that in the build and task section).</p>
+                            <p>The application source can be found in the <code>src</code> directory. This will be where you edit code. The <code>wwwDev</code> directory and the <code>wwwBuild</code> directory will contain development and production versions of the code which get served to a web browser using <a href="https://github.com/schickling/gulp-webserver">gulp-webserver</a> (more on that in the build and task section).</p>
 
-                            <h3><strong>2.4</strong> Shared Directory Directory</h3>
+                            <h3><strong>2.4</strong> Shared directory</h3>
 
-                            <p>The src/shared directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, globa layout modules, and utility modules to name a few.</p>
+                            <p>The <code>src/shared</code> directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, global layout modules, and utility modules to name a few.</p>
 
-                            <h3><strong>2.5</strong> UI Directory</h3>
+                            <h3><strong>2.5</strong> UI directory</h3>
 
-                            <p>The ui directory will contain logically group and named UI portions of the application. It's not a hard and fast rule but think of the UI directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map persecutive. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what you are building. For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing a controller JavaScript file, an html file containing the view, an HTML file containing a view specific layout, a CSS file containing view specific styles, and a test. These directories form a tree/hierarchical structure based on the logical break up of the application.</p> 
+                            <p>The <code>ui</code> directory will contain logically group and named UI portions of the application. It's not a hard and fast rule but think of the UI directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map persecutive. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what you are building. For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing a controller JavaScript file, an html file containing the view, an HTML file containing a view specific layout, a CSS file containing view specific styles, and a test. These directories form a tree/hierarchical structure based on the logical break up of the application.</p> 
 
-                            <p>The how this is done is less important then the purpose why it is done like this. You want to create an application made up of small parts, grouped logically together, that have a clear separation of concerns. Every folder in the UI directory should represent a logical part of the application and all it's source code for that part only.</p>
+                            <p>How, exactly, to organize the <code>ui</code> directory is less important then the purpose in doing so. You want to create an application made up of small parts, grouped logically together, that have a clear separation of concerns. Every folder in the UI directory should represent a logical part (i.e. a region of logically relevant ui) of the application. Inside of the folder will be all of source code for that part only.</p>
 
-                            <p>If this is difficult to grok, study the whatsername wire frame and the directory structure to get a feel for how this application organization is accomplished.</p>
+                            <p>If this is difficult for you to envision, study the whatsername wireframe and the whatsername directory structure (specifically the ui directory) to get a feel for this style of organization.</p>
 
                             </div>
 
@@ -736,7 +737,7 @@
 
                             <h3><strong>3.1</strong> What is gulp doing</h3>
 
-                            <p>The application uses the gulp build system to follow a build first development strategy. Basically, when developing, a build is occurring every time you make a change to the source. The, build on every src change strategy, facilitates an endless possibles of what can programmatically occur, often in an automated fashion, during development. Of course, gulp is doing a lot more than just taking src code and building something.</p>
+                            <p>The application uses the gulp build system to follow a build first development strategy. Basically, when developing, a build is occurring every time you make a change to the source. The, build on every source change strategy, facilitates an endless possibles of what can programmatically occur, often in an automated fashion during development. Of course, gulp is doing a lot more than just taking source code and building something.</p>
 
                             <h3><strong>3.1</strong> The wwwDev Build process &amp; Server</h3>
 
@@ -939,6 +940,9 @@
         //toggle
         $( '#toggle-toc' ).on('click',function() {
             splitter.toggle('.k-pane:first');
+            if($('#book')[0].scrollTop > 0){
+                $('#toc-padding a.active').first()[0].scrollIntoView(true);
+            }
             return false;
         });
 
