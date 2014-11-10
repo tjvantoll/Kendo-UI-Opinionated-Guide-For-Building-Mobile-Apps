@@ -324,7 +324,7 @@
         <div id="header"><div>
         <i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
         <a href="https://github.com/codylindley/Hybrid-Mobile-Tablet-App-Guidelines" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
-        <h1>Kendo UI - Opinionated Guide For Building Mobile Sites</h1>
+        <h1>Kendo UI - Opinionated Guide For Building Mobile Apps</h1>
 
         </div></div>
         <div id="content"><div>
@@ -372,16 +372,21 @@
                                 
                             </div>
 
-                            <div id="toc3" class="toc">
+                            <div id="toc4" class="toc">
                                 <h2><strong>Prerequisites</strong></h2>
                                 <p>Some knowledge is imparted and some knowledge is assumed about the following:</p>
 
                                 <ul>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">Learn it</a></li>
-                                    <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a></li>
+                                    <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a><ul>
+                                            <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">Using Kendo MVVM in a mobile application</a></strong></li>
+                                            <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/view#view-parameters">View Parameters</a></strong></li>
+                                        </ul>
+                                    </li>
                                     <li><strong><a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">Declarative JavaScript (aka html data attribute api)</a></strong> - <a href="http://docs.telerik.com/kendo-ui/basics/markup">Learn it</a></li>
                                     <li><strong><a href="http://blogs.telerik.com/kendoui/posts/12-03-09/bind_this_a_look_at_kendo_ui_mvvm">MVVM/Data Binding (specifically Kendo UI MVVM)</a></strong> - <a href="http://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/mvvm/overview">Docs</a></li>
                                     <li><strong><a href="http://demos.telerik.com/kendo-ui/datasource/index">Kendo UI Datasource</a></strong> - <a href="http://blogs.telerik.com/kendoui/posts/13-01-24/learning_kendo_data_datasource">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/datasource/overview">Docs</a></li>
+                                    <li><strong><a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">Kendo UI Templates</a></strong> - <a href="http://demos.telerik.com/kendo-ui/templates/index">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">Docs</a></li>
                                     <li><strong><a href="http://en.wikipedia.org/wiki/Command-line_interface">Command-line/Terminal</a></strong> - <a href="http://www.pluralsight.com/courses/meet-command-line">Learn it</a></li>
                                     <li><strong><a href="http://nodejs.org/">NodeJS</a></strong> - <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a><ul>
                                             <li><strong><a href="https://www.npmjs.org/">NPM</a></strong> - <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
@@ -396,7 +401,7 @@
                                 <p>If you are not familiar with the above items I suggest you stop and take the time to become informed on each item mentioned above. The items in the list are ordered in logical learning order.</p>
                             </div>
 
-                            <div id="toc4" class="toc">
+                            <div id="toc5" class="toc">
                                 <h2><strong>Get Kendo UI Mobile</strong></h2>
 
                                 <p>Kendo UI mobile widgets and application tools are part of <a href="http://www.telerik.com/kendo-ui/open-source-core"> Kendo UI Core</a>. Kendo UI Core is the open source (i.e. free for use by anyone, for anything) offering from <a href="http://www.telerik.com/">Telerik</a> and the foundation to <a href="http://www.telerik.com/kendo-ui/comparison">Kendo UI Professional</a>.</p>
@@ -496,7 +501,7 @@
 
                                 <ol>
 
-                                <li>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a> resulting in a UI that will likely fall short of native look and feel, function, and performance in most cases. It's better to have a custom UI than to have a UI that is always short second place to the real thing.
+                                <li>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a> resulting in a UI that will likely fall short of native look and feel, function, and performance in most cases. It's better to have a custom UI than to have a UI that is always in second place to the real thing.
                                 </li>
 
                                 <li>Using the platform neutral theme results in a fast user experience because the CSS used to create the neutral theme is void of the complex CSS (i.e. Gradients etc...) required by the platform themes to replicate native UI's.</li>
