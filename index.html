@@ -346,7 +346,9 @@
 
                                 <h3>Why use Kendo UI to build mobile apps?</h3>
 
-                                <p>Kendo UI provides JavaScript specific widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides mobile centric application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> (aka SPA's) in a browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets.</p>
+                                <p>Kendo UI provides JavaScript specific widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> in a mobile browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). In this guide I will refer to the application logic that is provide by Kendo UI as "mobile application logic".</p>
+
+                                <p>While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets.</p>
 
                                 <!--<h3>What is a hybrid mobile/tablet app?</h3>
                                 <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
@@ -361,28 +363,18 @@
 
                             <div id="toc2" class="toc">
                                 <h2><strong>Who should read this</strong></h2>
-                                <p>You are front-end engineer who has experience developing applications in HTML, CSS, and JavaScript (e.g. SPA applications using MVVM) that wants to use these skills to build a mobile/tablet web site/application or a hybrid native application and are in need of some direction/opinions to get you started. It's likely you are familiar </p>
+                                <p>You are front-end engineer who has experience developing applications in HTML, CSS, and JavaScript (e.g. SPA applications using MVVM) that wants to use these skills to build a mobile/tablet web site/application or a hybrid native application and are in need of some direction/opinions to get you started.</p>
                             </div>
 
                             <div id="toc3" class="toc">
-                                <h2><strong>whatsername application</strong></h2>
-                                <p>This guide will express development opinions in the context of a real application called, "whatsername". The whatsername app captures names and headshots for the purpose of memorizing a group of people. I conjured up this application to help me memorize the names of each child on my son's football team. The applications functionality provides a UI to create a group, then enter a name and head shot for each person in the group. The point of the application is to create a <a href="http://demos.telerik.com/kendo-ui/scrollview/index">sideshow</a> of named photos for memorizing faces and names. Below I show the wireframe I drafted before coding the application. </p>
-
-                                <img src="images/wireframe.png" />
-
-                                <p>The source code can be found on <a href="https://github.com/codylindley/Kendo-UI-Opinionated-Guide-For-Building-Mobile-Apps">Github</a>. You should familiarize yourself with the code (i.e. download, run it) before reading this guide.</p>
-                                
-                            </div>
-
-                            <div id="toc4" class="toc">
                                 <h2><strong>Prerequisites</strong></h2>
                                 <p>Some knowledge is imparted and some knowledge is assumed about the following:</p>
 
                                 <ul>
                                     <li><strong>Single Page Applications</strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">What is it?</a></li>
                                     <li><strong>Kendo UI Mobile Widgets &amp; Application Tools</strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a><ul>
-                                            <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">Using Kendo MVVM in a mobile application</a></strong></li>
-                                            <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/view#view-parameters">View Parameters</a></strong></li>
+                                            <li><a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">Using Kendo MVVM in a mobile application</a></li>
+                                            <li><a href="http://docs.telerik.com/kendo-ui/mobile/view#view-parameters">View Parameters</a></li>
                                         </ul>
                                     </li>
                                     <li><strong>Declarative JavaScript</strong> - <a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">What is it?</a> | <a href="http://docs.telerik.com/kendo-ui/basics/markup">Learn it</a></li>
@@ -400,7 +392,19 @@
                                     <li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>-->
                                 </ul>
 
-                                <p>If you are not familiar with the above items I suggest you stop and take the time to become informed on each item mentioned above. The items in the list are ordered in logical learning order.</p>
+                                <p>If you are not familiar with the above items I suggest you stop and take the time to become informed on each item mentioned.</p>
+
+                                <p>Another possible resource to consume and examine before reading this guide and after grokking the above prerequisites is the <a href="https://github.com/telerik/kendo-mobile-sushi">"Kendo Mobile Sushi Demo" on Github.</a> This mobile app demo provides three different patterns (<a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declarative instantiation only</a>, <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declaritive+MVVM</a>, and <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/sushi-angular.html">angularJS</a>) for coding a Kendo UI mobile application.</p>
+                            </div>
+
+                            <div id="toc4" class="toc">
+                                <h2><strong>whats-er-name application</strong></h2>
+                                <p>This guide will express development opinions in the context of a application called, "whats-er-name". The whats-er-name app captures head-shots and names for the purpose of memorizing a group of peoples names (really, can be used to remember any image you to want group and name). I conjured up this application to help me memorize the names of each child on my son's football team. The applications functionality provides a UI to create a group, then enter a name and head shot (taken with camera or pull in a photo already taken) for each person in the group. The point of the application is to create a <a href="http://demos.telerik.com/kendo-ui/scrollview/index">sideshow</a> of named photos for memorizing faces and names. Below I show the wireframe I drafted before coding the application. </p>
+
+                                <img src="images/wireframe.png" />
+
+                                <p>The source code can be found on <a href="https://github.com/codylindley/Kendo-UI-Opinionated-Guide-For-Building-Mobile-Apps">Github</a>. You should familiarize yourself with the code (i.e. download, run it) before reading this guide. Keep in mind that the code is more or less pseudo code written for the purpose of crafting this document. In other words more attention was given to the rational pertaining to the formation of the parts than to a specific individual part.</p>
+                                
                             </div>
 
                             <div id="toc5" class="toc">
@@ -580,7 +584,7 @@
 
                                 <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used to generate CSS code that overrides the CSS found in the default themes.</p> 
 
-                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> and tweak the styles from here. Below I show a video of this being done for the whatsername app.</p>
+                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> and tweak the styles from here. Below I show a video of this being done for the whats-er-name app.</p>
 
                                 <div class="videoContainer">
                                     <iframe src="//www.youtube.com/embed/jGCdXNMu0No?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -622,7 +626,7 @@
                                     }
                                 </pre>
 
-                                <p>I used both the theme roller tool and the above CSS to produce overrides for the whatsername application.</p>
+                                <p>I used both the theme roller tool and the above CSS to produce overrides for the whats-er-name application.</p>
 
                                 <h3><strong>1.10</strong> Use the additional icons Kendo UI Provides</h3>
 
@@ -688,6 +692,7 @@
 
                                 <ul>
                                 <li><a href="http://getbootstrap.com/">bootstrap</a></li>
+                                <li><a href="http://getskeleton.com/">Skeleton</a></li>
                                 <li><a href="http://purecss.io/">purecss.io</a></li>
                                 <li><a href="http://cardinalcss.com/"><a href="http://cardinalcss.com/">cardinal</a></li>
                                 <li><a href="http://cferdinandi.github.io/kraken/index.html">kraken</a></li>
@@ -699,16 +704,16 @@
                                     <div class="notes-title">Notes</div>
                                     <div class="notes">
                                         <ul>
-                                            <li>I'm using bootstrap in the whatsername. If you use bootstrap, don't use the optional bootstrap theme. It contains some CSS that might cause performance issues. </li>
+                                            <li>I'm using bootstrap in the whats-er-name. If you use bootstrap, don't use the optional bootstrap theme. It contains some CSS that might cause performance issues. </li>
                                         </ul>
                                     </div>
                                 </div>
 
-                                <p>If you attempt to adding the meta element through Javascript it will be ignored.</p>
+                                <h3><strong>1.13</strong> Events</h3>
 
-                                <h3><strong>1.13</strong> Managing the DOM Intelligently</h3>
+                                <p></p>
 
-                                <p>Don't let the DOM get out of control. Manually manage the DOM intelligently.</p>
+                                http://blogs.telerik.com/appbuilder/posts/13-11-21/what-exactly-is.....-the-300ms-click-delay
 
                             </div>
 
@@ -717,11 +722,11 @@
                             <!--_____________-->
                             <div id="chapter2" class="chapter">
                             
-                            <h2><strong>2. whatsername Folder Structure</strong></h2>
+                            <h2><strong>2. whats-er-name Folder Structure</strong></h2>
 
                             <h3><strong>2.1</strong> Application structure overview</h3>
 
-                            <p>The image belows details the folder structured used to create the whatsername application.</p>
+                            <p>The image belows details the folder structured used to create the whats-er-name application.</p>
 
                             <h3><strong>2.2</strong> Bower &amp; NPM setup</h3>
 
@@ -743,7 +748,7 @@
 
                             <p>How, exactly, to organize the <code>ui</code> directory is less important then the purpose in doing so. You want to create an application made up of small parts, grouped logically together, that have a clear separation of concerns. Every folder in the UI directory should represent a logical part (i.e. a region of logically relevant ui) of the application. Inside of the folder will be all of source code for that part only.</p>
 
-                            <p>If this is difficult for you to envision, study the whatsername wireframe and the whatsername directory structure (specifically the ui directory) to get a feel for this style of organization.</p>
+                            <p>If this is difficult for you to envision, study the whats-er-name wireframe and the whats-er-name directory structure (specifically the ui directory) to get a feel for this style of organization.</p>
 
                             </div>
 
@@ -752,7 +757,7 @@
                             <!--_____________-->
                             <div id="chapter3" class="chapter">
                             
-                            <h2><strong>3. whatsername Application Servers, Tasks, and Builds</strong></h2>
+                            <h2><strong>3. whats-er-name Application Servers, Tasks, and Builds</strong></h2>
 
                             <h3><strong>3.1</strong> What is gulp doing</h3>
 
@@ -771,7 +776,7 @@
                             <!--_____________-->
                             <div id="chapter4" class="chapter">
                             
-                            <h2><strong>4. whatsername Application Architecture</strong></h2>
+                            <h2><strong>4. whats-er-name Application Architecture</strong></h2>
 
                             <h3><strong>4.1</strong> index.html</h3>
 
@@ -798,7 +803,7 @@
                             <!--_____________-->
                             <div id="chapter5" class="chapter">
                             
-                            <h2><strong>5. whatsername Coding Style</strong></h2>
+                            <h2><strong>5. whats-er-name Coding Style</strong></h2>
 
                             <h3><strong>5.1</strong> Editor Configuration</h3>
 
@@ -815,11 +820,9 @@
                             <!--_____________-->
                             <div id="chapter6" class="chapter">
                             
-                            <h2><strong>6. whatsernameGoing Hybrid</strong> (Coming Soon!)</h2>
+                            <h2><strong>6. whats-er-name Going Hybrid Native</strong> (Coming Soon!)</h2>
 
                             </div>
-
-
 
                         </div>
                     </div>
