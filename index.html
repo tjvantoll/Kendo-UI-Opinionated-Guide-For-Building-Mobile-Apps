@@ -344,11 +344,13 @@
                                 <h3>What is this?</h3>
                                 <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is for the prescriptions found within this document to become a style used by developers when building Kendo UI mobile solutions.</p>
 
+                                <p>If you are looking for information about using Kendo UI with Angular to build a mobile application please refer to the following documentation, <a href="http://docs.telerik.com/kendo-ui/mobile/angular/sushi-angular-tutorial">"Building applications with Kendo UI Mobile and AngularJS"</a>.</p>
+
                                 <h3>Why use Kendo UI to build mobile apps?</h3>
 
-                                <p>Kendo UI provides JavaScript specific widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> in a mobile browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). In this guide I will refer to the application logic that is provide by Kendo UI as "mobile application logic".</p>
+                                <p>Kendo UI provides specific touch first widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> in a mobile browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). In this guide I will refer to the application logic that is provide by Kendo UI as "mobile application logic".</p>
 
-                                <p>While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets.</p>
+                                <p>While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets. Unless you are bringing a replacement for the application logic provided by <code>kendo.mobile.Application</code> (e.g. Angular + ng-view + ng-router) the application logic will almost always be needed.</p>
 
                                 <!--<h3>What is a hybrid mobile/tablet app?</h3>
                                 <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
@@ -392,18 +394,18 @@
                                     <li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>-->
                                 </ul>
 
-                                <p>If you are not familiar with the above items I suggest you stop and take the time to become informed on each item mentioned.</p>
+                                <p>If you are unfamiliar with the above items I suggest you stop and take the time to become loosely informed on each item mentioned.</p>
 
-                                <p>Another possible resource to consume and examine before reading this guide and after grokking the above prerequisites is the <a href="https://github.com/telerik/kendo-mobile-sushi">"Kendo Mobile Sushi Demo" on Github.</a> This mobile app demo provides three different patterns (<a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declarative instantiation only</a>, <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declaritive+MVVM</a>, and <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/sushi-angular.html">angularJS</a>) for coding a Kendo UI mobile application.</p>
+                                <p>Another possible resource to consume and examine before reading this guide and after grokking the above prerequisites is the <a href="https://github.com/telerik/kendo-mobile-sushi">"Kendo Mobile Sushi Demo" on Github.</a> This mobile app demo provides three different patterns (<a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declarative instantiation only</a>, <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declaritive+MVVM</a>, and <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/sushi-angular.html">angularJS</a>) for coding a Kendo UI mobile application. By studying this application and the different patters for creating a mobile app using Kendo UI you will well equipped to make sense of this guide.</p>
                             </div>
 
                             <div id="toc4" class="toc">
                                 <h2><strong>whats-er-name application</strong></h2>
-                                <p>This guide will express development opinions in the context of a application called, "whats-er-name". The whats-er-name app captures head-shots and names for the purpose of memorizing a group of peoples names (really, can be used to remember any image you to want group and name). I conjured up this application to help me memorize the names of each child on my son's football team. The applications functionality provides a UI to create a group, then enter a name and head shot (taken with camera or pull in a photo already taken) for each person in the group. The point of the application is to create a <a href="http://demos.telerik.com/kendo-ui/scrollview/index">sideshow</a> of named photos for memorizing faces and names. Below I show the wireframe I drafted before coding the application. </p>
+                                <p>This guide will express development opinions in the context of a application called, "whats-er-name". The whats-er-name app captures head-shots and names for the purpose of memorizing a group of peoples names (really, can be used to remember any group of images you to categorize). I conjured up this application to help me memorize the names of each child on my son's football team. The applications functionality provides a UI to create a group, then enter a name and head shot (taken with camera or pull in a photo already taken) for each person in the group. The point of the application is to create a <a href="http://demos.telerik.com/kendo-ui/scrollview/index">sideshow</a> of named photos for memorizing faces and names. Below I show the wireframe I drafted when specing otu the application. </p>
 
                                 <img src="images/wireframe.png" />
 
-                                <p>The source code can be found on <a href="https://github.com/codylindley/Kendo-UI-Opinionated-Guide-For-Building-Mobile-Apps">Github</a>. You should familiarize yourself with the code (i.e. download, run it) before reading this guide. Keep in mind that the code is more or less pseudo code written for the purpose of crafting this document. In other words more attention was given to the rational pertaining to the formation of the parts than to a specific individual part.</p>
+                                <p>The source code can be found on <a href="https://github.com/codylindley/Kendo-UI-Opinionated-Guide-For-Building-Mobile-Apps">Github</a>. You should familiarize yourself with the code (i.e. download, run it) before reading this guide. Keep in mind that the code is more or less pseudo code (i.e. storing data URI's in <code>localStorage</code> is not an ideal solution) written for the purpose of crafting this document. In other words, more attention was given to the rational around how to form the entire application than to a specific individual part of the app.</p>
                                 
                             </div>
 
@@ -412,7 +414,15 @@
 
                                 <p>Kendo UI mobile widgets and application tools are free and open source for anyone to use for anything. The code is part of the open sourced<a href="http://www.telerik.com/kendo-ui/open-source-core"> Kendo UI Core</a> which is the foundation for Telerik's paid product, <a href="http://www.telerik.com/kendo-ui/comparison">Kendo UI Professional</a>.</p>
 
-                                 <p>You can download Kendo UI Core from the CDN, <a href="http://bower.io/search/?q=kendo-ui">Bower</a>, <a href="https://github.com/telerik/kendo-ui-core">Github</a>, or <a href="http://www.telerik.com/download/kendo-ui-core">sign up for a Telerik account and download a 30 day trial of Kendo UI Professional</a> (which contains the Kendo UI Core).</p>
+                                 <p>You can get Kendo UI Core from:</p>
+                                    <ul>
+                                  <li>the official CDN</li>
+                                  <li><a href="http://bower.io/search/?q=kendo-ui">Bower</a></li>
+                                  <li><a href="https://github.com/telerik/kendo-ui-core">Github</a></li>
+                                  <li>Or <a href="http://www.telerik.com/download/kendo-ui-core">sign up for a Telerik account and download a 30 day trial of Kendo UI Professional</a> (which contains Kendo UI Core).</li>
+                                  </ul>
+
+                                <p>The additional details for each method of getting Kendo UI is shown below:</p>
 
                                 <h3>Getting Kendo UI core from the CDN</h3>
                                 <p>
@@ -454,9 +464,7 @@
 
                                 <h3>Getting Kendo UI Professional trial (contains Kendo UI Core)</h3>
 
-                                <p>Sign up for a Telerik account and get a <a href="http://www.telerik.com/download/kendo-ui">30 day fully-functional trial of Kendo UI Professional</a>.</p>
-
-                                
+                                <p>Sign up for a Telerik account and get a <a href="http://www.telerik.com/download/kendo-ui">30 day fully-functional trial of Kendo UI Professional</a>.</p>   
 
                             </div>
 
@@ -469,7 +477,7 @@
 
                                 <h3><strong>1.1</strong> Take stock of technologies available on the web platform</h3>
 
-                                <p>A Kendo UI mobile app, even if it's running in a webview, is render by a browser engine (i.e. a webview is like a browser window tab). Make sure to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the browser engine(s) that will be running you application.</p>
+                                <p>A Kendo UI mobile app, even if it's running in a webview, is render by a browser engine (i.e. a webview is like a browser window tab). Make sure to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka <a href="https://developer.mozilla.org/en-US/docs/Web/API">JavaScript API's</a>), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the browser engine(s) that will be running your application.</p>
 
                                 <p>It's likely the case that the browser engine you use to render a Kendo UI mobile application will be a newer, modern browser engine, that supports things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Flexbox</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>.</p>
 
@@ -488,6 +496,15 @@
 
                                 <p>Kendo UI mobile widgets are support on windows phone 8+ and on IE 10+.  Both use the <a href="http://en.wikipedia.org/wiki/Internet_Explorer_10">ie10 browser rendering engine</a> so you might as well use the newest version of jQuery, which <a href="http://jquery.com/browser-support/">drops support for IE 8 and below</a>.</p>
 
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>While Kendo should work with jQuery the official release is tested and shipped with 1.X jQuery.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
                                 <h3><strong>1.3</strong> Don't use Internet Explorer compatibility modes</h3>
 
                                 <p>Internet Explorer compatibility modes can exhibit different behavior and rendering bugs, compared to the browser versions they emulate. It is highly recommended to use <a href="https://www.modern.ie/en-us/performance/how-to-use-x-ua-compatible">IE's Edge mode via META tag</a> or HTTP header. The meta tag in question shown below.</p> 
@@ -496,7 +513,7 @@
                                     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
                                 </pre>
 
-                                <h3><strong>1.4</strong> Favor the platform neutral flat theme for all platforms</h3>
+                                <h3><strong>1.4</strong> Favor platform neutral UI's and themes</h3>
 
                                 <p>By default Kendo UI will use platform themes (e.g. first three devices below). However its better to force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms (e.g. far right device below).<p>
 
@@ -628,6 +645,15 @@
 
                                 <p>I used both the theme roller tool and the above CSS to produce overrides for the whats-er-name application.</p>
 
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>If you don't want to roll your own custom flat theme using the <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">Themebuilder</a> you should checkout the pre-built flat theme extensions found at <a href="http://kendoflatthemes.com/">http://kendoflatthemes.com/</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
                                 <h3><strong>1.10</strong> Use the additional icons Kendo UI Provides</h3>
 
                                 <p>Kendo UI Mobile includes 38 integrated font icons that can be used in HTML by specifying a <code>data-icon</code> attribute with one of the following icon names.</p>
@@ -684,7 +710,7 @@
                                     </div>
                                 </div>
 
-                                <h3><strong>1.11</strong> You might need a mobile first CSS framework</h3>
+                                <h3><strong>1.11</strong> You'll need a mobile first CSS framework</h3>
 
                                 <p>Kendo UI does not lock you into or prohibit the use of mobile first CSS frameworks to aid UI development. I've found that even the simplest of custom interfaces can benefit from the solutions found in a CSS framework (grids, form styles, form layouts etc...).</p>
 
@@ -709,11 +735,43 @@
                                     </div>
                                 </div>
 
-                                <h3><strong>1.13</strong> Events</h3>
+                                <h3><strong>1.13</strong> Only use Kendo UI to register events</h3>
 
-                                <p></p>
+                                <p>Events should be declared in a view using data attributes in the following ways:
 
-                                http://blogs.telerik.com/appbuilder/posts/13-11-21/what-exactly-is.....-the-300ms-click-delay
+                                <pre class="brush: html">
+                                    data-click="viewModelEvent"
+                                </pre>
+
+                                <p>or</p>
+                                
+                                <pre class="brush: html">
+                                    data-bind="click:viewModelEvent"
+                                </pre>
+
+                                <p>or</p>
+
+                                <pre class="brush: html">
+                                    data-bind="events{click:viewModelEvent,click:viewModelEvent}"
+                                </pre>
+                                
+                                <p>Additionally, specific touch events that are not MVVM or widget specific can be setup generically using the <a href="http://docs.telerik.com/kendo-ui/mobile/touch">Touch</a> widget.</p>
+
+                                <pre class="brush: html">
+                                   &lt;div data-role=&quot;view&quot;&gt;
+                                        &lt;div data-role=&quot;touch&quot; data-tap=&quot;onTap&quot;&gt;
+                                            Tap me
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;script&gt;
+                                        function onTap(e) {
+                                            console.log(e.touch.target + &quot; was tapped&quot;);
+                                        }
+                                    &lt;/script&gt;
+                                </pre>
+
+                                <p>If you add events in any other manner except the ones describe above you'll have to write your own custom logic to deal with event <a href="http://blogs.telerik.com/appbuilder/posts/13-11-21/what-exactly-is.....-the-300ms-click-delay">delays</a> and missed touches. Don't do that. Just let Kendo UI deal with it.</p>
 
                             </div>
 
