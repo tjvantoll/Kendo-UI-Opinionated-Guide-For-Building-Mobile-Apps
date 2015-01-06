@@ -601,7 +601,7 @@
 
                                 <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used to generate CSS code that overrides the CSS found in the default themes.</p> 
 
-                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> and tweak the styles from here. Below I show a video of this being done for the whats-er-name app.</p>
+                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> and tweak the styles from here. Below I show a video of this being done.</p>
 
                                 <div class="videoContainer">
                                     <iframe src="//www.youtube.com/embed/jGCdXNMu0No?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -772,6 +772,34 @@
                                 </pre>
 
                                 <p>If you add events in any other manner except the ones describe above you'll have to write your own custom logic to deal with event <a href="http://blogs.telerik.com/appbuilder/posts/13-11-21/what-exactly-is.....-the-300ms-click-delay">delays</a> and missed touches. Don't do that. Just let Kendo UI deal with it.</p>
+
+                                <h3><strong>1.14</strong> Improving touch predictability</h3>
+
+                                <p>Touch events are somewhat unpredictable and do not reliably fire all the time. To <a href="http://www.telerik.com/forums/click-event-does-not-fire-reliably#a7ATIQr3uUyK68TXtkglpQ">fix this today you can add the following code to your project</a>.</p>
+
+                                <pre class="brush: javascript">
+                                    var app = new kendo.mobile.Application(document.body, {
+                                        init: function() {
+                                           kendo.UserEvents.defaultThreshold(20);
+                                        }
+                                    });
+                                </pre>
+
+                                <h3><strong>1.15</strong> Don't use view transitions</h3>
+
+                                <p>Don't use view transitions they are not worth the performance and event (dropped taps) issues..</p>
+
+                                <h3><strong>1.16</strong> Don't turn on native scrolling</h3>
+
+                                <p>By default scrolling the content in a Kendo app in is not native. Either the scroll widget is used or CSS is used (i.e. <code>overflow:auto</code>) to emulate scrolling. While one can use the following configuration to force native scrolling, I suggest you don't use this option.</p>
+
+                                <pre class="brush: javascript">
+                                    new kendo.mobile.Application(document.body, { 
+                                        useNativeScrolling: true 
+                                    });                                
+                                </pre>
+
+                                <p>All sorts of CSS issues rear their ugly head if you attempt to use this option.</p>
 
                             </div>
 
