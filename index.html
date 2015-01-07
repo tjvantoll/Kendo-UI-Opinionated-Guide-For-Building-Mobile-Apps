@@ -396,7 +396,7 @@
 
                                 <p>If you are unfamiliar with the above items I suggest you stop and take the time to become loosely informed on each item mentioned.</p>
 
-                                <p>Another possible resource to consume and examine before reading this guide and after grokking the above prerequisites is the <a href="https://github.com/telerik/kendo-mobile-sushi">"Kendo Mobile Sushi Demo" on Github.</a> This mobile app demo provides three different patterns (<a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declarative instantiation only</a>, <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declaritive+MVVM</a>, and <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/sushi-angular.html">angularJS</a>) for coding a Kendo UI mobile application. By studying this application and the different patters for creating a mobile app using Kendo UI you will well equipped to make sense of this guide.</p>
+                                <p>Another possible resource to consume and examine before reading this guide and after grokking the above prerequisites is the <a href="https://github.com/telerik/kendo-mobile-sushi">"Kendo Mobile Sushi Demo" on Github.</a> This mobile app demo provides three different patterns (<a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declarative instantiation only</a>, <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declaritive+MVVM</a>, and <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/sushi-angular.html">angularJS</a>) for coding a Kendo UI mobile application. By studying this application and the different patterns for creating a mobile app using Kendo UI you will well equipped to make sense of this guide.</p>
                             </div>
 
                             <div id="toc4" class="toc">
@@ -817,7 +817,17 @@
 
                             <h3><strong>2.7</strong> Don't fight against declarative widget initialization or MVVM</h3>
 
-                            <p>Kendo mobile is integrated with the <a href="http://docs.telerik.com/kendo-ui/basics/markup#kendo-ui-mobile-application-with-a-view-and-an-autocomplete-widget">declarative widget initialization (i.e. create widgets from markup)</a> and the <a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">MVVM</a> pattern. Learn it, accept it, and don't fight it. Other wise you'd be better off not using the application and SPA logic found in the <code>Application</code> instance. You'd be better of either going all in on <a href="http://docs.telerik.com/kendo-ui/mobile/angular/angular">AngularJS</a> or using the <a href="http://docs.telerik.com/kendo-ui/mobile/regular-usage">mobile widgets in stand alone mode</a>.</p>
+                            <p>Kendo mobile widgets and application instance is integrated with the <a href="http://docs.telerik.com/kendo-ui/basics/markup#kendo-ui-mobile-application-with-a-view-and-an-autocomplete-widget">declarative widget initialization (i.e. create widgets from markup)</a> and the <a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">MVVM</a> pattern. Learn it, accept it, and don't fight it. Other wise you'd be better off not using the application and SPA logic found in the <code>Application</code> instance. You'd be better of either going all in on <a href="http://docs.telerik.com/kendo-ui/mobile/angular/angular">AngularJS</a> or using the <a href="http://docs.telerik.com/kendo-ui/mobile/regular-usage">mobile widgets in stand alone mode</a>.</p>
+
+                            <h3><strong>2.8</strong> Don't mix AngualJS with Kendo UI MVVM or Mobile SPA logic </h3>
+
+                            <p>If you are using AngularJS then you probably want to use Angular's own routing mechanism and data binding. Do not mix that with Kendo MVVM or Kendo mobile SPA logic (i.e. <code>kendo.mobile.Application</code>)</p>
+
+                            <h3><strong>2.9</strong> Don't use a dependency manager with mobile views</h3>
+
+                            <p>Assuming, and I do in this guide, you are using the mobile application logic don't attempt to load mobile views with a dependency manager. This is just unnecessary complexity overhead because in truth, because of the way that the application logic works all views have to be loaded and depended upon once (due to declarative instantiation) before the <code>Application</code> instance can be instantiated. This fact makes something like require.js almost pointless due to the complexity it adds to an application.</p>
+
+                            <p>favor a build strategy (via a tasking runner e.g. Gulp or Grunt) that allows you to keep things in organized modules, but during the build process pulls everything into a single <code>.html</code> file like Kendo UI mobile assumes. </p>
 
                             </div>
 
