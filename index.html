@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hybrid Mobile/Tablet App Guidelines</title>
+    <title>Kendo UI -  Opinionated Guide For Building Mobile Apps</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css" rel="stylesheet" />
-    <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.uniform.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <link href="bower_components/kendo-ui/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="bower_components/kendo-ui/styles/kendo.uniform.min.css" rel="stylesheet" />
+    <link href="bower_components/normalize-css/normalize.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="bower_components/SyntaxHighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
     <link href="bower_components/SyntaxHighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
     <!--[if lt IE 9]>
@@ -63,7 +64,6 @@
             z-index: 1000000000000000000000;
             width: 100%;
             display: table-row;   
-            width: 100%;
         }
 
         #content > div {
@@ -71,7 +71,7 @@
         }
 
         h1{
-            margin: 0;
+            margin: 0 auto;
             padding: 0;
             font-size: 20px;
             text-align: center;
@@ -80,6 +80,8 @@
             white-space: nowrap;
             color: #7e888b;
             font-weight: normal;
+            overflow: hidden;
+            width:200px;
         }
 
         h2{
@@ -138,7 +140,7 @@
             color: #364149;
             font-size: 14px;
             padding:0;
-            margin: 0 0 20px 0;
+            margin: 0 0 15px 0;
             font-weight: normal;
         }
 
@@ -154,6 +156,7 @@
         h5 a:link, h5 a:active, h5 a:visited, h6 a:link, h6 a:active, h6 a:visited{
             color:#364149;
             text-decoration: none;
+                        padding: 5px;
         }
 
         h5 a:hover, h6 a:hover{
@@ -163,6 +166,10 @@
         #toc-padding{
             padding: 0px 20px 20px 20px;
         }
+
+        #toc-padding h5 a.active, #toc-padding h6 a.active{
+            background-color: #dde8f4;
+        } 
 
         #toc{
             background-color: #fafafa;
@@ -292,6 +299,22 @@
         body .syntaxhighlighter .line {
             white-space: pre-wrap !important; /* make code wrap */
         }
+
+        .videoContainer {
+            position: relative;
+            padding-bottom: 56.25%;
+            padding-top: 35px;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .videoContainer iframe {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
         
     </style>
 </head>
@@ -300,49 +323,149 @@
     <div id="container">
         <div id="header"><div>
         <i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
-        <a href="https://github.com/codylindley/the-kendo-ui-book" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
-        <h1>Hybrid Mobile/Tablet App Guidelines</h1>
+        <a href="https://github.com/codylindley/Hybrid-Mobile-Tablet-App-Guidelines" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
+        <h1>Kendo UI - Opinionated Guide For Building Mobile Apps</h1>
 
         </div></div>
         <div id="content"><div>
                 <div id="splitter">
                     <div id="toc">
-                         <div id="author"><span id="draft">DRAFT</span> by <a href="http://www.codylindley.com" target="_blank">cody lindley</a> </div>
-                        <div id="toc-padding">
-                            
-                        </div>
+                         <div id="author"><span id="draft">DRAFT</span>by <a href="http://www.codylindley.com" target="_blank">cody lindley</a></div>
+                        <div id="toc-padding"></div>
                     </div>
                     <div id="book">
                         <div id="center-book">
-                            <img src="images/phones.png" style="margin-top:50px;" class="noBorder" id="Kendoka" />
+                            <img src="images/kendoka.png" style="margin:50px auto 0 auto; max-height: 170px;display:block" class="noBorder" />
+                            <!--<img src="images/phones.png" style="margin:10px auto 0 auto;max-height: 100px;display:block" class="noBorder" id="Kendoka" />-->
 
                             <div id="toc1" class="toc">
                                 <h2><strong>Introduction</strong></h2>
-                                <p>This is an opinionated guide for building hybrid mobile applications. It provides developer insights and solutions targeted at developers trying to constructing mobile/tablet hybrid applications.</p>
+
+                                <h3>What is this?</h3>
+                                <p>This is an opinionated guide for building websites, applications, and hybrid applications running on phones and tablets using <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a>. The intent is for the prescriptions found within this document to become a style used by developers when implementing Kendo UI mobile solutions in a browser or <a href="http://wiki.awesomium.com/general-use/introduction-to-web-views.html">webview</a>.</p>
+
+                                <p>If you are looking for information about using Kendo UI with Angular to build a mobile application please refer to the following documentation, <a href="http://docs.telerik.com/kendo-ui/mobile/angular/sushi-angular-tutorial">"Building applications with Kendo UI Mobile and AngularJS"</a>.</p>
+
+                                <h3>Why use Kendo UI to build mobile apps?</h3>
+
+                                <p>Kendo UI provides specific touch first widgets to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> in a mobile browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). In this guide I will refer to the application logic that is provide by Kendo UI as "mobile application logic".</p>
+
+                                <p>While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets. Unless you are bringing a replacement for the application logic provided by <code>kendo.mobile.Application</code> (e.g. Angular + ng-view + ng-router) the application logic will almost always be needed.</p>
+
+                                <!--<h3>What is a hybrid mobile/tablet app?</h3>
+                                <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
+
+                                <blockquote>"Hybrid apps, like native apps, run on the device, and are written with web technologies (HTML, CSS and JavaScript). Hybrid apps run inside a native container (aka webview), and leverage the device’s browser engine (but not the browser itself i.e. Safari) to render the HTML and process the JavaScript locally in the native container. A web-to-native abstraction layer (e.g. cordova) enables access to device capabilities that are not accessible in Mobile/Tablet Web applications, such as the accelerometer, camera and local storage."</blockquote>
+
+                                <h3>Why build hybrid mobile/tablet apps?</h3>
+
+                                <p>Built and packaged correctly, the goal of a hybrid app is to be <a href="https://www.youtube.com/watch?v=hHk1ENkwWq8">virtually indistinguishable to end-users from a native app</a>. The advantage of building apps with HTML, CSS, and JavaScript is that developers can maintain a single code base to target all major platforms (ios, android, windows phone). Your team can focus on HTML, CSS, and JavaScript development rather than being average practitioners of Objective-C, Java, .NET and the myriad of other developer skills need for cross-platform mobile app development.</p>-->
+
                             </div>
 
                             <div id="toc2" class="toc">
-                                <h2><strong>What is a hybrid mobile/tablet application</strong></h2>
-                                <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipeida</a> offers a pretty good definition of a hybrid mobile application (altered slightly for clarity): </p>
-
-                                <blockquote>"Hybrid apps, like native apps, run on the device, and are written with web technologies (HTML5, CSS and JavaScript). Hybrid apps run inside a native container (aka webview), and leverage the device’s browser engine (but not the browser) to render the HTML and process the JavaScript locally. A web-to-native abstraction layer (e.g. cordova) enables access to device capabilities that are not accessible in Mobile/Tablet Web applications, such as the accelerometer, camera and local storage."</blockquote>
+                                <h2><strong>Who should read this</strong></h2>
+                                <p>You are front-end engineer who has experience developing applications in HTML, CSS, and JavaScript (e.g. SPA applications using MVVM) that wants to use these skills to build a mobile/tablet web site/application or a hybrid native application and are in need of some direction/opinions to get you started.</p>
                             </div>
 
                             <div id="toc3" class="toc">
-                                <h2><strong>Who should read this</strong></h2>
-                                <p>You are front-end engineer who has experience developing applications in html, css, and JavaScript (e.g. SPA applications) that wants to use these skills to build a hybrid native mobile/tablet application and are in need of some direction/options.</p>
+                                <h2><strong>Prerequisites</strong></h2>
+                                <p>Some knowledge is imparted and some knowledge is assumed about the following:</p>
+
+                                <ul>
+                                    <li><strong>Single Page Applications</strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">What is it?</a></li>
+                                    <li><strong>Kendo UI Mobile Widgets &amp; Application Tools</strong> - <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a><ul>
+                                            <li><a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">Using Kendo MVVM in a mobile application</a></li>
+                                            <li><a href="http://docs.telerik.com/kendo-ui/mobile/view#view-parameters">View Parameters</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Declarative JavaScript</strong> - <a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">What is it?</a> | <a href="http://docs.telerik.com/kendo-ui/basics/markup#kendo-ui-mobile-application-with-a-view-and-an-autocomplete-widget">Learn it</a></li>
+                                    <li><strong>MVVM/Data Binding (specifically Kendo UI MVVM)</strong> - <a href="http://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/">What is it?</a> | <a href="http://blogs.telerik.com/kendoui/posts/12-03-09/bind_this_a_look_at_kendo_ui_mvvm">learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/mvvm/overview">Docs</a></li>
+                                    <li><strong>Kendo UI Datasource</strong> - <a href="http://demos.telerik.com/kendo-ui/datasource/index">What is it?</a> | <a href="http://blogs.telerik.com/kendoui/posts/13-01-24/learning_kendo_data_datasource">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/datasource/overview">Docs</a></li>
+                                    <li><strong>Kendo UI Templates</strong> - <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">What is it?</a> | <a href="http://demos.telerik.com/kendo-ui/templates/index">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">Docs</a></li>
+                                    <li><strong>Command-line/Terminal</strong> - <a href="http://en.wikipedia.org/wiki/Command-line_interface">What is it?</a> | <a href="http://www.pluralsight.com/courses/meet-command-line">Learn it</a></li>
+                                    <li><strong>NodeJS</strong> - <a href="http://nodejs.org/">What is it?</a> | <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a><ul>
+                                            <li><strong>NPM</strong> - <a href="https://www.npmjs.org/">What is it?</a> | <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
+                                            <li><strong>Bower</strong> - <a href="http://bower.io/">What is it?</a></strong> | <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="">Docs</a></li>
+                                            <li><strong>gulp.js</strong> - <a href="http://gulpjs.com/">What is it?</a> | <a href="https://www.youtube.com/watch?v=dwSLFai8ovQ">Learn it</a> | <a href="https://github.com/gulpjs/gulp/blob/master/docs/README.md">Docs</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--<li><strong><a href="http://www.telerik.com/platform#overview">AppBuilder</a></strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
+                                    <li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>-->
+                                </ul>
+
+                                <p>If you are unfamiliar with the above items I suggest you stop and take the time to become loosely informed on each item mentioned.</p>
+
+                                <p>Another possible resource to consume and examine before reading this guide and after grokking the above prerequisites is the <a href="https://github.com/telerik/kendo-mobile-sushi">"Kendo Mobile Sushi Demo" on Github.</a> This mobile app demo provides three different patterns (<a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declarative instantiation only</a>, <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declaritive+MVVM</a>, and <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/sushi-angular.html">angularJS</a>) for coding a Kendo UI mobile application. By studying this application and the different patterns for creating a mobile app using Kendo UI you will well equipped to make sense of this guide.</p>
                             </div>
 
                             <div id="toc4" class="toc">
-                                <h2><strong>Preface</strong></h2>
-                                <p>Knowledge is imparted and some knowledge is assumed about the following solutions:</p>
+                                <h2><strong>whats-er-name example application</strong></h2>
+                                <p>This guide will express development opinions in the context of a application called, "whats-er-name". The whats-er-name app captures head-shots and names for the purpose of memorizing a group of peoples names (really, can be used to remember any group of images you to categorize). I conjured up this application to help me memorize the names of each child on my son's football team. The applications functionality provides a UI to create a group, then enter a name and head shot (taken with camera or pull in a photo already taken) for each person in the group. The point of the application is to create a <a href="http://demos.telerik.com/kendo-ui/scrollview/index">sideshow</a> of named photos for memorizing faces and names. Below I show the wireframe I drafted when specing otu the application. </p>
 
-                                <ul>
-                                    <li><strong><a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI Mobile Widgets &amp; Application Tools</a></strong> - download/clone from <a href="https://github.com/telerik/kendo-ui-core">Github</a> or install from <a href="https://github.com/kendo-labs/bower-kendo-ui">bower</a></li>
-                                    <li><strong>AppBuilder</strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
-                                    <li><strong><a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Applications</a></strong></li>
-                                    <li><strong>Cordova</strong> - <a href="http://cordova.apache.org/">http://cordova.apache.org/</a></li>
-                                </ul>
+                                <img src="images/wireframe.png" />
+
+                                <p>The source code can be found on <a href="https://github.com/codylindley/Kendo-UI-Opinionated-Guide-For-Building-Mobile-Apps">Github</a>. You should familiarize yourself with the code (i.e. download, run it) before reading this guide. Keep in mind that the code is more or less pseudo code (i.e. storing data URI's in <code>localStorage</code> is not an ideal solution) written for the purpose of crafting this document. In other words, more attention was given to the rational around how to form the entire application than to a specific individual part of the app.</p>
+                                
+                            </div>
+
+                            <div id="toc5" class="toc">
+                                <h2><strong>Get Kendo UI Mobile</strong></h2>
+
+                                <p>Kendo UI mobile widgets and application tools are free and open source for anyone to use for anything. The code is part of the open sourced<a href="http://www.telerik.com/kendo-ui/open-source-core"> Kendo UI Core</a> which is the foundation for Telerik's paid product, <a href="http://www.telerik.com/kendo-ui/comparison">Kendo UI Professional</a>.</p>
+
+                                 <p>You can get Kendo UI Core from:</p>
+                                    <ul>
+                                  <li>the official CDN</li>
+                                  <li><a href="http://bower.io/search/?q=kendo-ui">Bower</a></li>
+                                  <li><a href="https://github.com/telerik/kendo-ui-core">Github</a></li>
+                                  <li>Or <a href="http://www.telerik.com/download/kendo-ui-core">sign up for a Telerik account and download a 30 day trial of Kendo UI Professional</a> (which contains Kendo UI Core).</li>
+                                  </ul>
+
+                                <p>The additional details for each method of getting Kendo UI is shown below:</p>
+
+                                <h3>Getting Kendo UI core from the CDN</h3>
+                                <p>
+                                <pre class="brush: html">
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html&gt;
+                                    &lt;head&gt;
+                                        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+                                        &lt;link href=&quot;http://cdn.kendostatic.com/2014.2.1008/styles/kendo.mobile.all.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+
+                                        &lt;script src=&quot;https://code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;
+                                        &lt;script src=&quot;http://cdn.kendostatic.com/2014.2.1008/js/kendo.ui.core.min.js&quot;&gt;&lt;/script&gt;
+                                    &lt;/body&gt;
+                                    &lt;/html&gt;
+                                </pre>
+                                </p>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>The Kendo UI CDN is hosted on Amazon CloudFront.</li>
+                                            <li>In order to use HTTPS, you need to directly access the CloudFront CDN, or use your own domain and SSL certificate.</li>
+                                            <li>In production you should provide a <a href="http://docs.telerik.com/kendo-ui/install/cdn#cdn-fallback-and-troubleshooting">fallback to CDN code.</a></li>
+                                            <li>Minified files are not always ideal for development. And, only the <code>kendo.ui.code.min.js</code> file is available on the CDN. To get the non-minified file <code>bower install</code> or pull the source from Github.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3>Getting Kendo UI core from Bower</h3>
+
+                                <p>Open a terminal/command line and run <code>bower install kendo-ui</code> to get the Kendo UI Core package downloaded using <a href="http://bower.io/">Bower</a>.</p>
+
+                                <h3>Getting Kendo UI core from GitHub</h3>
+
+                                <p>Open a terminal/command line and run <code>git clone https://github.com/telerik/kendo-ui-core.git</code> to clone the Git repository or <a href="https://github.com/telerik/kendo-ui-core/archive/master.zip">download zip from Github.</a></p>
+
+                                <h3>Getting Kendo UI Professional trial (contains Kendo UI Core)</h3>
+
+                                <p>Sign up for a Telerik account and get a <a href="http://www.telerik.com/download/kendo-ui">30 day fully-functional trial of Kendo UI Professional</a>.</p>   
+
                             </div>
 
                             <!--_____________-->
@@ -350,24 +473,273 @@
                             <!--_____________-->
                             <div id="chapter1" class="chapter">
 
-                            <h2><strong>1. The Basics</strong></h2>
+                                <h2><strong>1. Kendo Mobile Do's</strong></h2>
 
+                                <h3><strong>1.1</strong> Take stock of technologies available on the web platform</h3>
 
-                            <h3><strong>1.2</strong> Remember why you are doing hybrid development</h3>
+                                <p>A Kendo UI mobile app, even if it's running in a webview, is render by a browser engine (i.e. a webview is like a browser window tab). Make sure to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka <a href="https://developer.mozilla.org/en-US/docs/Web/API">JavaScript API's</a>), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the browser engine(s) that will be running your application.</p>
 
-                            <p>Built and packaged correctly, the goal of a hybrid app is to be virtually indistinguishable to end-users from a native SDK app. The advantage of building apps with HTML, CSS, and JavaScript is that developers can maintain a single code base to target all major app platforms. Your team can focus on HTML, JavaScript, and CSS, development rather than being average practitioners of Objective-C, Java, .NET and the myriad of other developer skills need for cross-platform mobile app development.</p>
+                                <p>It's likely the case that the browser engine you use to render a Kendo UI mobile application will be a newer, modern browser engine, that supports things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Flexbox</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>.</p>
 
-                            <h3><strong>1.3</strong> Define targeted mobile/tablet platforms/versions</h3>
+                                <p>Make sure you are aware of everything you have at your disposal for development and use it.</p>
 
-                            <p>Hybrid apps run in a webview, which is like a tab in a web browser. Make sure to define upfront the mobile/tablet platform/versions in order to take note of the <a href="http://mobilehtml5.org/">HTML5</a> (aka JavaScript API's), <a href="http://caniuse.com/">CSS</a>, and <a href="http://army8735.me/es5-compat/">JavaScript standards</a> that are support by the mobile platform.</p>
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>Kendo UI mobile is supported on the following operating systems and browser combinations Android 2.3+, iOS 6+, Windows Phone 8+, Chrome for Android. Kendo UI mobile widgets used without the <a href="http://docs.telerik.com/kendo-ui/mobile/application">mobile application logic</a> will run on OS X 10.5+ (IE10+, Chrome Recent, Opera 15+, Safari 5+) and Windows XP+ / Server 2003+ (IE10+, Chrome Recent, Opera 15+)</li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                            <p>Unlike browser development for the desktop it's more than likely that your application will be run by a newer, modern, browser engine that supports things like ES5, CORS, and Web Sockets.</p>
+                                <h3><strong>1.2</strong> Use jQuery 2.x</h3>
 
-                            <h3><strong>1.4</strong> Use a mobile widget toolkit with application logic</h3>
+                                <p>Kendo UI mobile widgets are support on windows phone 8+ and on IE 10+.  Both use the <a href="http://en.wikipedia.org/wiki/Internet_Explorer_10">ie10 browser rendering engine</a> so you might as well use the newest version of jQuery, which <a href="http://jquery.com/browser-support/">drops support for IE 8 and below</a>.</p>
 
-                            <h3><strong>1.5</strong> Always use Cordova (i.e. a web-to-native abstraction)</h3>
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>While Kendo should work with jQuery the official release is tested and shipped with 1.X jQuery.</li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                            <p>Explain why Cordova, even if you don't use common api's is needed. Events?</p>
+                                <h3><strong>1.3</strong> Build common sense code</h3>
+
+                                <p>The following are common rules, laws, and practices among seasoned application developers for building long lasting applications through consistency:</p>
+
+                                <ol>
+                                    <li>Entire code based should follow the same <a href="https://github.com/rwaldron/idiomatic.js/">style</a> of coding as if a single developer (i.e. mind) crafted the code. This should be validated automatically at code time (i.e. in IDE on key stroke), build time, and commit time (e.g. GIT Hooks).</li>
+                                    <li>When writing code be verbose, priorities readability (i.e. code is read much more often than it is written), comment everything, and dispense with DRY principles if it obscures developer clarity.</li>
+                                    <li>The DNA of an application is small miniature applications/components, properly decoupled into single responsibility modules.</li>
+                                    <li>Modules are separated by nature (i.e. behavior/controller, model/data, style, template/html, test etc..) but organized together (i.e. application structure) by feature.</li>
+                                    <li>Avoid complexity that does not pay for itself.</li>
+                                    <li>Don't optimize development code, optimize production code (i.e. don't pre-optimize)</li>
+                                    <li>Document everything!</li>
+                                    <li>Automate what you can using a task runner to build code. Don't rely on human tasking.</li>
+                                    <li>Establish at least one layer (unit, integration, functional) of automated testing that runs during build or before accepting code commits (i.e. Use a githook to run tests, reject if tests fail).</li>
+                                    <li>Automate the logging and notification of runtime errors for production code.</li>
+                                    <li>Fear monolithic abstractions in the form of closed frameworks which promote one stop developer solutions.</li>
+                                </ol>
+
+                                <h3><strong>1.4</strong> Develop using real devices</h3>
+
+                                <p>Simulators and browsers running on a desktop or laptop provide a quick and easy way to run Kendo UI Mobile code. However, this should not be how you test your code alone. It's critical that during development, development code is tested on the devices it intended to run on. I recommend at the very least testing on:</p>
+
+                                <ul>
+                                    <li>windows phone / windows mobile 8.0+</li>
+                                    <li>Android phone / Android 4.0+</li>
+                                    <li>iphone / iOS 6.0+</li>
+                                </ul>
+
+                                <h3><strong>1.5</strong> Make use of remote debugging tools</h3>
+
+                                <p><a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">Plug a android (4.2+) or ios (iOS6) device into you computer/laptop and you can use the developer tools found in Safari or Chrome</a> locally to debug the site running in the devices browser.</p>
+
+                                <ul>
+                                    <li>Android mobile debugging: <a href="https://developer.chrome.com/devtools/docs/remote-debugging">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=yjxrr8CrUq0">Watch</a></li>
+                                    <li>iOS mobile debugging: <a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW8">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=E_eMhH1M37I">Watch</a></li>
+                                </ul>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>The browser on a phone/tablet is representative of the engine (i.e. same engine) used in a <a href="https://developer.chrome.com/multidevice/webview/gettingstarted">webview</a> and can be preemptively used to test <a href="http://blogs.telerik.com/appbuilder/posts/12-06-14/what-is-a-hybrid-mobile-app-">hybrid applications</a>.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3><strong>1.6</strong> Use theme builder to produce initial CSS overrides to flat theme</h3>
+
+                                <p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used to generate CSS code that overrides the CSS found in the default themes.</p> 
+
+                                <p>Start with the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> and tweak the styles from here. Below I show a video of this being done.</p>
+
+                                <div class="videoContainer">
+                                    <iframe src="//www.youtube.com/embed/jGCdXNMu0No?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                                </div>
+
+                                <p>The theme builder can do a bit more than change the turquoise color found in the flat theme. However, if you all you want to do is replace the turquoise color with a new color you can use the CSS below. Simply change the color value and make sure the CSS is specified after the flat theme CSS.</p>
+
+                                <pre class="brush: css">
+                                    .km-flat .km-switch-handle,
+                                    .km-flat .k-slider-selection,
+                                    .km-flat .km-switch-background {
+                                      color: #444;
+                                    }
+                                    .km-flat .km-rowinsert,
+                                    .km-flat .km-state-active,
+                                    .km-flat .km-scroller-pull,
+                                    .km-flat .km-loader:before,
+                                    .km-flat .k-slider-selection,
+                                    .km-flat .km-touch-scrollbar,
+                                    .km-flat .km-pages .km-current-page,
+                                    .km-flat .k-slider .k-draghandle,
+                                    .km-flat .k-slider .k-draghandle:hover,
+                                    .km-flat .km-tabstrip .km-state-active,
+                                    .km-flat .km-scroller-refresh.km-load-more,
+                                    .km-flat .km-popup .k-state-hover,
+                                    .km-flat .km-popup .k-state-focused,
+                                    .km-flat .km-popup .k-state-selected,
+                                    .km-flat .km-actionsheet > li > a:active,
+                                    .km-flat .km-actionsheet > li > a:hover,
+                                    .km-flat .km-actionsheet > li > .km-state-active,
+                                    .km-flat li.km-state-active .km-listview-link,
+                                    .km-flat li.km-state-active .km-listview-label,
+                                    .km-flat .km-listview-label input[type=radio]:checked,
+                                    .km-flat .km-listview-label input[type=checkbox]:checked {
+                                      background: #444;
+                                    }
+                                    .km-flat .km-filter-wrap > input:focus {
+                                      border-color: #444;
+                                    }
+                                </pre>
+
+                                <p>I used both the theme roller tool and the above CSS to produce overrides for the whats-er-name application.</p>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>If you don't want to roll your own custom flat theme using the <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">Themebuilder</a> you should checkout the pre-built flat theme extensions found at <a href="http://kendoflatthemes.com/">http://kendoflatthemes.com/</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3><strong>1.7</strong> Use the additional icons Kendo UI Provides</h3>
+
+                                <p>Kendo UI Mobile includes 38 integrated font icons that can be used in HTML by specifying a <code>data-icon</code> attribute with one of the following icon names.</p>
+
+                                <iframe width="100%" height="500" src="http://jsfiddle.net/codylindley/m0nwLezd/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+                                <p>Below I show of one of these icons defined in HTML.</p>
+
+                                <pre class="brush: html">
+                                    &lt;li&gt;&lt;span data-role=&quot;button&quot; data-icon=&quot;about&quot;&gt;&lt;/span&gt;about&lt;/li&gt;
+                                </pre>
+
+                                <p>But don't limit yourself to this short list of icons. About 10 times more icons are actually shipped for use but are simply not setup in CSS to be used.<p>
+
+                                <p>To set this up simply create the CSS and reference a unicode/icon:</p>
+
+                                <pre class="brush: css">
+                                    .km-arrow-e:after,
+                                    .km-arrow-e:before
+                                    {
+                                        content: "\e000";
+                                    }
+                                </pre>
+
+                                <p>Then use this icon in your application like so:</p>
+
+                                <pre class="brush: html">
+                                    &lt;a href=&quot;/&quot; data-icon=&quot;arrow-e&quot;&gt;Home&lt;/a&gt;
+                                </pre>
+
+                                <p>All Unicode's and associating icons are shown below:</p>
+
+                                <iframe width="100%" height="1750" src="http://jsfiddle.net/codylindley/u5rg799g/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+                                <h3><strong>1.8</strong> Use normalize.css</h3>
+
+                                <p>When using the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> as a baseline theme with the intentions of customizing the theme further it can be beneficial to also include <a href="http://necolas.github.io/normalize.css/">normalize.css</a>.<p>
+
+                                <p>The benefits of including normalize.css are:</p>
+
+                                <ul>
+                                    <li><strong>Preserve useful browser defaults</strong> rather than erasing them.</li>
+                                    <li><strong>Normalize styles</strong> for a wide range of HTML elements.</li>
+                                    <li><strong>Correct bugs</strong> and common browser inconsistencies.</li>
+                                    <li><strong>Improve usability</strong> with subtle improvements.</li>
+                                </ul>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>If you are using a CSS framework check to make sure that the CSS framework is not already using normalize.css.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3><strong>1.9</strong> You'll need a mobile first CSS framework</h3>
+
+                                <p>Kendo UI does not lock you into or prohibit the use of mobile first CSS frameworks to aid UI development. I've found that even the simplest of custom interfaces can benefit from the solutions found in a CSS framework (grids, form styles, form layouts etc...).</p>
+
+                                <p>Some battle test mobile first CSS frameworks are:</p>
+
+                                <ul>
+                                <li><a href="http://getbootstrap.com/">bootstrap</a></li>
+                                <li><a href="http://getskeleton.com/">Skeleton</a></li>
+                                <li><a href="http://purecss.io/">purecss.io</a></li>
+                                <li><a href="http://cardinalcss.com/"><a href="http://cardinalcss.com/">cardinal</a></li>
+                                <li><a href="http://cferdinandi.github.io/kraken/index.html">kraken</a></li>
+                                </ul>
+                                
+                                <p>If introducing another third-party dependency into the code is not something you prefer doing then just realize you'll more than likely have to create a miniature custom CSS framework for aiding the development of custom interfaces.</p>
+
+                                <div class="note">
+                                    <div class="notes-title">Notes</div>
+                                    <div class="notes">
+                                        <ul>
+                                            <li>I'm using bootstrap in the whats-er-name. If you use bootstrap, don't use the optional bootstrap theme. It contains some CSS that might cause performance issues. </li>
+                                            <li>You might consider using the icons provided by the CSS framework. For example, if you use boostrap you could sidestep the kendo UI icons and use <a href="http://glyphicons.com/">glyphicons.com</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3><strong>1.10</strong> Only use Kendo UI to register events</h3>
+
+                                <p>Events should be declared in a view using data attributes in the following ways:
+
+                                <pre class="brush: html">
+                                    data-click="viewModelEvent"
+                                </pre>
+
+                                <p>or</p>
+                                
+                                <pre class="brush: html">
+                                    data-bind="click:viewModelEvent"
+                                </pre>
+
+                                <p>or</p>
+
+                                <pre class="brush: html">
+                                    data-bind="events{click:viewModelEvent,click:viewModelEvent}"
+                                </pre>
+                                
+                                <p>Additionally, specific touch events that are not MVVM or widget specific can be setup generically using the <a href="http://docs.telerik.com/kendo-ui/mobile/touch">Touch</a> widget.</p>
+
+                                <pre class="brush: html">
+                                   &lt;div data-role=&quot;view&quot;&gt;
+                                        &lt;div data-role=&quot;touch&quot; data-tap=&quot;onTap&quot;&gt;
+                                            Tap me
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;script&gt;
+                                        function onTap(e) {
+                                            console.log(e.touch.target + &quot; was tapped&quot;);
+                                        }
+                                    &lt;/script&gt;
+                                </pre>
+
+                                <p>If you add events in any other manner except the ones describe above you'll have to write your own custom logic to deal with event <a href="http://blogs.telerik.com/appbuilder/posts/13-11-21/what-exactly-is.....-the-300ms-click-delay">delays</a> and missed touches. Don't do that. Just let Kendo UI deal with it.</p>
+
+                                <h3><strong>1.11</strong> Improving tap predictability</h3>
+
+                                <p>Touch events are somewhat unpredictable and do not reliably fire all the time. To <a href="http://www.telerik.com/forums/click-event-does-not-fire-reliably#a7ATIQr3uUyK68TXtkglpQ">fix this today you can add the following code to your project to improve iOS and windows</a>.</p>
+
+                                <pre class="brush: javascript">
+                                    var app = new kendo.mobile.Application(document.body, {
+                                        init: function() {
+                                            //don't do this for android, causes more issues than it fixes
+                                           kendo.UserEvents.defaultThreshold(kendo.support.mobileOS.device === 'android' ? 0:20);
+                                        }
+                                    });
+                                </pre>
 
                             </div>
 
@@ -375,8 +747,87 @@
                             <!--  chapter 2  -->
                             <!--_____________-->
                             <div id="chapter2" class="chapter">
-                            
-                            <h2><strong>2. Use A Package Manager</strong></h2>
+
+                            <h2><strong>2. Kendo Mobile don'ts</strong></h2>
+
+                            <h3><strong>2.1</strong> Don't use view transitions</h3>
+
+                            <p>Don't use view transitions they are not worth the performance and event (i.e. dropped/failed touch events) issues.</p>
+
+                            <h3><strong>2.2</strong> Don't turn on native scrolling</h3>
+
+                            <p>By default scrolling the content in a Kendo mobile app is not native. Either the scroll widget is used or CSS is used (i.e. <code>overflow:auto</code>) to emulate scrolling. While one can use the configuration below to force native scrolling, I won't suggest make use of this option. All sorts of CSS issues and regression issues rear their ugly head if you turn on native scrolling.</p>
+
+                            <pre class="brush: javascript">
+                                new kendo.mobile.Application(document.body, { 
+                                    useNativeScrolling: true 
+                                });                                
+                            </pre>
+
+                            <h3><strong>2.3</strong> Don't add mobile rendering meta elements</h3>
+
+                                <p>The meta elements below are automatically added to an html page when an application is instantiated.</p>
+                                
+                                <pre class="brush: html">
+                                &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+                                &lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot;&gt;
+                                &lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
+                                &lt;meta content=&quot;initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; name=&quot;viewport&quot;&gt;
+                                </pre>
+
+                                <p>Rely on this fact and don't add your own. </p>
+
+
+                            <h3><strong>2.4</strong> Don't use Internet Explorer compatibility modes</h3>
+
+                            <p>Internet Explorer compatibility modes can exhibit different behavior and rendering bugs, compared to the browser versions they emulate. It is highly recommended to use <a href="https://www.modern.ie/en-us/performance/how-to-use-x-ua-compatible">IE's Edge mode via META tag</a> or HTTP header. The meta tag in question shown below.</p> 
+
+                            <pre class="brush: html">
+                                &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+                            </pre>
+
+                            <h3><strong>2.5</strong> Don't use platform adaptive CSS</h3>
+
+                            <p>By default Kendo UI will use platform themes (e.g. first three devices below). However its better to force Kendo Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> for all platforms (e.g. far right device below) and completely avoid platform adaptive rendering.<p>
+
+                            <img src="images/flatskinTheme.png" />
+
+                            <p>To override Kendo UI's default nature of detecting the platform and forcing a platform specific CSS theme simply set the <code>skin</code> <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application#configuration-skin">option</a> to <code>flat</code> in the <code>Application()</code> method used to initialize the mobile application. </p>
+
+                            <pre class="brush: js">
+                                var app = new kendo.mobile.Application($(document.body), { skin: 'flat' });
+                            </pre>
+
+                            <p>The reasons to do this is:</p>
+
+                            <ol>
+
+                            <li>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a> resulting in a UI that will likely fall short of native look and feel, function, and performance in most cases. It's better to have a custom UI than to have a UI that is always in second place to the real thing.
+                            </li>
+
+                            <li>Using the platform neutral theme results in a fast user experience because the CSS used to create the neutral theme is void of the complex CSS (i.e. Gradients etc...) required by the platform themes to replicate native UI's.</li>
+
+                            <li>Overwriting and evolving one theme (i.e. the flat theme) is simpler than overwriting and evolving several platform specific themes. This is exactly what is done at <a href="http://kendoflatthemes.com/">http://kendoflatthemes.com/</a> </li>
+
+                            </ol>
+
+                            <h3><strong>2.6</strong> Don't AJAX navigate to views (i.e. Remote Views)</h3>
+
+                            <p>Use a build step (like in the example application) to get all the views in the application into a single <code>.html</code> page so that the application does not have to AJAX in views when the application is running.</p>
+
+                            <h3><strong>2.7</strong> Don't fight against declarative widget initialization or MVVM</h3>
+
+                            <p>Kendo mobile widgets and application instance is integrated with the <a href="http://docs.telerik.com/kendo-ui/basics/markup#kendo-ui-mobile-application-with-a-view-and-an-autocomplete-widget">declarative widget initialization (i.e. create widgets from markup)</a> and the <a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">MVVM</a> pattern. Learn it, accept it, and don't fight it. Other wise you'd be better off not using the application and SPA logic found in the <code>Application</code> instance. You'd be better of either going all in on <a href="http://docs.telerik.com/kendo-ui/mobile/angular/angular">AngularJS</a> or using the <a href="http://docs.telerik.com/kendo-ui/mobile/regular-usage">mobile widgets in stand alone mode</a>.</p>
+
+                            <h3><strong>2.8</strong> Don't mix AngualJS with Kendo UI MVVM or Mobile SPA logic </h3>
+
+                            <p>If you are using AngularJS then you probably want to use Angular's own routing mechanism and data binding. Do not mix that with Kendo MVVM or Kendo mobile SPA logic (i.e. <code>kendo.mobile.Application</code>)</p>
+
+                            <h3><strong>2.9</strong> Don't use a dependency manager with mobile views</h3>
+
+                            <p>Assuming, and I do in this guide, you are using the mobile application logic don't attempt to load mobile views with a dependency manager. This is just unnecessary complexity overhead because in truth, because of the way that the application logic works all views have to be loaded and depended upon once (due to declarative instantiation) before the <code>Application</code> instance can be instantiated. This fact makes something like require.js almost pointless due to the complexity it adds to an application.</p>
+
+                            <p>favor a build strategy (via a tasking runner e.g. Gulp or Grunt) that allows you to keep things in organized modules, but during the build process pulls everything into a single <code>.html</code> file like Kendo UI mobile assumes. </p>
 
                             </div>
 
@@ -385,7 +836,33 @@
                             <!--_____________-->
                             <div id="chapter3" class="chapter">
                             
-                            <h2><strong>3. App Folder Structure</strong></h2>
+                            <h2><strong>3. whats-er-name Folder Structure</strong></h2>
+
+                            <h3><strong>3.1</strong> Application structure overview</h3>
+
+                            <p>The image belows details the folder structured used to create the whats-er-name application.</p>
+
+                            <h3><strong>3.2</strong> Bower &amp; NPM setup</h3>
+
+                            <p>Node packages are stored in a directory called <code>node_modules</code>. This is the default directory name and location, used by NPM, in relation to the <code>package.json</code> file.</p>
+
+                            <p>Bower is not being used in the default manner. The <code>bower.json</code> file is in the root of the application directory, which is common, but I am using the <code>.bowerrc</code> file to configure bower to store packages in the <code>wwwDev</code> directory in a folder called <code>bower_components</code>.</p>
+
+                            <h3><strong>3.3</strong> Src, wwwDev, wwwBuild directories</h3>
+
+                            <p>The application source can be found in the <code>src</code> directory. This will be where you edit code. The <code>wwwDev</code> directory and the <code>wwwBuild</code> directory will contain development and production versions of the code which get served to a web browser using <a href="https://github.com/schickling/gulp-webserver">gulp-webserver</a> (more on that in the build and task section).</p>
+
+                            <h3><strong>3.4</strong> Shared directory</h3>
+
+                            <p>The <code>src/shared</code> directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, global layout modules, and utility modules to name a few.</p>
+
+                            <h3><strong>3.5</strong> UI directory</h3>
+
+                            <p>The <code>ui</code> directory will contain logically group and named UI portions of the application. It's not a hard and fast rule but think of the UI directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map persecutive. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what you are building. For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing a controller JavaScript file, an html file containing the view, an HTML file containing a view specific layout, a CSS file containing view specific styles, and a test. These directories form a tree/hierarchical structure based on the logical break up of the application.</p> 
+
+                            <p>How, exactly, to organize the <code>ui</code> directory is less important then the purpose in doing so. You want to create an application made up of small parts, grouped logically together, that have a clear separation of concerns. Every folder in the UI directory should represent a logical part (i.e. a region of logically relevant ui) of the application. Inside of the folder will be all of source code for that part only.</p>
+
+                            <p>If this is difficult for you to envision, study the whats-er-name wireframe and the whats-er-name directory structure (specifically the ui directory) to get a feel for this style of organization.</p>
 
                             </div>
 
@@ -394,16 +871,44 @@
                             <!--_____________-->
                             <div id="chapter4" class="chapter">
                             
-                            <h2><strong>4. Coding Style</strong></h2>
+                            <h2><strong>4. whats-er-name Application Servers, Tasks, and Builds</strong></h2>
+
+                            <h3><strong>4.1</strong> What is gulp doing</h3>
+
+                            <p>The application uses gulp (a task runner) to create development and production builds. Basically, when developing, a build is occurring every time you make a change to the source. The, build on every source change strategy, facilitates an endless possibles of what can programmatically occur, often in an automated fashion during development.</p>
+
+                            <h3><strong>4.1</strong> The wwwDev Build process &amp; Server</h3>
+
+                            <h3><strong>4.2</strong> The wwwBuild Build process &amp; Server</h3>
+
+                            <h3><strong>4.2</strong> Git ignore</h3>
 
                             </div>
 
                             <!--_____________-->
-                            <!--  chapter 5  -->
+                            <!--  chapter 4  -->
                             <!--_____________-->
                             <div id="chapter5" class="chapter">
                             
-                            <h2><strong>5. Modules</strong></h2>
+                            <h2><strong>5. whats-er-name Application Architecture</strong></h2>
+
+                            <h3><strong>5.1</strong> index.html</h3>
+
+                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called index.html and it will reside in the src folder. Everything else will be consider a module that is included into index.html via a <code>&lt;script&gt;</code> or <code>&lt;link&gt;</code> element or the build process. Consider index.html the master configuration file for including all the necessary CSS, HTML, and JavaScript to make the application run.</p>
+
+                            <h3><strong>5.2</strong> Application name space in index.html</h3>
+
+                            <h3><strong>5.3</strong> Application instantiation in index.html</h3>
+
+                            <h3><strong>5.4</strong> Module naming</h3>
+
+                            <h3><strong>5.5</strong> View modules</h3>
+
+                            <h3><strong>5.6</strong> Controller modules</h3>
+
+                            <h3><strong>5.7</strong> HTML modules</h3>
+
+                            <h3><strong>5.8</strong> CSS modules</h3>
 
                             </div>
 
@@ -412,7 +917,15 @@
                             <!--_____________-->
                             <div id="chapter6" class="chapter">
                             
-                            <h2><strong>6. Module Loader/Dependency Manager</strong></h2>
+                            <h2><strong>6. whats-er-name Coding Style</strong></h2>
+
+                            <h3><strong>6.1</strong> Editor Configuration</h3>
+
+                            <h3><strong>6.2</strong> HTML Hinting</h3>
+
+                            <h3><strong>6.3</strong> CSS Linting</h3>
+
+                            <h3><strong>6.4</strong> JS Hinting</h3>
 
                             </div>
 
@@ -421,28 +934,9 @@
                             <!--_____________-->
                             <div id="chapter7" class="chapter">
                             
-                            <h2><strong>7. Application Structure</strong></h2>
+                            <h2><strong>7. whats-er-name Going Hybrid Native</strong> (Coming Soon!)</h2>
 
                             </div>
-
-                            <!--_____________-->
-                            <!--  chapter 8  -->
-                            <!--_____________-->
-                            <div id="chapter8" class="chapter">
-                            
-                            <h2><strong>8. Running Hybrid Applications</strong></h2>
-
-                            </div>
-
-                            <!--_____________-->
-                            <!--  chapter 9  -->
-                            <!--_____________-->
-                            <div id="chapter9" class="chapter">
-                            
-                            <h2><strong>9. Deploying</strong></h2>
-
-                            </div>
-
 
                         </div>
                     </div>
@@ -451,17 +945,18 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script src="http://static.jsbin.com/js/embed.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
     <script src="bower_components/jquery.breakpoints/breakpoints.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/XRegExp.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
     <script src="bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
-    <script src="bower_components/jquery.transit/jquery.transit.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/shBrushCss.js"></script>
+    <script src="bower_components/SyntaxHighlighter/scripts/shBrushBash.js"></script>
+    <script src="bower_components/jquery-waypoints/waypoints.min.js"></script>
     <script>
-
+        /* jshint ignore:start */
         SyntaxHighlighter.defaults['toolbar'] = false;
         SyntaxHighlighter.all();
 
@@ -491,6 +986,7 @@
             whenReady();
         };
         lineWrap();
+
         $(window).resize(function(){lineWrap()});
 
         $('#book a').attr('target', '_blank');
@@ -498,8 +994,8 @@
         //setup splitter
         var splitter = $('#splitter').kendoSplitter({
             panes: [
-                { collapsible: true, collapsed: true },
-                { collapsible: false},
+                { collapsible: true, collapsed: true},
+                { collapsible: false}
             ]
         }).data('kendoSplitter');
 
@@ -507,54 +1003,71 @@
         jQuery('.toc').each(function(index){
     
             jQuery('h2','#toc'+(index+1)).each(function(i){
-                $(this).attr('id',$(this).text().replace(/ /g,''));
+                //$(this).attr('id',$(this).text().replace(/ /g,'-'));
+                $(this)
+                    .nextUntil('h3')
+                    .andSelf()
+                    .wrapAll('<div class="sec" id="'+$(this).text().replace(/ /g,'-')+'"></div>');
                 $('#toc-padding')
-                    .append('<h5><a href="#'+($(this).text().replace(/[ .]/g,''))+'">'+$(this).html()+'</a></h5>');
+                    .append('<h5><a href="#'+($(this).text().replace(/[ .]/g,'-'))+'">'+$(this).html()+'</a></h5>');
             });
 
             jQuery('h3','#toc'+(index+1)).each(function(i){
-                $(this).attr('id',$(this).text().replace(/ /g,''));
+                //$(this).attr('id',$(this).text().replace(/ /g,'-'));
+                $(this)
+                    .nextUntil('h3')
+                    .andSelf()
+                    .wrapAll('<div class="sec" id="'+$(this).text().replace(/ /g,'-')+'"></div>');
                 $('#toc-padding')
-                    .append('<h6><a href="#'+($(this).text().replace(/[ .]/g,''))+'">'+$(this).html()+'</a></h6>');
+                    .append('<h6><a href="#'+($(this).text().replace(/[ .]/g,'-'))+'">'+$(this).html()+'</a></h6>');
             });
             
         });
 
         jQuery('.chapter').each(function(index){
-    
             jQuery('h2','#chapter'+(index+1)).each(function(i){
-                $(this).attr('id',(index+1));
-                $(this).wrapInner('<a href="#'+(index+1)+'"></a>');
-                $('#toc-padding').append('<h5><a href="#'+(index+1)+'">'+$(this).html()+'</a></h5>');
+                var foo = index+1+'';
+                //$(this).attr('id',((index+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))));
+                $(this)
+                    .wrap('<div class="sec" id="'+((index+1)+($(this).text().replace(foo,'').replace(/ /g,'-')))+'"></div>');
+                $('#toc-padding')
+                    .append('<h5><a href="#'+(index+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'">'+$(this).html()+'</a></h5>');
             });
 
             jQuery('h3','#chapter'+(index+1)).each(function(i){
-                $(this).attr('id',(index+1)+'.'+(i+1));
-                $(this).wrapInner('<a href="#'+(index+1)+'.'+(i+1)+'"></a>');
-                $('#toc-padding').append('<h6><a href="#'+(index+1)+'.'+(i+1)+'">'+$(this).html()+'</a></h6>');
-            });
-            
+                var foo = (index+1)+'.'+(i+1)+'';
+                //$(this).attr('id',(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-')));
+                $(this)
+                    .nextUntil('h3')
+                    .andSelf()
+                    .wrapAll('<div class="sec" id="'+(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'"></div>');
+                $('#toc-padding').append('<h6><a href="#'+(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'">'+$(this).html()+'</a></h6>');
+            });  
         });
 
         //detect and reset panels for phones, tablets, and desktop
         $(window).setBreakpoints({distinct: true, breakpoints: [320,480,768,1024] });
 
         $(window).on('enterBreakpoint320',function() {
+            $('h1').css('width','200px');
             splitter.size('.k-pane:first', '70%');
             splitter.size('.k-pane:last', '30%');
             splitter.toggle('.k-pane:first',false);
         });
         $(window).on('enterBreakpoint480',function() {
+            $('h1').css('width','350px');
             splitter.size('.k-pane:first', '40%');
             splitter.size('.k-pane:last', '60%');
             splitter.toggle('.k-pane:first',false);
         });
         $(window).on('enterBreakpoint768',function() {
+            $('h1').css('width','600px');
             splitter.size('.k-pane:first', '20%');
             splitter.size('.k-pane:last', '80%');
             splitter.toggle('.k-pane:first',false);
         });
         $(window).on('enterBreakpoint1024',function() {
+            $('h1').css('width','700px');
             splitter.size('.k-pane:first', '25%');
             splitter.size('.k-pane:last', '75%');
             splitter.toggle('.k-pane:first',true);
@@ -563,8 +1076,53 @@
         //toggle
         $( '#toggle-toc' ).on('click',function() {
             splitter.toggle('.k-pane:first');
+            if($('#book')[0].scrollTop > 0){
+                $('#toc-padding a.active').first()[0].scrollIntoView(true);
+            }
+            return false;
         });
 
+        window.setTimeout(function(){
+
+            $('.sec')
+            .waypoint(function(direction) {
+                var $links = $('#toc-padding a[href="#' + this.id + '"]');
+                $links.toggleClass('active', direction === 'down');
+                }, {
+                context: '#book',
+                offset: '100%'
+            })
+            .waypoint(function(direction) {
+                var $links = $('#toc-padding a[href="#' + this.id + '"]');
+                $links.toggleClass('active', direction === 'up');
+                }, {
+                context: '#book',
+                offset: function() {
+                  return -$(this).height();
+                }
+            });
+
+            
+            if($('#book')[0].scrollTop > 0){
+                $('#toc-padding a.active').first()[0].scrollIntoView(true);
+            }
+     
+            $('#book').scroll(function(){
+                if($('#book')[0].scrollTop === 0){
+                    $('#toc')[0].scrollTop = 0;
+                }else{
+                    $('#toc-padding a.active').first()[0].scrollIntoView(true);
+                }
+            });
+
+            $(window).resize(function(event) {
+                $.waypoints('refresh');
+            });
+
+        },2000);
+
+
+        /* jshint ignore:end */
     </script>
 </body>
 </html>
