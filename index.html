@@ -1,4 +1,50 @@
 <!DOCTYPE html>
+<!--
+
+                         .7.            
+                          ~             
+                          ~             
+                          ~.            
+             .  .OD7.  . .~             
+            .D888I~Z8D8= .~.            
+          .+DD~~~~D~~~888.~             
+          IDD~~~,,M~~~~~8D~.            
+          88~~,,,,M:==~=$8~             
+         88?~,,,:,M,:~~~~D=,            
+         88~MMMMMMMMMMMM?$7$            
+         88~=,::++M++~~~~8:8            
+         88~~,,:,:M:,~~~~8~,            
+          88~~,,,,M,:~~~~8~.            
+         .D8Z~,,,,M:=~==88~.            
+        .?788D~~?$NZ?~~88?~7.           
+     ..$??+7Z888~~=~~8887+~?777..       
+  ...7????777788888888Z77I~+????7       
+  .7I??+7777777Z888887777I~I7I7?.       
+    .7777777777MM888MM777?~I7OOOZ       
+      .O77777OOMMMMMMMMMMZ~ZDOOOOO?     
+       ZOOOOOOOMMMMMMMMMM$~$M7$777$Z    
+      .8ZOOOOOOMMMMMMMMMMI~+M7777777$   
+     .8MOOOOOOZ8888888DMM?~?$7777777?,. 
+      MMOOOOOO7777777MMM?=~~+77777????. 
+      88OOOOO77777777777~????I77I???=.. 
+     .MMMOOOZ77777777777777777???+~.    
+    ,777DOOO$7777777777777$777?I...     
+  .$$7777$OOO????????????7????I7?       
+ ?77777777$ZI?????I7777777=+777777.     
+ .:7777777Z7??777777777777~?777$$..     
+  .=O8O77O7??777777777777?~?Z8OOO .     
+  .Z88OOOZ7??777777777777=~$88OOOZ      
+  OO8OOOOZOO7777777777777~~Z888OOO+     
+ .O88OOOOOOOOOO$77777$OOO~~8O888OOO.    
+.OO88OOOOOOOOOOOOOOOOOOOOOO8O888OOOZ    
+ OO8OOOOOOOOOOOOOOOOOOOOOOO888888OOZ    
+.Z88OOOOOOOOOOOOOOOOOOOOOOOZ8O888OZ.    
+ ..OZOOOOOOOOOOOOOOOOOOOOOOO8O88:       
+   ?777OOOOOOOOOOOOOOOOOOOOO8777
+          IOOOOOOOOOOOOOO7$77777
+                        7IIIIII?
+
+-->
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Kendo UI -  Opinionated Guide For Building Mobile Apps</title>
@@ -136,7 +182,7 @@
 
         h5,h6{
             letter-spacing: .01rem;
-            line-height: 1.5em;
+            line-height: 2.1em;
             color: #364149;
             font-size: 14px;
             padding:0;
@@ -156,7 +202,7 @@
         h5 a:link, h5 a:active, h5 a:visited, h6 a:link, h6 a:active, h6 a:visited{
             color:#364149;
             text-decoration: none;
-                        padding: 5px;
+            padding: 5px;
         }
 
         h5 a:hover, h6 a:hover{
@@ -752,11 +798,17 @@
 
                             <h3><strong>2.1</strong> Don't use view transitions</h3>
 
-                            <p>Don't use view transitions they are not worth the performance and event (i.e. dropped/failed touch events) issues.</p>
+                            <p>As of Kendo UI Q3 transitions are not worth the following issues that they either cause or exacerbate.</p>
+
+                            <ul>
+                                <li>Complicates if not exacerbates the issue of drop touches/taps</li>
+                                <li>Performance issues with animating views with complex content.</li>
+                                <li>Transitions reliable work once and then on future uses fail and then exacerbate the events issues.</li>
+                            </ul>
 
                             <h3><strong>2.2</strong> Don't turn on native scrolling</h3>
 
-                            <p>By default scrolling the content in a Kendo mobile app is not native. Either the scroll widget is used or CSS is used (i.e. <code>overflow:auto</code>) to emulate scrolling. While one can use the configuration below to force native scrolling, I won't suggest make use of this option. All sorts of CSS issues and regression issues rear their ugly head if you turn on native scrolling.</p>
+                            <p>By default scrolling the content in a Kendo mobile app is not native. Either the scroll widget is used or CSS is used (i.e. <code>overflow:auto</code>) to emulate scrolling. While one can use the configuration below to force native scrolling, I won't suggest using it. All sorts of CSS issues and regression issues rear their ugly head if you turn on native scrolling.</p>
 
                             <pre class="brush: javascript">
                                 new kendo.mobile.Application(document.body, { 
@@ -811,7 +863,7 @@
 
                             </ol>
 
-                            <h3><strong>2.6</strong> Don't AJAX navigate to views (i.e. Remote Views)</h3>
+                            <h3><strong>2.6</strong> Don't AJAX navigate to views (i.e. remote views)</h3>
 
                             <p>Use a build step (like in the example application) to get all the views in the application into a single <code>.html</code> page so that the application does not have to AJAX in views when the application is running.</p>
 
@@ -842,25 +894,41 @@
 
                             <p>The image belows details the folder structured used to create the whats-er-name application.</p>
 
+                            <p>You can investigate and navigate this directory structure yourself by getting the code from Github and running a dev build and production build using Gulp.</p>
+
                             <h3><strong>3.2</strong> Bower &amp; NPM setup</h3>
 
-                            <p>Node packages are stored in a directory called <code>node_modules</code>. This is the default directory name and location, used by NPM, in relation to the <code>package.json</code> file.</p>
+                            <p>Bower and NPM are the package managers which make downloading third-party code (i.e. packages) trivial. I describe below how these are being used in the whats-er-name application. </p>
 
-                            <p>Bower is not being used in the default manner. The <code>bower.json</code> file is in the root of the application directory, which is common, but I am using the <code>.bowerrc</code> file to configure bower to store packages in the <code>wwwDev</code> directory in a folder called <code>bower_components</code>.</p>
+                            <p>Node packages (used by Gulp) are stored in a directory called <code>node_modules</code> at the root of directory containing the application. This is the default directory name and location, used by NPM, for storing node modules. The package.json file, which defines which modules are need, can also be found at the root of directory containing the application.</p>
 
-                            <h3><strong>3.3</strong> Src, wwwDev, wwwBuild directories</h3>
+                            <p>Bower, unlike npm, is not being used in the default manner. The <code>bower.json</code> file is in the root of the application directory, which is common, but I am using the <code>.bowerrc</code> file to configure bower to store packages in the <code>wwwDev</code> directory in a folder called <code>bower_components</code>.</p>
 
-                            <p>The application source can be found in the <code>src</code> directory. This will be where you edit code. The <code>wwwDev</code> directory and the <code>wwwBuild</code> directory will contain development and production versions of the code which get served to a web browser using <a href="https://github.com/schickling/gulp-webserver">gulp-webserver</a> (more on that in the build and task section).</p>
+                            <h3><strong>3.3</strong> Src, wwwDev, wwwProd directories</h3>
+
+                            <p>The whats-er-name application source code can be found in the <code>src</code> directory. This will be where you edit code during development. The <code>wwwDev</code> directory and the <code>wwwProd</code> directory will contain development and production versions of the code which get served to a web browser using <a href="https://github.com/schickling/gulp-webserver">gulp-webserver</a> (more on that in the build and task section).</p>
+
+
+                            <div class="note">
+                                <div class="notes-title">Notes</div>
+                                <div class="notes">
+                                    <ul>
+                                        <li>If you are looking at the code in Gitub the <code>wwwDev</code> and <code>wwwProd</code> folders are missing. This is because they are created from running the dev and production build tasks.</li>
+                                    </ul>
+                                </div>
+                            </div>
 
                             <h3><strong>3.4</strong> Shared directory</h3>
 
-                            <p>The <code>src/shared</code> directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, global layout modules, and utility modules to name a few.</p>
+                            <p>The <code>src/shared</code> directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, global layout modules, models, and utility modules. The shared essential to keeping things DRY. If more than one module in the UI directory uses another module likely the case you'll find in the shared directly in a logically named directory.</p>
 
                             <h3><strong>3.5</strong> UI directory</h3>
 
-                            <p>The <code>ui</code> directory will contain logically group and named UI portions of the application. It's not a hard and fast rule but think of the UI directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map persecutive. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what you are building. For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing a controller JavaScript file, an html file containing the view, an HTML file containing a view specific layout, a CSS file containing view specific styles, and a test. These directories form a tree/hierarchical structure based on the logical break up of the application.</p> 
+                            <p>The <code>ui</code> directory contains logically group and named UI portions of the application. It's not a hard and fast rule but think of the UI directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map persecutive. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what you are building.</p> 
 
-                            <p>How, exactly, to organize the <code>ui</code> directory is less important then the purpose in doing so. You want to create an application made up of small parts, grouped logically together, that have a clear separation of concerns. Every folder in the UI directory should represent a logical part (i.e. a region of logically relevant ui) of the application. Inside of the folder will be all of source code for that part only.</p>
+                            <p>For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing a view-model JS file(aka a controller), an HTML file containing the view, an HTML file containing a view specific layout, a CSS file containing view specific styles, a model, any templates used by the view, and a test. These directories form a tree/hierarchical structure based on the logical break up of the application from the users perspective.</p> 
+
+                            <p>How exactly the <code>ui</code> directory is organized is not an exact science. It's actually more important that directory is human friendly and development friendly and its architecture facilitates an application made up of small parts, grouped logically together, that have a clear separation of concerns (i.e. small modules). Every folder in the UI directory should represent a logical part (i.e. a region of logically relevant ui) of the application. Inside of the folder will be all of the source code for that part only (excluding parts found in the shared directory that are globally used by more than one views).</p>
 
                             <p>If this is difficult for you to envision, study the whats-er-name wireframe and the whats-er-name directory structure (specifically the ui directory) to get a feel for this style of organization.</p>
 
@@ -879,7 +947,7 @@
 
                             <h3><strong>4.1</strong> The wwwDev Build process &amp; Server</h3>
 
-                            <h3><strong>4.2</strong> The wwwBuild Build process &amp; Server</h3>
+                            <h3><strong>4.2</strong> The wwwProd Build process &amp; Server</h3>
 
                             <h3><strong>4.2</strong> Git ignore</h3>
 
@@ -934,7 +1002,7 @@
                             <!--_____________-->
                             <div id="chapter7" class="chapter">
                             
-                            <h2><strong>7. whats-er-name Going Hybrid Native</strong> (Coming Soon!)</h2>
+                            <h2><strong>7. whats-er-name Native Hybrid App</strong> (Coming Soon!)</h2>
 
                             </div>
 
