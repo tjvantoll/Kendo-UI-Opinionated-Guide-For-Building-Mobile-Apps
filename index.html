@@ -896,7 +896,7 @@
 
                             <p>You can investigate and navigate this directory structure yourself by getting the code from Github and running a dev build and production build using Gulp.</p>
 
-                            <h3><strong>3.2</strong> Bower &amp; NPM setup</h3>
+                            <h3><strong>3.2</strong> Bower &amp; NPM directory setup</h3>
 
                             <p>Bower and NPM are the package managers which make downloading third-party code (i.e. packages) trivial. I describe below how these are being used in the whats-er-name application. </p>
 
@@ -907,7 +907,6 @@
                             <h3><strong>3.3</strong> Src, wwwDev, wwwProd directories</h3>
 
                             <p>The whats-er-name application source code can be found in the <code>src</code> directory. This will be where you edit code during development. The <code>wwwDev</code> directory and the <code>wwwProd</code> directory will contain development and production versions of the code which get served to a web browser using <a href="https://github.com/schickling/gulp-webserver">gulp-webserver</a> (more on that in the build and task section).</p>
-
 
                             <div class="note">
                                 <div class="notes-title">Notes</div>
@@ -922,15 +921,39 @@
 
                             <p>The <code>src/shared</code> directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, global layout modules, models, and utility modules. The shared essential to keeping things DRY. If more than one module in the UI directory uses another module likely the case you'll find in the shared directly in a logically named directory.</p>
 
-                            <h3><strong>3.5</strong> UI directory</h3>
+                            <h3><strong>3.5</strong> <code>ui</code> directory</h3>
 
                             <p>The <code>ui</code> directory contains logically group and named UI portions of the application. It's not a hard and fast rule but think of the UI directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map persecutive. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what you are building.</p> 
 
-                            <p>For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing a view-model JS file(aka a controller), an HTML file containing the view, an HTML file containing a view specific layout, a CSS file containing view specific styles, a model, any templates used by the view, and a test. These directories form a tree/hierarchical structure based on the logical break up of the application from the users perspective.</p> 
+                            <p>For a Kendo UI mobile application it might be best to simply consider that each view has its own directory potentially containing:
 
-                            <p>How exactly the <code>ui</code> directory is organized is not an exact science. It's actually more important that directory is human friendly and development friendly and its architecture facilitates an application made up of small parts, grouped logically together, that have a clear separation of concerns (i.e. small modules). Every folder in the UI directory should represent a logical part (i.e. a region of logically relevant ui) of the application. Inside of the folder will be all of the source code for that part only (excluding parts found in the shared directory that are globally used by more than one views).</p>
+                            <ul>
+                                
+                                <li>view-model JS file(aka a controller)</li>
+                                <li>an HTML file containing the view</li>
+                                <li>an HTML file containing a view specific layout</li>
+                                <li>a CSS file containing view specific styles</li>
+                                <li>a JS model file</li>
+                                <li>any templates used by the view</li>
+                                <li>a JS test file (Unit testing either the view-model, functionally testing the view)</li>
+                            </ul>
+
+                             <p>These directories of views form a tree/hierarchical structure based on the logical break up of the application from the users perspective.</p> 
+
+                            <p>How exactly the <code>ui</code> directory is organized is not an exact science. What is important is that the directory is human friendly, development friendly, and its architecture facilitates an application made up of small parts, grouped logically together, that have a clear separation of concerns (i.e. small modules). Every folder in the UI directory should represent a logical part (i.e. a region of logically relevant ui) of the application. Inside of the folder will be all of the source code for that part only (excluding parts found in the shared directory that are globally used by more than one views).</p>
 
                             <p>If this is difficult for you to envision, study the whats-er-name wireframe and the whats-er-name directory structure (specifically the ui directory) to get a feel for this style of organization.</p>
+
+                            <h3><strong>3.6</strong> Git ignoring directories</h3>
+
+                            <p>The <code>.gitignore</code> file (shown below) is used to keep the <code>node_modules</code>, <code>wwwProd</code>, and <code>wwwDev</code> out of Git source control.</p>
+
+                            <pre class="brush: html">
+                                .DS_Store
+                                node_modules
+                                wwwProd
+                                wwwDev
+                            </pre>
 
                             </div>
 
@@ -939,17 +962,23 @@
                             <!--_____________-->
                             <div id="chapter4" class="chapter">
                             
-                            <h2><strong>4. whats-er-name Application Servers, Tasks, and Builds</strong></h2>
+                            <h2><strong>4. whats-er-name Builds &amp; Application Servers</strong></h2>
 
                             <h3><strong>4.1</strong> What is gulp doing</h3>
 
-                            <p>The application uses gulp (a task runner) to create development and production builds. Basically, when developing, a build is occurring every time you make a change to the source. The, build on every source change strategy, facilitates an endless possibles of what can programmatically occur, often in an automated fashion during development.</p>
+                            <p>The application uses gulp (a task runner) to create development and production builds that are open in a browser and severed from a local node server. Basically when developing, a development build is occurring (a bunch of tasks occur) every time you make a change to the source code. Note the browser reloads the page serving the development code (i.e. watching &amp; livereload).</p>
+
+                            <p>When you are done developing the application, the production build (again a bunch of tasks) converts your development code into production ready code.</p>
+
+                            <p>The Gulp tasks are configure in the <code><a href="https://github.com/codylindley/whatsername/blob/master/gulpfile.js">gulpfile.js</a></code> in the root of the directory of the application.</p>
 
                             <h3><strong>4.1</strong> The wwwDev Build process &amp; Server</h3>
 
+                            <p></p>
+
                             <h3><strong>4.2</strong> The wwwProd Build process &amp; Server</h3>
 
-                            <h3><strong>4.2</strong> Git ignore</h3>
+                            <p></p>
 
                             </div>
 
@@ -962,7 +991,7 @@
 
                             <h3><strong>5.1</strong> index.html</h3>
 
-                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called index.html and it will reside in the src folder. Everything else will be consider a module that is included into index.html via a <code>&lt;script&gt;</code> or <code>&lt;link&gt;</code> element or the build process. Consider index.html the master configuration file for including all the necessary CSS, HTML, and JavaScript to make the application run.</p>
+                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called index.html and it will reside in the src folder. Everything else will be consider a module that is included into index.html via a <code>&lt;script&gt;</code> or <code>&lt;link&gt;</code> element or the build process. Consider index.html the master configuration file for including all the necessary modules to make the application run.</p>
 
                             <h3><strong>5.2</strong> Application name space in index.html</h3>
 
@@ -972,9 +1001,11 @@
 
                             <h3><strong>5.5</strong> View modules</h3>
 
-                            <h3><strong>5.6</strong> Controller modules</h3>
+                            <h3><strong>5.6</strong> Model modules</h3>
 
-                            <h3><strong>5.7</strong> HTML modules</h3>
+                            <h3><strong>5.6</strong> view-model modules</h3>
+
+                            <h3><strong>5.6</strong> Templates modules</h3>
 
                             <h3><strong>5.8</strong> CSS modules</h3>
 
@@ -989,20 +1020,177 @@
 
                             <h3><strong>6.1</strong> Editor Configuration</h3>
 
+                            <p>A <code>.editorconfig</code> (found in root directory of app) is used to maintain <a href="http://editorconfig.org/">consistent coding styles between different editors an IDEs</a>. Below I am showing the <code><a href="https://github.com/codylindley/whatsername/blob/master/.editorconfig">.editorconfig</a></code> used in the whats-er-name application.</p>
+
+                            <pre class="brush: html">
+                                # editorconfig.org
+                                root = true
+
+                                [*]
+                                indent_style = tab
+                                end_of_line = lf
+                                charset = utf-8
+                                trim_trailing_whitespace = true
+                                insert_final_newline = true
+
+                                [package.json,bower.json]
+                                indent_style = space
+                                indent_size = 2
+                            </pre>
+
                             <h3><strong>6.2</strong> HTML Hinting</h3>
+
+                            <p>The <a href="https://github.com/yaniswang/HTMLHint">HTMLHint</a> static code analysis tool is used to avoid simply and pesky errors that can occur in HTML.</p>
+
+                            <p>In the whats-er-name app I am using a <code>.htmlhintrc</code> file (found in root directory of app) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/tgfjt/Sublime-htmlhint">editor if possible</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.htmlhintrc">.htmlhintrc</a></code> used in the whats-er-name app.</p>
+
+                            <pre class="brush: js">
+                                {
+                                    "attr-value-double-quotes": true,
+                                    "tagname-lowercase": true,
+                                    "attr-value-not-empty": true,
+                                    "attr-no-duplication": true,
+                                    "tag-pair": true,
+                                    "id-unique": true,
+                                    "head-script-disabled": false,
+                                    "doctype-first": false
+                                }
+
+                            </pre>
 
                             <h3><strong>6.3</strong> CSS Linting</h3>
 
+                            <p>The <a href="https://github.com/CSSLint/csslint">CSSLint</a> code quality tool is used to analysis CSS for errors or potentially other issues that might cause problems.</p>
+
+                            <p>In the whats-er-name app I am using a <code>.csslintrc</code> file (found in root directory of app) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/SublimeLinter/SublimeLinter-csslint">editor if possible</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.csslintrc">.csslintrc</a></code> used in the whats-er-name app.</p>
+
+                            <pre class="brush: js">
+                                {
+                                    "adjoining-classes": false,
+                                    "box-model": false,
+                                    "box-sizing": false,
+                                    "bulletproof-font-face": false,
+                                    "compatible-vendor-prefixes": false,
+                                    "display-property-grouping": false,
+                                    "duplicate-background-images": true,
+                                    "duplicate-properties": true,
+                                    "empty-rules": true,
+                                    "errors": true,
+                                    "fallback-colors": false,
+                                    "floats": false,
+                                    "font-faces": false,
+                                    "font-sizes": false,
+                                    "gradients": false,
+                                    "ids": false,
+                                    "import": false,
+                                    "important": false,
+                                    "known-properties": false,
+                                    "outline-none": false,
+                                    "overqualified-elements": false,
+                                    "qualified-headings": false,
+                                    "regex-selectors": false,
+                                    "rules-count": false,
+                                    "selector-max": false,
+                                    "selector-max-approaching": false,
+                                    "shorthand": false,
+                                    "star-property-hack": false,
+                                    "text-indent": false,
+                                    "underscore-property-hack": false,
+                                    "unique-headings": false,
+                                    "universal-selector": false,
+                                    "unqualified-attributes": false,
+                                    "vendor-prefix": false,
+                                    "zero-units": false
+                                }
+                            </pre>
+
                             <h3><strong>6.4</strong> JS Hinting</h3>
 
-                            </div>
+                            <p>The <a href="http://jshint.com/about/">JSLint</a> tool is used to detect errors and potential problems in JavaScript code as well as enforce coding conventions.</p>
 
-                            <!--_____________-->
-                            <!--  chapter 7  -->
-                            <!--_____________-->
-                            <div id="chapter7" class="chapter">
-                            
-                            <h2><strong>7. whats-er-name Native Hybrid App</strong> (Coming Soon!)</h2>
+                            <p>In the whats-er-name app I am using a <code>.jshintrc</code> file (found in root directory of app) to setup the rules for this detection. JSHhint is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/uipoet/sublime-jshint">editor if possible</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.jshintrc">.jshintrc</a></code> used in the whats-er-name app.</p>
+
+                            <pre class="brush: js">
+                                {
+                                    maxerr: 50,
+                                    bitwise: true,
+                                    camelcase: false,
+                                    curly: true,
+                                    eqeqeq: true,
+                                    freeze: true,
+                                    forin: true,
+                                    immed: false,
+                                    indent: 4,
+                                    latedef: false,
+                                    newcap: false,
+                                    noarg: true,
+                                    noempty: true,
+                                    nonbsp: true,
+                                    nonew: false,
+                                    plusplus: false,
+                                    quotmark: false,
+                                    undef: false,
+                                    unused: true,
+                                    strict: true,
+                                    maxparams: false,
+                                    maxdepth: false,
+                                    maxstatements: false,
+                                    maxcomplexity: false,
+                                    maxlen: false,
+                                    asi: false,
+                                    boss: false,
+                                    debug: false,
+                                    eqnull: false,
+                                    es5: false,
+                                    esnext: true,
+                                    moz: false,
+                                    evil: false,
+                                    expr: false,
+                                    funcscope: false,
+                                    globalstrict: false,
+                                    iterator: false,
+                                    lastsemic: false,
+                                    laxbreak: false,
+                                    laxcomma: false,
+                                    loopfunc: false,
+                                    multistr: false,
+                                    noyield: false,
+                                    notypeof: false,
+                                    proto: false,
+                                    scripturl: false,
+                                    shadow: false,
+                                    sub: false,
+                                    supernew: false,
+                                    validthis: false,
+                                    browser: true,
+                                    couch: false,
+                                    devel: true,
+                                    dojo: false,
+                                    jasmine: false,
+                                    jquery: true,
+                                    mocha: true,
+                                    mootools: false,
+                                    node: false,
+                                    nonstandard: true,
+                                    prototypejs: false,
+                                    qunit: false,
+                                    rhino: false,
+                                    shelljs: false,
+                                    worker: false,
+                                    wsh: false,
+                                    yui: false,
+                                    globals: ["whatsername","wrn","kendo","_","canvasResize"]
+                                }
+                            </pre>
+
+                            <div class="note">
+                                <div class="notes-title">Notes</div>
+                                <div class="notes">
+                                    <ul>
+                                        <li>Gulp is actually creating the <code>.jshintrc</code> from a file called <code>.jshintrcCommented.txt</code> before it uses the <code>.jshintrc</code> for configuration. I did this because I wanted a commented/documented file containing the configurations and JSON is invalid when it contains comments. So I set the configurations in the commented file, but Gulp converts it to the <code>.jshintrc</code> file first then uses it to hint the JavaScript files.</li>
+                                    </ul>
+                                </div>
+                            </div>
 
                             </div>
 
