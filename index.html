@@ -1003,7 +1003,7 @@
 
                             <h3><strong>5.6</strong> Model modules</h3>
 
-                            <h3><strong>5.6</strong> view-model modules</h3>
+                            <h3><strong>5.6</strong> View-model modules</h3>
 
                             <h3><strong>5.6</strong> Templates modules</h3>
 
@@ -1187,7 +1187,8 @@
                                 <div class="notes-title">Notes</div>
                                 <div class="notes">
                                     <ul>
-                                        <li>Gulp is actually creating the <code>.jshintrc</code> from a file called <code>.jshintrcCommented.txt</code> before it uses the <code>.jshintrc</code> for configuration. I did this because I wanted a commented/documented file containing the configurations and JSON is invalid when it contains comments. So I set the configurations in the commented file, but Gulp converts it to the <code>.jshintrc</code> file first then uses it to hint the JavaScript files.</li>
+                                        <li>Gulp is actually creating the <code>.jshintrc</code> from a file called <code><a href="https://github.com/codylindley/whatsername/blob/master/.jshintrcCommented.txt">.jshintrcCommented.txt</a></code> before it uses the <code>.jshintrc</code> for configuration. I did this because I wanted a commented/documented file containing the configurations and JSON is invalid when it contains comments. So I set the configurations in the commented file, but Gulp converts it to the <code>.jshintrc</code> file first then uses it to hint JavaScript files.</li>
+                                        <li>JavaScript code style can be enforced using something like <a href="http://jscs.info/">JSCS</a>. I've not implement JS style enforcement to this degree but if I was going to work on this application with another developer I'd likely add JSCS.</li>
                                     </ul>
                                 </div>
                             </div>
