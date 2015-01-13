@@ -871,7 +871,7 @@
 
                             <p>Kendo mobile widgets and application instance is integrated with the <a href="http://docs.telerik.com/kendo-ui/basics/markup#kendo-ui-mobile-application-with-a-view-and-an-autocomplete-widget">declarative widget initialization (i.e. create widgets from markup)</a> and the <a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">MVVM</a> pattern. Learn it, accept it, and don't fight it. Other wise you'd be better off not using the application and SPA logic found in the <code>Application</code> instance. You'd be better of either going all in on <a href="http://docs.telerik.com/kendo-ui/mobile/angular/angular">AngularJS</a> or using the <a href="http://docs.telerik.com/kendo-ui/mobile/regular-usage">mobile widgets in stand alone mode</a>.</p>
 
-                            <h3><strong>2.8</strong> Don't mix AngualJS with Kendo UI MVVM or Mobile SPA logic </h3>
+                            <h3><strong>2.8</strong> Don't mix AngularJS with Kendo UI MVVM or Mobile SPA logic </h3>
 
                             <p>If you are using AngularJS then you probably want to use Angular's own routing mechanism and data binding. Do not mix that with Kendo MVVM or Kendo mobile SPA logic (i.e. <code>kendo.mobile.Application</code>)</p>
 
@@ -966,19 +966,46 @@
 
                             <h3><strong>4.1</strong> What is gulp doing</h3>
 
-                            <p>The application uses gulp (a task runner) to create development and production builds that are open in a browser and severed from a local node server. Basically when developing, a development build is occurring (a bunch of tasks occur) every time you make a change to the source code. Note the browser reloads the page serving the development code (i.e. watching &amp; livereload).</p>
+                            <p>The application uses <a href="http://gulpjs.com/">gulp</a> (a task runner) to create development and production builds that are opened in a browser and severed from a local node server. Basically when developing, a development build is occurring (i.e. a bunch of tasks you don't want to run manually) every time you make a change to the source code. Note the browser reloads the page serving the development code (i.e. watching &amp; livereload).</p>
 
-                            <p>When you are done developing the application, the production build (again a bunch of tasks) converts your development code into production ready code.</p>
+                            <p>When you are done developing the application, a production build can be ran converting your development code into production. Note that production code is severed on a different server than development code and is not listening to changes from development directory for live reloading.</p>
 
-                            <p>The Gulp tasks are configure in the <code><a href="https://github.com/codylindley/whatsername/blob/master/gulpfile.js">gulpfile.js</a></code> in the root of the directory of the application.</p>
+                            <p>Gulp tasks are configure in the <code><a href="https://github.com/codylindley/whatsername/blob/master/gulpfile.js">gulpfile.js</a></code> file found in the root of the directory of the application. You'll find the file is broken up into wwwDev and wwwProd tasks.</p>
 
-                            <h3><strong>4.1</strong> The wwwDev Build process &amp; Server</h3>
+                            <h3><strong>4.1</strong> The wwwDev build process &amp; server</h3>
 
-                            <p></p>
+                            <p>The tasks being done by gulp when running <code>$ gulp dev</code> from the command line are:</p>
 
-                            <h3><strong>4.2</strong> The wwwProd Build process &amp; Server</h3>
+                            <ol>
+                                <li>empty the <code>wwwDev</code> directory except for bower components</li>
+                                <li>parse <code>index.html</code> file in <code>src</code> directory doing file includes, place all .html files (including update index.html) from src into <code>wwwDev</code> directory</li>
+                                <li>start a webserver at localhost:3027 serving the <code>wwwDev</code> directory, open localhost:3027 in default browser on local machine</li>
+                                <li>Listen for any change in <code>src</code> directory. If a change occurs run step 2</li>
+                            </ol>
 
-                            <p></p>
+                            <div class="note">
+                                <div class="notes-title">Notes</div>
+                                <div class="notes">
+                                    <ul>
+                                        <li>I'm not using any sort of CSS or JS pre-processors. But if you wanted too, you could easily adjust the wwwDev process to add them.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3><strong>4.2</strong> The wwwProd build process &amp; server</h3>
+
+                            <p>The tasks being done by gulp when running <code>$ gulp prod</code> from the command line are:</p>
+
+                            <ol>
+                                <li>empty the <code>wwwProd</code> directory</li>
+                                <li>take <code>wwwDev</code> code, concatenate css and js based on build comments in <code>index.html</code>, version each file (e.g. whatsername-8b890cb0.js), place new code in <code>wwwProd</code></li>
+                                <li>move all the image and font assets in <code>wwwDev</code> required by CSS to correct location in <code>wwwProd</code></li>
+                                <li>lint CSS</li>
+                                <li>hint HTML</li>
+                                <li>hint JavaScript</li>
+                                <li>minify CSS, HTML, and JS</li>
+                                <li>start a web server at localhost:3028 serving the <code>wwwProd</code> directory, open localhost:3028 in default browser on local machine</li>
+                            </ol>
 
                             </div>
 
@@ -989,25 +1016,76 @@
                             
                             <h2><strong>5. whats-er-name Application Architecture</strong></h2>
 
-                            <h3><strong>5.1</strong> index.html</h3>
+                            <h3><strong>5.1</strong> <code>index.html</code> overview</h3>
 
-                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called index.html and it will reside in the src folder. Everything else will be consider a module that is included into index.html via a <code>&lt;script&gt;</code> or <code>&lt;link&gt;</code> element or the build process. Consider index.html the master configuration file for including all the necessary modules to make the application run.</p>
+                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the src folder. all other assets will be consider a module that is included via <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. client side includes). Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> bootstraps and instantiates the entire application.</p>
 
-                            <h3><strong>5.2</strong> Application name space in index.html</h3>
+                            <h3><strong>5.2</strong> Application name space</h3>
 
-                            <h3><strong>5.3</strong> Application instantiation in index.html</h3>
+                            <p>The Kendo UI mobile application by default looks for JavaScript objects in the global scope. The whats-er-name application uses a global name space to store JavaScript code relating to the application. The name space and shortcut to the name space are shown below and defined in the <code>index.html</code> file.</p>
+
+                            <pre class="brush: html">
+                                &lt;script&gt; this.whatsername = this.wrn = {}; //long and shortcut namespace &lt;/script&gt;
+                            </pre>
+
+                            <div class="note">
+                                <div class="notes-title">Notes</div>
+                                <div class="notes">
+                                    <ul>
+                                        <li>Obviously more sophisticated solutions for dealing with scope and modules (i.e. dependency management/injection) are available today. But layering these abstractions over the top of the application logic adds unnecessary complexity. Using nested objects and having to type out longer object references is recommended because it works with the default behavior of Kendo, not against it. If you are using Angular, then you'd obviously be going down the Angular road (i.e. dependency injection) leaving behind all the Kendo mobile application logic.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3><strong>5.3</strong> Run/instantiation application</h3>
+
+                            <p>The mobile application is instantiated by the last script parsed in the index.html file. This is where you'd provide any settings for the <code>kendo.mobile.Application</code> instance. Below I am showing the JavaScript which instantiates the application.</p>
+                            
+                            <pre class="brush: js">
+                                    wrn.app = new kendo.mobile.Application($(document.body), { 
+                                        skin: &#039;flat&#039;,
+                                        initial: &#039;groupListView&#039;, //this is the initial view to load
+                                        init: function() {
+                                            //fix mouse events in iOS don&#039;t do it for android, causes more issues than it fixes
+                                            kendo.UserEvents.defaultThreshold(kendo.support.mobileOS.device === &#039;android&#039; ? 0:20);
+                                        }
+                                    });
+                            </pre>
 
                             <h3><strong>5.4</strong> Module naming</h3>
 
+                            <p>The following naming patterns are used for modules.</p>
+
+                            <p>The application is organized into logical directories based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature. Examine the image below. </p>
+
+                            [Add image]
+
+                            <p>From the above image you should note to things. One, that view, model, view-model, template, and layout files end with a word that describes what type of file it is, "View", "Model", "ViewModel", "Template", or "Layout". Two, that directories and file names attempt to have the same root words ().</p>
+
+
+                            <h3><strong>5.5</strong> Modules</h3>
+
+                            <p></p>
+
                             <h3><strong>5.5</strong> View modules</h3>
+
+                            <p></p>
 
                             <h3><strong>5.6</strong> Model modules</h3>
 
+                            <p></p>
+
                             <h3><strong>5.6</strong> View-model modules</h3>
+
+                            <p></p>
 
                             <h3><strong>5.6</strong> Templates modules</h3>
 
+                            <p></p>
+
                             <h3><strong>5.8</strong> CSS modules</h3>
+
+                            <p></p>
 
                             </div>
 
@@ -1040,7 +1118,7 @@
 
                             <h3><strong>6.2</strong> HTML Hinting</h3>
 
-                            <p>The <a href="https://github.com/yaniswang/HTMLHint">HTMLHint</a> static code analysis tool is used to avoid simply and pesky errors that can occur in HTML.</p>
+                            <p>The <a href="https://github.com/yaniswang/HTMLHint">HTMLHint</a> static code analysis tool is used to avoid simple and pesky errors that can occur in HTML.</p>
 
                             <p>In the whats-er-name app I am using a <code>.htmlhintrc</code> file (found in root directory of app) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/tgfjt/Sublime-htmlhint">editor if possible</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.htmlhintrc">.htmlhintrc</a></code> used in the whats-er-name app.</p>
 
