@@ -948,9 +948,9 @@
 
                             <h3><strong>3.2</strong> Bower &amp; NPM directory setup</h3>
 
-                            <p>Bower and NPM are the package managers which make downloading third-party code (i.e. packages) trivial. I describe below how these are being used in the whats-er-name application. </p>
+                            <p>The Bower and NPM package managers are used to download third-party code (i.e. public packages/libraries/tools). I describe where these packages are being stored and how each manager is configured below.</p>
 
-                            <p>Node packages (used by Gulp) are stored in a directory called <code>node_modules</code> at the root of directory containing the application. This is the default directory name and location, used by NPM, for storing node modules. The package.json file, which defines which modules are need, can also be found at the root of directory containing the application.</p>
+                            <p>Node packages (used by Gulp) are stored in a directory called <code>node_modules</code> at the root of directory containing the application. This is the default directory name and location, used by NPM, for storing node modules. The <code>package.json</code> file, which defines which modules are need, can also be found at the root of directory containing the application.</p>
 
                             <p>Bower, unlike npm, is not being used in the default manner. The <code>bower.json</code> file is in the root of the application directory, which is common, but I am using the <code>.bowerrc</code> file to configure bower to store packages in the <code>wwwDev</code> directory in a folder called <code>bower_components</code>.</p>
 
@@ -1151,9 +1151,93 @@
                             <p>From the above directory tree you should note two things. One, that view, model, view-model, template, and layout files end with a word that describes what type of file it is, "View", "Model", "ViewModel", "Template", or "Layout". Two, that directories with modules should contain modules and with same root words (e.g. <code>addName</code> directory contains <code>addNameView.html</code> and <code>addNameViewModel.js</code>).</p>
 
 
-                            <h3><strong>5.5</strong> Defining JavaScript models and view-models</h3>
+                            <h3><strong>5.5</strong> Defining view-model modules</h3>
 
-                            <p></p>
+                            <p>JavaScript modules need to be properly place inside of the name space in an organized fashion. Meaning, for each JavaScript file we have to create (or add it to the correct name space already created) name spaces for each view that uses a JavaScript file. In the whats-er-name application if we examine the <code>groupList</code> view you'll notice that the groupListViewModel.js file uses a common module module pattern/definition for adding the <code>groupList</code> name space to the application name space. Roughly the pattern looks like this:</p>
+
+
+                            <pre class="brush: js">
+                                (function(wrn){
+
+                                    &#039;use strict&#039;;
+
+                                    //below you place anything private you don&#039;t want exposed in the viewModel
+
+                                    //below we create the viewModel
+
+                                    wrn.groupList = {  //create viewModel namespace in global i.e. namespace.[viewModel Name], to expose to global 
+                                        viewModel: kendo.observable({
+                                            //the actual model
+                                            modelData: wrn.groupModel,
+                                            
+                                        })
+                                    };
+
+                                })(wrn); //pass in global namespace
+                            </pre>
+
+                            <p>This should be the pattern used when creating view-model JavaScript files</p>
+
+                            <h3><strong>5.6</strong> Defining model modules</h3>
+
+                            <p>The pattern for creating model JavaScript files differs from creating model-view files. Models should be stored one level deep from the top global name space in a logical and semantically minded name space. The reason for this is the fact that a model can be used across several views. And in the whats-er-name applicaiton this is why you find it in the shared directory and not a specific view directory. However, if a model does not get used by more than one view, it would be perfectively logical to store it in the directory containing the rest of the view specific files.
+
+                            Below I am showing the pattern for defining models</p>
+
+                            <pre class="brush: js">
+                                (function(wrn){
+                                    &#039;use strict&#039;;
+
+                                    wrn.viewerModel = new kendo.data.DataSource({
+                                        offlineStorage: &#039;viewerModel&#039;,
+                                        schema: {
+                                            model: {
+                                                id: &quot;id&quot;
+                                            }
+                                        }
+                                    });
+
+                                    wrn.viewerModel.online(false);
+                                    wrn.viewerModel.read();
+
+                                })(wrn); //pass in global namespace
+                            </pre>
+
+                            <h3><strong>5.7</strong> Defining utility modules</h3>
+                            
+                            <p>Any utility objects/functionality needed by all JavaScript modules can be place directly on the name space referencing the utility object/function directly. Below I showing the <code>makeId.js</code> utility code.</p>
+
+                            <pre class="brush: js">
+                                (function(wrn){
+
+                                    &#039;use strict&#039;;
+
+                                    wrn.makeId = function(){
+                                        &#039;use strict&#039;;
+                                        var n = 0;
+                                        var possible = &quot;0123456789&quot;;
+                                        for (var i = 0; i &lt; 15; i++){
+                                            n += possible.charAt(Math.floor(Math.random() * possible.length));
+                                        }
+                                        return Number(n);
+                                    };
+
+                                })(wrn); //pass in global namespace
+                            </pre>
+
+                            <h3><strong>5.8</strong> Defining template modules</h3>
+
+                            <p>Kendo mobile widgets make use of Kendo <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">templates</a>. The whats-er-name application uses &lt;script&gt; elements to house html string templates keeped in <code>.html</code> files and included into the index.html using client-side includes. Below I show an example of a template used by the mobile scroller widget.</p>
+
+                            <pre class="brush: html">
+                                &lt;script id=&quot;scrollerTemplate&quot; type=&quot;text/x-kendo-template&quot;&gt;
+                                    &lt;a class=&quot;removePhotoNameBtn deleteBtn&quot; data-role=&quot;button&quot; data-bind=&quot;click:removePhotoName,invisible:notEditMode&quot; data-id=&quot;#= id #&quot;&gt;
+                                        &lt;span class=&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt;
+                                    &lt;/a&gt;
+                                        &lt;div class=&quot;photo&quot; style=&quot;background-image:url(#= image #)&quot;&gt;&lt;/div&gt;
+                                        &lt;div class=&quot;photoName&quot;&gt;&lt;span&gt;#= name #&lt;/span&gt;&lt;/div&gt;
+                                &lt;/script&gt;
+                            </pre>
 
                             </div>
 
@@ -1188,7 +1272,7 @@
 
                             <p>The <a href="https://github.com/yaniswang/HTMLHint">HTMLHint</a> static code analysis tool is used to avoid simple and pesky errors that can occur in HTML.</p>
 
-                            <p>In the whats-er-name app I am using a <code>.htmlhintrc</code> file (found in root directory of app) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/tgfjt/Sublime-htmlhint">editor if possible</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.htmlhintrc">.htmlhintrc</a></code> used in the whats-er-name app.</p>
+                            <p>In the whats-er-name app I am using a <code>.htmlhintrc</code> file (found in root directory of app) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/tgfjt/Sublime-htmlhint">editor while coding</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.htmlhintrc">.htmlhintrc</a></code> used in the whats-er-name app.</p>
 
                             <pre class="brush: js">
                                 {
@@ -1208,7 +1292,7 @@
 
                             <p>The <a href="https://github.com/CSSLint/csslint">CSSLint</a> code quality tool is used to analysis CSS for errors or potentially other issues that might cause problems.</p>
 
-                            <p>In the whats-er-name app I am using a <code>.csslintrc</code> file (found in root directory of app) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/SublimeLinter/SublimeLinter-csslint">editor if possible</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.csslintrc">.csslintrc</a></code> used in the whats-er-name app.</p>
+                            <p>In the whats-er-name app I am using a <code>.csslintrc</code> file (found in root directory of app) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/SublimeLinter/SublimeLinter-csslint">editor while coding</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.csslintrc">.csslintrc</a></code> used in the whats-er-name app.</p>
 
                             <pre class="brush: js">
                                 {
@@ -1254,7 +1338,7 @@
 
                             <p>The <a href="http://jshint.com/about/">JSLint</a> tool is used to detect errors and potential problems in JavaScript code as well as enforce coding conventions.</p>
 
-                            <p>In the whats-er-name app I am using a <code>.jshintrc</code> file (found in root directory of app) to setup the rules for this detection. JSHhint is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/uipoet/sublime-jshint">editor if possible</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.jshintrc">.jshintrc</a></code> used in the whats-er-name app.</p>
+                            <p>In the whats-er-name app I am using a <code>.jshintrc</code> file (found in root directory of app) to setup the rules for this detection. JSHhint is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/uipoet/sublime-jshint">editor while coding</a>. Below is the contents of the <code><a href="https://github.com/codylindley/whatsername/blob/master/.jshintrc">.jshintrc</a></code> used in the whats-er-name app.</p>
 
                             <pre class="brush: js">
                                 {
