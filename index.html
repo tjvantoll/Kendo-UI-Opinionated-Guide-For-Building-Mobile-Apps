@@ -892,7 +892,57 @@
 
                             <h3><strong>3.1</strong> Application structure overview</h3>
 
-                            <p>The image belows details the folder structured used to create the whats-er-name application.</p>
+                            <p>The directory structure belows details the folder structured used to create the whats-er-name application.</p>
+<pre>
+├── README.md
+├── bower.json
+├── gulpfile.js
+├── node_modules
+├── package.json
+├── src
+│   ├── index.html
+│   ├── shared
+│   │   ├── css
+│   │   ├── layouts
+│   │   ├── models
+│   │   └── utilities
+│   └── ui
+│       ├── appInfo
+│       ├── groups
+│       └── nameViewer
+├── wwwDev
+│   ├── bower_components
+│   │   ├── bootstrap
+│   │   ├── canvasResize
+│   │   ├── jquery
+│   │   ├── kendo-ui
+│   │   └── lodash
+│   ├── index.html
+│   ├── shared
+│   │   ├── css
+│   │   ├── layouts
+│   │   ├── models
+│   │   └── utilities
+│   └── ui
+│       ├── appInfo
+│       ├── groups
+│       └── nameViewer
+└── wwwProd
+    ├── fonts
+    │   ├── glyphicons-halflings-regular.eot
+    │   ├── glyphicons-halflings-regular.svg
+    │   ├── glyphicons-halflings-regular.ttf
+    │   └── glyphicons-halflings-regular.woff
+    ├── index.html
+    ├── thirdparty
+    │   ├── Flat
+    │   ├── bootstrap.css.map
+    │   ├── images
+    │   ├── thirdparty-15c25db7.css
+    │   └── thirdparty-3f70b54f.js
+    ├── whatsername-5bdcc67f.css
+    └── whatsername-8b890cb0.js
+</pre>
 
                             <p>You can investigate and navigate this directory structure yourself by getting the code from Github and running a dev build and production build using Gulp.</p>
 
@@ -1018,11 +1068,11 @@
 
                             <h3><strong>5.1</strong> <code>index.html</code> overview</h3>
 
-                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the src folder. all other assets will be consider a module that is included via <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. client side includes). Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> bootstraps and instantiates the entire application.</p>
+                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the <code>src</code> folder. All other assets will be consider a module that is included from <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. <a href="https://github.com/coderhaoxin/gulp-file-include">client-side includes</a>). Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> bootstraps and instantiates the entire application.</p>
 
                             <h3><strong>5.2</strong> Application name space</h3>
 
-                            <p>The Kendo UI mobile application by default looks for JavaScript objects in the global scope. The whats-er-name application uses a global name space to store JavaScript code relating to the application. The name space and shortcut to the name space are shown below and defined in the <code>index.html</code> file.</p>
+                            <p>The Kendo UI mobile application logic, by default, looks for JavaScript objects in the global scope. The whats-er-name application uses a global name space to store JavaScript code relating to the application. The name space and shortcut to the name space are shown below and defined in the <code>index.html</code> file.</p>
 
                             <pre class="brush: html">
                                 &lt;script&gt; this.whatsername = this.wrn = {}; //long and shortcut namespace &lt;/script&gt;
@@ -1032,6 +1082,7 @@
                                 <div class="notes-title">Notes</div>
                                 <div class="notes">
                                     <ul>
+                                        <li>The Kendo UI mobile application assumes (i.e. when views are being constructed) that all dependencies can be found in the global scope. This is pretty much the opposite of dependency management/injection. And it's why you'll see references to deeply nested objects in the source code.</li>
                                         <li>Obviously more sophisticated solutions for dealing with scope and modules (i.e. dependency management/injection) are available today. But layering these abstractions over the top of the application logic adds unnecessary complexity. Using nested objects and having to type out longer object references is recommended because it works with the default behavior of Kendo, not against it. If you are using Angular, then you'd obviously be going down the Angular road (i.e. dependency injection) leaving behind all the Kendo mobile application logic.</li>
                                     </ul>
                                 </div>
@@ -1039,7 +1090,7 @@
 
                             <h3><strong>5.3</strong> Run/instantiation application</h3>
 
-                            <p>The mobile application is instantiated by the last script parsed in the index.html file. This is where you'd provide any settings for the <code>kendo.mobile.Application</code> instance. Below I am showing the JavaScript which instantiates the application.</p>
+                            <p>The mobile application is instantiated by the last script parsed in the <code>index.html</code> file. This is where you'd provide any settings for the <code>kendo.mobile.Application</code> instance. Below I am showing the JavaScript which instantiates the whats-er-name application.</p>
                             
                             <pre class="brush: js">
                                     wrn.app = new kendo.mobile.Application($(document.body), { 
@@ -1054,36 +1105,53 @@
 
                             <h3><strong>5.4</strong> Module naming</h3>
 
-                            <p>The following naming patterns are used for modules.</p>
+                            <p>The following naming patterns are used for naming modules.</p>
 
-                            <p>The application is organized into logical directories based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature. Examine the image below. </p>
+                            <p>The application is organized into logical directories based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature in the UI. Examine the directories below. </p>
 
-                            [Add image]
+<pre>
+├── index.html
+├── shared
+│   ├── css
+│   │   ├── bootstrapOverides.css
+│   │   ├── kendoOverides.css
+│   │   └── whatsername.css
+│   ├── layouts
+│   │   ├── globalLayout.css
+│   │   └── globalLayout.html
+│   ├── models
+│   │   ├── groupModel.js
+│   │   └── viewerModel.js
+│   └── utilities
+│       └── extend.js
+└── ui
+    ├── appInfo
+    │   ├── appInfo.css
+    │   └── appInfoView.html
+    ├── groups
+    │   ├── addGroup
+    │   │   ├── addGroupView.html
+    │   │   └── addGroupViewModel.js
+    │   └── groupList
+    │       ├── groupList.css
+    │       ├── groupListItemTemplate.html
+    │       ├── groupListView.html
+    │       └── groupListViewModel.js
+    └── nameViewer
+        ├── addName
+        │   ├── addNameView.html
+        │   └── addNameViewModel.js
+        └── viewer
+            ├── scrollerTemplate.html
+            ├── viewerView.css
+            ├── viewerView.html
+            └── viewerViewModel.js
+</pre>
 
-                            <p>From the above image you should note to things. One, that view, model, view-model, template, and layout files end with a word that describes what type of file it is, "View", "Model", "ViewModel", "Template", or "Layout". Two, that directories and file names attempt to have the same root words ().</p>
+                            <p>From the above directory tree you should note two things. One, that view, model, view-model, template, and layout files end with a word that describes what type of file it is, "View", "Model", "ViewModel", "Template", or "Layout". Two, that directories with modules should contain modules and with same root words (e.g. <code>addName</code> directory contains <code>addNameView.html</code> and <code>addNameViewModel.js</code>).</p>
 
 
-                            <h3><strong>5.5</strong> Modules</h3>
-
-                            <p></p>
-
-                            <h3><strong>5.5</strong> View modules</h3>
-
-                            <p></p>
-
-                            <h3><strong>5.6</strong> Model modules</h3>
-
-                            <p></p>
-
-                            <h3><strong>5.6</strong> View-model modules</h3>
-
-                            <p></p>
-
-                            <h3><strong>5.6</strong> Templates modules</h3>
-
-                            <p></p>
-
-                            <h3><strong>5.8</strong> CSS modules</h3>
+                            <h3><strong>5.5</strong> Defining JavaScript models and view-models</h3>
 
                             <p></p>
 
