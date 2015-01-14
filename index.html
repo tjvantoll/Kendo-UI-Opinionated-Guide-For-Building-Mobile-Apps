@@ -1068,11 +1068,11 @@
 
                             <h3><strong>5.1</strong> <code>index.html</code> overview</h3>
 
-                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the <code>src</code> folder. All other assets will be consider a module that is included from <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. <a href="https://github.com/coderhaoxin/gulp-file-include">client-side includes</a>). Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> bootstraps and instantiates the entire application.</p>
+                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the <code>src</code> folder. All other assets will be consider a module that is included via <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. <a href="https://github.com/coderhaoxin/gulp-file-include">client-side includes</a>). Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> in a browser will bootstrap and instantiate the entire application.</p>
 
                             <h3><strong>5.2</strong> Application name space</h3>
 
-                            <p>The Kendo UI mobile application logic, by default, looks for JavaScript objects in the global scope. The whats-er-name application uses a global name space to store JavaScript code relating to the application. The name space and shortcut to the name space are shown below and defined in the <code>index.html</code> file.</p>
+                            <p>The Kendo UI mobile application logic, by default, looks for JavaScript objects in the global scope. This factor forces the use of a global name space. The whats-er-name application uses a global name space to store JavaScript code relating to the application. The name space and shortcut to the name space are shown below and is defined in the <code>index.html</code> file.</p>
 
                             <pre class="brush: html">
                                 &lt;script&gt; this.whatsername = this.wrn = {}; //long and shortcut namespace &lt;/script&gt;
@@ -1082,8 +1082,8 @@
                                 <div class="notes-title">Notes</div>
                                 <div class="notes">
                                     <ul>
-                                        <li>The Kendo UI mobile application assumes (i.e. when views are being constructed) that all dependencies can be found in the global scope. This is pretty much the opposite of dependency management/injection. And it's why you'll see references to deeply nested objects in the source code.</li>
-                                        <li>Obviously more sophisticated solutions for dealing with scope and modules (i.e. dependency management/injection) are available today. But layering these abstractions over the top of the application logic adds unnecessary complexity. Using nested objects and having to type out longer object references is recommended because it works with the default behavior of Kendo, not against it. If you are using Angular, then you'd obviously be going down the Angular road (i.e. dependency injection) leaving behind all the Kendo mobile application logic.</li>
+                                        <li>The Kendo UI mobile application assumes (i.e. construction done via declarative instantiation) that all dependencies can be found in the global scope. This is pretty much the opposite of dependency management/injection. And it's why you'll see references to deeply nested objects in the source code. The modules are not inject into scope they are reference from where they are attached to the name space and sub name spaces.</li>
+                                        <li>Obviously more sophisticated solutions for dealing with scope and modules (i.e. dependency management/injection) are available today. But layering these abstractions over the top of the application logic adds unnecessary complexity. Using nested objects and having to type out longer object references is recommended because it works with the default behavior of <code>kendo.mobile.application</code> logic, not against it. If you are using Angular, then you'd obviously be going down the Angular road (i.e. dependency injection) leaving behind all the Kendo mobile application logic.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -1107,7 +1107,7 @@
 
                             <p>The following naming patterns are used for naming modules.</p>
 
-                            <p>The application is organized into logical directories based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature in the UI. Examine the directories below. </p>
+                            <p>The application is organized into logical directories based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature in the UI (read more about this in the <a href="#3.5-ui-directory">section 3</a>). Examine the directories below. </p>
 
 <pre>
 ├── index.html
@@ -1148,10 +1148,44 @@
             └── viewerViewModel.js
 </pre>
 
-                            <p>From the above directory tree you should note two things. One, that view, model, view-model, template, and layout files end with a word that describes what type of file it is, "View", "Model", "ViewModel", "Template", or "Layout". Two, that directories with modules should contain modules and with same root words (e.g. <code>addName</code> directory contains <code>addNameView.html</code> and <code>addNameViewModel.js</code>).</p>
+                            <p>From the above directory tree you should note two things.</p> 
 
+                            <p>One, that view, model, view-model, template, and layout files end with a descriptive word describing what type of file it is, i.e. "View", "Model", "ViewModel", "Template", or "Layout". This is extremely handy when you have a lot of files open or you are grepping for a file. </p>
 
-                            <h3><strong>5.5</strong> Defining view-model modules</h3>
+                            <p>Second, directories with modules should contain modules named with the same root words contained in the directory name (e.g. <code>addName</code> directory contains <code>addNameView.html</code> and <code>addNameViewModel.js</code>).</p>
+
+                            <h3><strong>5.5</strong> Defining view modules</h3>
+
+                            <p>View modules are html files containing mobile views with declarative attributes and likely mobile widgets. This shouldn't be a surprise to you if you fully grok the MVVM pattern. The view declaratively connects to the view-model. For example in the <code>viewerView.html</code> file show below the <code>data-model</code> attribute connects the model to the view and the data-bind attribute declarative binds logic found in the <code>viewerViewModel.js</code> file.</p> 
+
+                            <pre class="brush: html">
+                                &lt;div id=&quot;viewerView&quot; 
+                                data-role=&quot;view&quot; 
+                                data-layout=&quot;default&quot;
+                                data-model=&quot;wrn.viewer.viewModel&quot;
+                                data-bind=&quot;events:{show:show,init:init,hide:hide}&quot;
+                                &gt;
+                                      &lt;header data-role=&quot;header&quot;&gt;
+                                        &lt;div data-role=&quot;navbar&quot;&gt;
+                                            &lt;a data-align=&quot;left&quot; data-role=&quot;button&quot; class=&quot;defaultBtn&quot; data-bind=&quot;events{click:goBackToList}&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-chevron-left&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+                                            &lt;a data-align=&quot;right&quot; class=&quot;editPhotos defaultBtn&quot; data-role=&quot;button&quot; data-bind=&quot;click:editModeToggle,invisible:yesPhotosNames&quot;&gt;&lt;span data-bind=&quot;text:editButtonText&quot;&gt;edit&lt;/span&gt;&lt;/a&gt;
+                                            &lt;a data-align=&quot;right&quot; data-role=&quot;button&quot; class=&quot;primaryBtn&quot; data-bind=&quot;click:addImageUi&quot; data-icon=&quot;add&quot;&gt;&lt;/a&gt;
+                                        &lt;/div&gt;
+                                      &lt;/header&gt;
+
+                                      &lt;div data-bind=&quot;text:groupNameBanner,invisible:yesPhotosNames&quot; class=&quot;groupNameBanner&quot;&gt;&lt;/div&gt;
+
+                                      &lt;div id=&quot;scrollViewBindings&quot; data-bind=&quot;invisible:yesPhotosNames&quot;&gt;
+                                            &lt;div id=&quot;scrollview&quot;&gt;&lt;/div&gt;
+                                      &lt;/div&gt;
+
+                                      &lt;div class=&quot;alert alert-info text-center&quot; data-bind=&quot;invisible:noPhotosNames&quot;&gt;click + to add name &amp;amp; photo&lt;/div&gt;
+                                &lt;/div&gt;
+                            </pre>
+
+                            <p>When defining a view module just keep in mind that minimally it's a mobile view but potentially its connect to a model and view-model and contains mobile widgets.</p>
+
+                            <h3><strong>5.6</strong> Defining view-model modules</h3>
 
                             <p>JavaScript modules need to be properly place inside of the name space in an organized fashion. Meaning, for each JavaScript file we have to create (or add it to the correct name space already created) name spaces for each view that uses a JavaScript file. In the whats-er-name application if we examine the <code>groupList</code> view you'll notice that the groupListViewModel.js file uses a common module module pattern/definition for adding the <code>groupList</code> name space to the application name space. Roughly the pattern looks like this:</p>
 
@@ -1178,7 +1212,7 @@
 
                             <p>This should be the pattern used when creating view-model JavaScript files</p>
 
-                            <h3><strong>5.6</strong> Defining model modules</h3>
+                            <h3><strong>5.7</strong> Defining model modules</h3>
 
                             <p>The pattern for creating model JavaScript files differs from creating model-view files. Models should be stored one level deep from the top global name space in a logical and semantically minded name space. The reason for this is the fact that a model can be used across several views. And in the whats-er-name applicaiton this is why you find it in the shared directory and not a specific view directory. However, if a model does not get used by more than one view, it would be perfectively logical to store it in the directory containing the rest of the view specific files.
 
@@ -1203,7 +1237,7 @@
                                 })(wrn); //pass in global namespace
                             </pre>
 
-                            <h3><strong>5.7</strong> Defining utility modules</h3>
+                            <h3><strong>5.8</strong> Defining utility modules</h3>
                             
                             <p>Any utility objects/functionality needed by all JavaScript modules can be place directly on the name space referencing the utility object/function directly. Below I showing the <code>makeId.js</code> utility code.</p>
 
@@ -1225,9 +1259,9 @@
                                 })(wrn); //pass in global namespace
                             </pre>
 
-                            <h3><strong>5.8</strong> Defining template modules</h3>
+                            <h3><strong>5.9</strong> Defining template modules</h3>
 
-                            <p>Kendo mobile widgets make use of Kendo <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">templates</a>. The whats-er-name application uses &lt;script&gt; elements to house html string templates keeped in <code>.html</code> files and included into the index.html using client-side includes. Below I show an example of a template used by the mobile scroller widget.</p>
+                            <p>Kendo mobile widgets make use of Kendo <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">templates</a>. The whats-er-name application uses &lt;script&gt; elements to house html string templates keeped in <code>.html</code> files (included into the index.html using client-side includes). Below I show an example of a template used by the mobile scroller widget in the <code>viewerView.html</code> view</p>
 
                             <pre class="brush: html">
                                 &lt;script id=&quot;scrollerTemplate&quot; type=&quot;text/x-kendo-template&quot;&gt;
@@ -1238,6 +1272,10 @@
                                         &lt;div class=&quot;photoName&quot;&gt;&lt;span&gt;#= name #&lt;/span&gt;&lt;/div&gt;
                                 &lt;/script&gt;
                             </pre>
+
+                            <h3><strong>5.10</strong> Use declarative widget instantiation when needed</h3>
+
+                            <p>Don't be too dogmatic only using the declarative instantiation patterns in your views. Sometimes it's necessary to imperatively instantiate a mobile widget using code, not markup. I chose to imperatively create the <code>kendoMobileScrollView</code> in the <code>viewerViewModel.js</code> file because it was logically necessary. Sometimes its simply the path of least resistance and code.</p>
 
                             </div>
 
