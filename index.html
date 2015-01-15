@@ -802,7 +802,7 @@
 
                             <h3><strong>2.2</strong> Cautiously turn on native scrolling</h3>
 
-                            <p>By default scrolling the content in a Kendo mobile app is not native. Either the scroll widget is used or CSS is used (i.e. <code>overflow:auto</code>) to emulate scrolling. While one can use the configuration below to force native scrolling, I caution against doing so unless your intention highly customized. All sorts of CSS issues and regression issues rear their ugly head in regards to widgets if you turn on native scrolling.</p>
+                            <p>By default scrolling the content in a Kendo mobile app is not native. Either the scroll widget is used or CSS is used (i.e. <code>overflow:auto</code>) to emulate scrolling. While one can use the configuration below to force native scrolling, I caution against doing so unless your intention is a highly customized solution. All sorts of CSS issues and regression issues rear their ugly head in regards to widgets if you turn on native scrolling.</p>
 
                             <pre class="brush: javascript">
                                 new kendo.mobile.Application(document.body, { 
@@ -1009,7 +1009,7 @@
 
                             <h3><strong>4.1</strong> What is gulp doing</h3>
 
-                            <p>Whats-er-name app uses <a href="http://gulpjs.com/">gulp</a> (a task runner) to create development and production builds that are opened in a browser and severed from a local node server. Basically when developing, a development build is occurring (i.e. a bunch of tasks you don't want to run manually) every time you make a change to the source code. Note the browser reloads the page serving the development code (i.e. watching &amp; livereload). upon every change to the source code.</p>
+                            <p>Whats-er-name app uses <a href="http://gulpjs.com/">gulp</a> (a task runner) to create development and production builds that are opened in a browser and severed from a local node server. Basically when developing, a development build is occurring (i.e. a bunch of tasks you don't want to run manually) every time you make a change to the source code. Note the browser reloads the page serving the development code (i.e. watching &amp; livereload) upon every change to the source code.</p>
 
                             <p>When you are done developing the application, a production build can be ran converting your development code into production. Note that production code is severed on a different server than development code and is not listening to changes from the development directory so as to reload the browser.</p>
 
@@ -1061,17 +1061,23 @@
 
                             <h3><strong>5.1</strong> <code>index.html</code> overview</h3>
 
-                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the <code>src</code> folder. All other assets will be consider a module that is included via <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. <a href="https://github.com/coderhaoxin/gulp-file-include">client-side includes</a>). Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> in a browser will bootstrap and instantiate the entire application.</p>
+                            <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the <code>src</code> folder. All other assets will be consider a module that is included via <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. <a href="https://github.com/coderhaoxin/gulp-file-include">client-side includes</a>).</p>
+
+                            <p>Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> in a browser will bootstrap and instantiate the entire application.</p>
 
                             <h3><strong>5.2</strong> Application name space</h3>
 
-                            <p>The Kendo UI mobile application logic, by default, looks for JavaScript objects in the global scope. This factor forces the use of a global name space. The whats-er-name application uses a global name space to store JavaScript code relating to the application. The name space and shortcut name space are defined in the <code>index.html</code> file and shown below.</p>
+                            <p>The Kendo UI mobile <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">application</a> logic, by default, looks for supporting JavaScript in the global scope. This factor forces the use of a global name space instead of privately scoped modules. Thus the whats-er-name application uses a global name space to store JavaScript code relating to the application so that any modules can reference other modules.</p>
+
+                            <p>The name space <code>whatsername</code> and shortcut name space <code>wrn</code> are defined in the <code>index.html</code> file and shown below.</p>
 
                             <pre class="brush: html">
-                                &lt;script&gt; this.whatsername = this.wrn = {}; //long and shortcut namespace &lt;/script&gt;
+                                &lt;script&gt; 
+                                    this.whatsername = this.wrn = {}; //long and shortcut namespace
+                                &lt;/script&gt;
                             </pre>
 
-                            <p>JavaScript modules need to be properly place inside of the name space in an organized fashion. Meaning, for each JavaScript file (utilities, models, view-models) we have to create, or add, a name spaces for the code to live within. More detail around defining a JavaScript module will be given in the appropriate section of this chapter.</p>
+                            <p>JavaScript modules need to be properly place inside of the name space in an organized fashion. Meaning, for each JavaScript file (utilities, models, view-models) we have to create, or add, a name spaces for the code to live within. More detail around defining a JavaScript module for models, view-models, and utility modules will be given in the appropriate section of this chapter.</p>
 
                             <div class="note">
                                 <div class="notes-title">Notes</div>
@@ -1100,9 +1106,9 @@
 
                             <h3><strong>5.4</strong> Module naming</h3>
 
-                            <p>The following naming patterns are used for naming modules.</p>
+                            <p>The application is organized into logical directories and files based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature in the UI (read more about this in the <a href="#3.5-ui-directory">section 3</a>). </p>
 
-                            <p>The application is organized into logical directories based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature in the UI (read more about this in the <a href="#3.5-ui-directory">section 3</a>). Examine the directories below. </p>
+                            <p/>You can get a feel for what I am describing by simply examining the directories below.</p>
 
 <pre>
 ├── index.html
@@ -1145,13 +1151,13 @@
 
                             <p>From the above directory tree you should note two things.</p> 
 
-                            <p>One, that view, model, view-model, template, and layout files end with a descriptive word describing what type of file it is, i.e. "View", "Model", "ViewModel", "Template", or "Layout". This is extremely handy when you have a lot of files open in our code editor or are grepping for a file. </p>
+                            <p>First off the view, model, view-model, template, and layout files end with a descriptive word describing what type of file it is, i.e. "View", "Model", "ViewModel", "Template", or "Layout". This is extremely handy when you have a lot of files open in a code editor or are grepping for a file. </p>
 
-                            <p>Second, directories with modules should contain modules named with the same root words contained in the directory name (e.g. <code>addName</code> directory contains <code>addNameView.html</code> and <code>addNameViewModel.js</code>).</p>
+                            <p>Secondly, the ui directories should contain modules named with the same root words contained in the directory name (e.g. <code>addName</code> directory contains <code>addNameView.html</code> and <code>addNameViewModel.js</code>).</p>
 
                             <h3><strong>5.5</strong> Defining view modules</h3>
 
-                            <p>View modules are html files containing mobile views with declarative attributes and likely mobile widgets. This shouldn't be a surprise to you if you fully grok the MVVM pattern. The view declaratively connects to the view-model. For example in the <code>viewerView.html</code> file shown below the <code>data-model</code> attribute connects the model to the view and the data-bind attribute declarative binds logic found in the <code>viewerViewModel.js</code> file.</p> 
+                            <p>View modules are html files containing mobile <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/view">views</a> with declarative attributes and likely mobile widgets. This shouldn't be a surprise to you if you fully grok the MVVM pattern. The view declaratively connects to the view-model. For example in the <code>viewerView.html</code> file shown below the <code>data-model</code> attribute binds <code>viewerViewModel.js</code> to the view.</p> 
 
                             <pre class="brush: html">
                                 &lt;div id=&quot;viewerView&quot; 
@@ -1178,20 +1184,25 @@
                                 &lt;/div&gt;
                             </pre>
 
-                            <p>When defining a view module just keep in mind that minimally it's a mobile view, with a layout, but more than likely its also connect to a model and view-model and mobile widgets.</p>
+                            <p>When defining a view module just keep in mind that minimally it's a mobile view widget declaratively instantiated, associate with a declaratively instantiated <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/layout">layout</a> widget containing other mobile widgets and more than likely connected to a view-model associated with a model.</p>
 
                             <div class="note">
                                 <div class="notes-title">Notes</div>
                                 <div class="notes">
                                     <ul>
                                         <li>Make sure you use the name of the view file, minus the extensions, as the id for the view (e.g. id=&quot;viewerView&quot; ). This pattern is used through out the whats-er-name app.</li>
+                                        <li>Any view specific CSS should be placed into a separate CSS file in the same directory as the HTML view. The name of the HTML view file should match the name given to the view CSS file (e.g. <code>viewerView.css</code>).</li>
                                     </ul>
                                 </div>
                             </div>
 
-                            <h3><strong>5.6</strong> Defining view-model modules</h3>
+                            <h3><strong>5.6</strong> Defining layout modules</h3>
 
-                            <p>There is a robust relationship between the view and the view-model. In the MVVM pattern the view-model typically contains controller logic. One can declaratively create a lot of abstracted functionality in the html view, but it's the view-model where all of the observed JavaScript code resides that drives the view.</p>
+                            <p>The whats-er-name application uses a single layout for all it's mobile views (i.e. <code>/src/shared/layouts/global/globalLayout.html</code>). But it's more than likely going to be the case by mimicking the architecture prescribed in this guide you'll have view specific layouts and styles. When this occurs the HTML and CSS should place in the same directory which contains the view HTML. Just make sure you end both files with the word "Layout".</p>
+
+                            <h3><strong>5.7</strong> Defining view-model modules</h3>
+
+                            <p>There is a robust relationship between the view and the view-model. In the MVVM pattern the view-model typically contains controller-like-logic. One can declaratively create a lot of abstracted functionality in the HTML view, but it's the view-model where all of the observed JavaScript code resides that drives the view.</p>
 
                             <p>Below is an example of the the pattern used to create a view-model JavaScript module. It should look somewhat familiar, its a simple and common module pattern/definition used in JavaScript applications.</p>
 
@@ -1224,13 +1235,13 @@
 
                             <ol>
                                 <li>The name space should be exactly the same name of the directory that contains the view-model module.</li>
-                                <li>The view-model name space is an object that contains a <code>viewModel</code> property that is an instance of <code>Kendo.observable</code>.</li>
-                                <li>If the view-model uses a model then it's stored as an observable property called <code>modelData</code>. Which will reference a model module in the name space.</li>
+                                <li>The view-model name space is an object that contains a <code>viewModel</code> property that stores an instance of <code>Kendo.observable</code>.</li>
+                                <li>If the view-model uses a model then it's stored as an observable property called <code>modelData</code>. Which references a model module in the name space.</li>
                             </ol>
 
-                            <h3><strong>5.7</strong> Defining model modules</h3>
+                            <h3><strong>5.8</strong> Defining model modules</h3>
 
-                            <p>The pattern for creating model JavaScript files differs from creating model-view files. Models should be stored one level deep from the top global name space in a logical and semantically minded name space. The reason for this is the fact that a model can be used across several views. And in the whats-er-name application this is why you find it in the shared directory and not a specific view directory. However, if a model does not get used by more than one view, it would be perfectively logical to store it in the directory containing the rest of the view specific files.</p>
+                            <p>The pattern for creating model JavaScript files differs from creating model-view files. Models should be stored one level deep from the top global name space in a logical and semantically minded name space. The reason for this is the fact that models typically are used by several views. And in the whats-er-name application this is why you find it in the shared directory and not a specific view directory. However, if a model does not get used by more than one logical ui grouping, it would be perfectively logical to store it in the directory containing the rest of the ui's specific files.</p>
 
                             <p>Below I am showing the pattern for defining models</p>
 
@@ -1253,11 +1264,20 @@
                                 })(wrn); //pass in global namespace
                             </pre>
 
-                            <p>Note that model name spaces ends with the "Model".</p>
+                            <p>Model name spaces should end with "Model".</p>
 
-                            <h3><strong>5.8</strong> Defining utility modules</h3>
+                            <div class="note">
+                                <div class="notes-title">Notes</div>
+                                <div class="notes">
+                                    <ul>
+                                        <li>A model can often be a simple, static JSON object. But it more likely that you'll be using the Kendo UI <code>datasource</code> abstraction to wrap local or remote data. In the whats-er-name app I am using it to force <code>datasource</code> into offline mode to manage JSON in <code>localstorage</code>.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3><strong>5.9</strong> Defining utility modules</h3>
                             
-                            <p>Any utility objects/functionality needed by all JavaScript modules can be place directly on the name space referencing the utility object/function directly. Below I showing the <code>makeId.js</code> utility code as an example pattern for adding utility JavaScript modules.</p>
+                            <p>Any utility objects/functionality needed by all JavaScript modules can be place directly on the name space object as property which specifically describes the utility. Below I showing the <code>makeId.js</code> utility code as an example pattern for adding utility JavaScript modules.</p>
 
                             <pre class="brush: js">
                                 (function(wrn){
@@ -1277,9 +1297,13 @@
                                 })(wrn); //pass in global namespace
                             </pre>
 
-                            <h3><strong>5.9</strong> Defining template modules</h3>
+                            <p>These modules are always stored in the <code>shared/utilities</code> directory.</p>
 
-                            <p>Kendo mobile widgets make use of Kendo <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">templates</a>. The whats-er-name application uses &lt;script&gt; elements to house html string templates keeped in <code>.html</code> files (included into the index.html using client-side includes). Below I show an example of a template used by the mobile scroller widget in the <code>viewerView.html</code> view</p>
+                            <h3><strong>5.10</strong> Defining template modules</h3>
+
+                            <p>Kendo mobile widgets can make use of Kendo UI<a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">templates</a>. The whats-er-name application uses &lt;script&gt; elements to house Kendo UI HTML templates in <code>.html</code> files (included into the index.html using client-side includes).</p>
+
+                            <p>Below I show an example of a template used by the mobile scroller widget in the <code>viewerView.html</code> view</p>
 
                             <pre class="brush: html">
                                 &lt;script id=&quot;scrollerTemplate&quot; type=&quot;text/x-kendo-template&quot;&gt;
@@ -1291,9 +1315,11 @@
                                 &lt;/script&gt;
                             </pre>
 
-                            <h3><strong>5.10</strong> Use declarative widget instantiation when needed</h3>
+                            <p>Make sure you give the &lt;script&gt; an id (e.g. id="scrollerTemplate") so that the widgets in your views can point to the template.</p>
 
-                            <p>Don't be too dogmatic about only using the declarative instantiation patterns in your views. Sometimes it's necessary to imperatively instantiate a mobile widget using code, not markup. I chose to imperatively create the <code>kendoMobileScrollView</code> in the <code>viewerViewModel.js</code> file because it was logically necessary. Sometimes its simply the path of least resistance and code.</p>
+                            <h3><strong>5.11</strong> Use declarative widget instantiation when needed</h3>
+
+                            <p>Don't be too dogmatic about only using declarative instantiation patterns for widgets contained in mobile views. Sometimes it's necessary to imperatively instantiate a mobile widget using code, not markup. I chose to imperatively create the <code>kendoMobileScrollView</code> in the <code>viewerViewModel.js</code> file because it was logically necessary. Sometimes its simply the path of least resistance in terms of code and code complexity.</p>
 
                             </div>
 
