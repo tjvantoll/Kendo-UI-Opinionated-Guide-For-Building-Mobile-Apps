@@ -1191,7 +1191,7 @@
 
                             <h3><strong>5.6</strong> Defining view-model modules</h3>
 
-                            <p>There is of a robust relationship between the view and the view-model. In the MVVM pattern the view-model typically contains controller logic. One can declaratively create a lot of abstracted functionality in the html view, but it's the view-model where all of the JavaScript code resides that drives the view.</p>
+                            <p>There is a robust relationship between the view and the view-model. In the MVVM pattern the view-model typically contains controller logic. One can declaratively create a lot of abstracted functionality in the html view, but it's the view-model where all of the observed JavaScript code resides that drives the view.</p>
 
                             <p>Below is an example of the the pattern used to create a view-model JavaScript module. It should look somewhat familiar, its a simple and common module pattern/definition used in JavaScript applications.</p>
 
@@ -1204,23 +1204,28 @@
 
                                     //below we create the viewModel
 
-                                    wrn.groupList = {  //create viewModel namespace in global
-                                        viewModel: kendo.observable({
+                                    wrn.viewer = {  //create viewModel namespace in global
+
                                             //the actual model
-                                            modelData: wrn.groupModel,
-                                            
+                                            modelData: wrn.viewerModel,
+
+                                            //other properties or functions you want to observe and expose to html
+                                            init:function(){ ... },
+                                            show:function(){ ... },
+                                            anyFunction:function(){ ... },
+                                            anyValue:''
                                         })
                                     };
 
                                 })(wrn); //pass in global namespace
                             </pre>
 
-                            <p>Three things should be repeated when creating view-models</p>
+                            <p>Three things are occurring and should be repeated when creating view-models:</p>
 
                             <ol>
-                                <li>The name space should be exactly the same name of the directory that contains the module.</li>
-                                <li>The view-model name space is an object that contains a <code>viewModel</code> property that is an instance of <code>Kendo.observable</code>. </li>
-                                <li>If the view-model uses a model then it's stored inside of the viewModel as an observable property called <code>modelData</code>.</li>
+                                <li>The name space should be exactly the same name of the directory that contains the view-model module.</li>
+                                <li>The view-model name space is an object that contains a <code>viewModel</code> property that is an instance of <code>Kendo.observable</code>.</li>
+                                <li>If the view-model uses a model then it's stored as an observable property called <code>modelData</code>. Which will reference a model module in the name space.</li>
                             </ol>
 
                             <h3><strong>5.7</strong> Defining model modules</h3>
