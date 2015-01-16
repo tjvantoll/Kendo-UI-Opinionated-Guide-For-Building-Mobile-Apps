@@ -396,7 +396,7 @@
 
                                 <p>Kendo UI provides specific touch first widgets (i.e. mobile widgets) to be used in the construction of phone and tablet web based interfaces. In addition to widgets, Kendo UI also provides application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> in a mobile browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). In this guide I will refer to the application logic that is provide by Kendo UI as "mobile application logic" (i.e. <code>kendo.mobile.Application</code>).</p>
 
-                                <p>While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets. Unless you are bringing a replacement for the application logic provided by <code>kendo.mobile.Application</code> (e.g. Angular + ng-view + ng-router) the application logic will almost always be needed.</p>
+                                <p>While Kendo UI widgets can run stand alone without an active mobile <code>application</code> instance this guide assumes the use of the mobile application logic in conjunction with the mobile widgets. Unless you are bringing a replacement for the application logic provided by <code>kendo.mobile.Application</code> (e.g. Angular + ng-view + ng-router) the application logic will almost always be required alone side mobile widgets.</p>
 
                                 <!--<h3>What is a hybrid mobile/tablet app?</h3>
                                 <p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
@@ -1063,7 +1063,7 @@
 
                             <p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the <code>src</code> folder. All other assets will be consider a module that is included via <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. <a href="https://github.com/coderhaoxin/gulp-file-include">client-side includes</a>).</p>
 
-                            <p>Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> in a browser will bootstrap and instantiate the entire application.</p>
+                            <p>Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open the file and read the comments it should be obvious that running <code>index.html</code> in a browser will load all modules and instantiate the entire application.</p>
 
                             <h3><strong>5.2</strong> Application name space</h3>
 
@@ -1077,7 +1077,7 @@
                                 &lt;/script&gt;
                             </pre>
 
-                            <p>JavaScript modules need to be properly place inside of the name space in an organized fashion. Meaning, for each JavaScript file (utilities, models, view-models) we have to create, or add, a name spaces for the code to live within. More detail around defining a JavaScript module for models, view-models, and utility modules will be given in the appropriate section of this chapter.</p>
+                            <p>JavaScript modules need to be properly place inside of the name space in an organized fashion. Meaning, for each JavaScript file (utilities, models, view-models) we have to create a name spaces (withing the global app name space) for the code to live within. More detail around defining a JavaScript module for models, view-models, and utility modules will be given in the appropriate section of this chapter.</p>
 
                             <div class="note">
                                 <div class="notes-title">Notes</div>
